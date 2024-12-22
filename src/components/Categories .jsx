@@ -1,20 +1,19 @@
 import React from "react";
 
-const Categories = () => {
-  const categories = [
-    { name: "Men", img: "/assets/men.jpg" },
-    { name: "Women", img: "/assets/women.jpg" },
-    { name: "Accessories", img: "/assets/accessories.jpg" },
-  ];
-
+const Categories = ({ categories, setSelectedCategory }) => {
   return (
     <section className="categories">
       <h2>Shop by Category</h2>
       <div className="category-list">
         {categories.map((category, index) => (
-          <div key={index} className="category-card">
-            <img src={category.img} alt={category.name} />
-            <h3>{category.name}</h3>
+          <div
+            key={index}
+            className="category-card"
+            onClick={() => setSelectedCategory(category.categoryName)} // Set selected category on click
+            style={{ cursor: "pointer" }}
+          >
+            <img src={category.img} alt={category.categoryName} />
+            <h3>{category.categoryName}</h3>
           </div>
         ))}
       </div>

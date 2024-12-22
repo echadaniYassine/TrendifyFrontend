@@ -1,16 +1,16 @@
 import React from "react";
-import ProductCard from "../components/ProductCart"; // Correct path to ProductCard
-import {ProductsData} from "../data/ProductsData"; // Ensure you have your product data available
+import ProductCard from "../components/ProductCart"; // Assuming you have a ProductCard component
 
-const ProductList = () => {
-  if (!ProductsData) return null;
-
+const ProductList = ({ products }) => {
   return (
-    <div className="product-list">
-      {ProductsData.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </div>
+    <section className="product-list">
+      <h2>Our Products</h2>
+      <div className="product-grid">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+    </section>
   );
 };
 
