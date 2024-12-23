@@ -1,8 +1,11 @@
+import FeaturedProducts from "../components/FeaturedProducts";
+
 const ProductsData = [
-  // Men Hoodies
+  // Men Category
   {
     id: 1,
     categoryName: "Men",
+    subcategory: "Hoodies",
     name: "Hoody for Men - Style 1",
     price: 10.99,
     img: "/assets/Men/Hoodies/hooddy1.jpg",
@@ -11,6 +14,7 @@ const ProductsData = [
   {
     id: 2,
     categoryName: "Men",
+    subcategory: "Hoodies",
     name: "Hoody for Men - Style 2",
     price: 20.99,
     img: "/assets/Men/Hoodies/hooddy2.jpg",
@@ -19,6 +23,7 @@ const ProductsData = [
   {
     id: 3,
     categoryName: "Men",
+    subcategory: "Hoodies",
     name: "Hoody for Men - Style 3",
     price: 15.99,
     img: "/assets/Men/Hoodies/hooddy3.jpg",
@@ -27,16 +32,17 @@ const ProductsData = [
   {
     id: 4,
     categoryName: "Men",
+    featured: true,
+    subcategory: "Hoodies",
     name: "Hoody for Men - Style 4",
     price: 25.99,
     img: "/assets/Men/Hoodies/hooddy4.jpg",
     description: "Classic hoody that adds a touch of sophistication to any outfit.",
   },
-  
-  // Men Jackets
   {
     id: 5,
     categoryName: "Men",
+    subcategory: "Jackets",
     name: "Jacket for Men - Style 1",
     price: 30.99,
     img: "/assets/Men/Jackets/Jacket1.jpg",
@@ -45,6 +51,8 @@ const ProductsData = [
   {
     id: 6,
     categoryName: "Men",
+    subcategory: "Jackets",
+    featured: true,
     name: "Jacket for Men - Style 2",
     price: 40.99,
     img: "/assets/Men/Jackets/Jacket2.jpg",
@@ -53,6 +61,7 @@ const ProductsData = [
   {
     id: 7,
     categoryName: "Men",
+    subcategory: "Jackets",
     name: "Jacket for Men - Style 3",
     price: 35.99,
     img: "/assets/Men/Jackets/Jacket3.jpg",
@@ -61,16 +70,16 @@ const ProductsData = [
   {
     id: 8,
     categoryName: "Men",
+    subcategory: "Jackets",
     name: "Jacket for Men - Style 4",
     price: 45.99,
     img: "/assets/Men/Jackets/Jacket4.jpg",
     description: "Classic jacket that adds a touch of sophistication to any outfit.",
   },
-  
-  // Men Shirts
   {
     id: 9,
     categoryName: "Men",
+    subcategory: "Shirts",
     name: "Shirt for Men - Style 1",
     price: 10.99,
     img: "/assets/Men/Shirts/Shirt1.jpg",
@@ -79,6 +88,7 @@ const ProductsData = [
   {
     id: 10,
     categoryName: "Men",
+    subcategory: "Shirts",
     name: "Shirt for Men - Style 2",
     price: 20.99,
     img: "/assets/Men/Shirts/Shirt2.jpg",
@@ -87,6 +97,7 @@ const ProductsData = [
   {
     id: 11,
     categoryName: "Men",
+    subcategory: "Shirts",
     name: "Shirt for Men - Style 3",
     price: 15.99,
     img: "/assets/Men/Shirts/Shirt3.jpg",
@@ -95,16 +106,16 @@ const ProductsData = [
   {
     id: 12,
     categoryName: "Men",
+    subcategory: "Shirts",
     name: "Shirt for Men - Style 4",
     price: 25.99,
     img: "/assets/Men/Shirts/Shirt4.jpg",
     description: "Classic shirt that adds a touch of sophistication to any outfit.",
   },
-  
-  // Men Pants
   {
     id: 13,
     categoryName: "Men",
+    subcategory: "Pants",
     name: "Pants for Men - Style 1",
     price: 10.99,
     img: "/assets/Men/Pants/Pant1.jpg",
@@ -113,14 +124,16 @@ const ProductsData = [
   {
     id: 14,
     categoryName: "Men",
+    subcategory: "Pants",
     name: "Pants for Men - Style 2",
     price: 20.99,
-    img: "/assets/Men/P ants/Pant2.jpg",
+    img: "/assets/Men/Pants/Pant2.jpg",
     description: "Trendy pants that combine style and comfort for everyday wear.",
   },
   {
     id: 15,
     categoryName: "Men",
+    subcategory: "Pants",
     name: "Pants for Men - Style 3",
     price: 15.99,
     img: "/assets/Men/Pants/Pant3.jpg",
@@ -129,16 +142,18 @@ const ProductsData = [
   {
     id: 16,
     categoryName: "Men",
+    subcategory: "Pants",
     name: "Pants for Men - Style 4",
     price: 25.99,
     img: "/assets/Men/Pants/Pant4.jpg",
     description: "Classic pants that add a touch of sophistication to any outfit.",
   },
-  
-  // Women Hoodies
+
+  // Women Category
   {
     id: 17,
     categoryName: "Women",
+    subcategory: "Hoodies",
     name: "Hoody for Women - Style 1",
     price: 10.99,
     img: "/assets/Women/Hoodies/Hoody1.jpg",
@@ -147,6 +162,7 @@ const ProductsData = [
   {
     id: 18,
     categoryName: "Women",
+    subcategory: "Hoodies",
     name: "Hoody for Women - Style 2",
     price: 20.99,
     img: "/assets/Women/Hoodies/Hoody2.jpg",
@@ -155,6 +171,7 @@ const ProductsData = [
   {
     id: 19,
     categoryName: "Women",
+    subcategory: "Hoodies",
     name: "Hoody for Women - Style 3",
     price: 15.99,
     img: "/assets/Women/Hoodies/Hoody3.jpg",
@@ -163,16 +180,16 @@ const ProductsData = [
   {
     id: 20,
     categoryName: "Women",
+    subcategory: "Hoodies",
     name: "Hoody for Women - Style 4",
     price: 25.99,
     img: "/assets/Women/Hoodies/Hoody4.jpg",
     description: "Classic hoody that adds a touch of sophistication to any outfit.",
   },
-  
-  // Women Jackets
   {
     id: 21,
     categoryName: "Women",
+    subcategory: "Jackets",
     name: "Jacket for Women - Style 1",
     price: 30.99,
     img: "/assets/Women/Jackets/Jackect1.jpg",
@@ -181,6 +198,7 @@ const ProductsData = [
   {
     id: 22,
     categoryName: "Women",
+    subcategory: "Jackets",
     name: "Jacket for Women - Style 2",
     price: 40.99,
     img: "/assets/Women/Jackets/Jackect2.jpg",
@@ -189,6 +207,7 @@ const ProductsData = [
   {
     id: 23,
     categoryName: "Women",
+    subcategory: "Jackets",
     name: "Jacket for Women - Style 3",
     price: 35.99,
     img: "/assets/Women/Jackets/Jackect3.jpg",
@@ -197,16 +216,16 @@ const ProductsData = [
   {
     id: 24,
     categoryName: "Women",
+    subcategory: "Jackets",
     name: "Jacket for Women - Style 4",
     price: 45.99,
     img: "/assets/Women/Jackets/Jackect4.jpg",
     description: "Classic jacket that adds a touch of sophistication to any outfit.",
   },
-  
-  // Women Shirts
   {
     id: 25,
     categoryName: "Women",
+    subcategory: "Shirts",
     name: "Shirt for Women - Style 1",
     price: 10.99,
     img: "/assets/Women/Shirts/Shirts1.jpg",
@@ -215,6 +234,7 @@ const ProductsData = [
   {
     id: 26,
     categoryName: "Women",
+    subcategory: "Shirts",
     name: "Shirt for Women - Style 2",
     price: 20.99,
     img: "/assets/Women/Shirts/Shirts2.jpg",
@@ -223,6 +243,7 @@ const ProductsData = [
   {
     id: 27,
     categoryName: "Women",
+    subcategory: "Shirts",
     name: "Shirt for Women - Style 3",
     price: 15.99,
     img: "/assets/Women/Shirts/Shirts3.jpg",
@@ -231,16 +252,17 @@ const ProductsData = [
   {
     id: 28,
     categoryName: "Women",
+    subcategory: "Shirts",
+    featured: true,
     name: "Shirt for Women - Style 4",
     price: 25.99,
     img: "/assets/Women/Shirts/Shirts4.jpg",
     description: "Classic shirt that adds a touch of sophistication to any outfit.",
   },
-  
-  // Women Pants
   {
     id: 29,
     categoryName: "Women",
+    subcategory: "Pants",
     name: "Pants for Women - Style 1",
     price: 10.99,
     img: "/assets/Women/Pants/Pant1.jpg",
@@ -249,6 +271,7 @@ const ProductsData = [
   {
     id: 30,
     categoryName: "Women",
+    subcategory: "Pants",
     name: "Pants for Women - Style 2",
     price: 20.99,
     img: "/assets/Women/Pants/Pant2.jpg",
@@ -257,6 +280,7 @@ const ProductsData = [
   {
     id: 31,
     categoryName: "Women",
+    subcategory: "Pants",
     name: "Pants for Women - Style 3",
     price: 15.99,
     img: "/assets/Women/Pants/Pant3.jpg",
@@ -265,6 +289,8 @@ const ProductsData = [
   {
     id: 32,
     categoryName: "Women",
+    featured: true,
+    subcategory: "Pants",
     name: "Pants for Women - Style 4",
     price: 25.99,
     img: "/assets/Women/Pants/Pant4.jpg",
@@ -274,9 +300,8 @@ const ProductsData = [
 
 const categories = [
   { categoryName: "All", img: "/assets/all.jpg" },
-  { categoryName: "Men", img: "/assets/men.jpg" },
-  { categoryName: "Women", img: "/assets/women.jpg" },
-  { categoryName: "Accessories", img: "/assets/accessories.jpg" },
+  { categoryName: "Men", img: "/assets/men.jpg", subcategories: ["Hoodies", "Jackets", "Shirts", "Pants"] },
+  { categoryName: "Women", img: "/assets/women.jpg", subcategories: ["Hoodies", "Jackets", "Shirts", "Pants"] },
 ];
 
 export { ProductsData, categories };

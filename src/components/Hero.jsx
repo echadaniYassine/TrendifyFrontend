@@ -5,7 +5,7 @@ const Hero = () => {
     <section className="hero">
       <h1>Welcome to Trendify!</h1>
       <p>Your one-stop shop for the latest trends.</p>
-      <button onClick={() => window.location.href = "/products"}>Shop Now</button>
+      <button onClick={() => window.location.href = "/Products"}>Shop Now</button>
     </section>
   );
 };

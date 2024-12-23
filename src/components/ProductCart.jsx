@@ -1,17 +1,17 @@
 import React, { useContext } from "react";
-import { CartContext } from "../features/cart/CartContext"; // Correct import path
+import { CartContext } from "../features/cart/CartContext";
 import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
-  const { state, dispatch } = useContext(CartContext); // Access cart state and dispatch
+  const { state, dispatch } = useContext(CartContext);
 
   const addToCart = () => {
     dispatch({ type: "ADD_ITEM", payload: product });
   };
-  const navigate = useNavigate(); // Get the navigation function
+  const navigate = useNavigate(); 
 
   const handleNavigateToDetails = () => {
-    navigate(`/products/${product.id}`); // Navigate to the product details page
+    navigate(`/products/${product.id}`); 
   };
 
   return (
