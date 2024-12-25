@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getUserInfo } from '../api/user';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie'; // Import js-cookie
 
 const Profile = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -10,7 +11,7 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const token = localStorage.getItem('token');
+      const token = Cookies.get('token'); // Use Cookies to get the token
       if (!token) {
         navigate('/login');
         return;
@@ -31,7 +32,7 @@ const Profile = () => {
   }, [navigate]);
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    Cookies.remove('token'); // Remove token from cookies
     navigate('/login');
   };
 

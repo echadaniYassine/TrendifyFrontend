@@ -9,11 +9,12 @@ const AdminDashboard = () => {
 
   return (
     <>
-    <Dashboard/>
-    <Products/>
-    <Users/>
+      <Dashboard />
+      <Products />
+      <Orders />
+      <Users />
     </>
-    
+
 
   );
 };

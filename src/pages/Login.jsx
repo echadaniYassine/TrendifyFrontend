@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../api/user';
+import Cookies from 'js-cookie'; // Import js-cookie
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -19,7 +20,7 @@ const Login = () => {
     try {
       const response = await login(formData);
       const token = response.data.token;
-      localStorage.setItem('token', token);
+      Cookies.set('token', token); // Set token in cookies
       navigate('/profile');
     } catch (err) {
       const errorMessage = err.response?.data?.message || 'Login failed. Please try again.';
