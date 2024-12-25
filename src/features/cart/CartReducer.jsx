@@ -28,6 +28,9 @@ const cartReducer = (state, action) => {
     case "CLEAR_CART":
       return { ...state, cart: [] };
 
+    case "SET_CART":
+      return { ...state, cart: action.payload }; // Handle loading the cart from localStorage
+
     default:
       return state;
   }

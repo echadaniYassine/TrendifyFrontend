@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { forgotPassword } from '../api/api'; // Import the forgotPassword API function
+import { forgotPassword } from '../api/user'; // Import the forgotPassword API function
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const ForgotPassword = () => {

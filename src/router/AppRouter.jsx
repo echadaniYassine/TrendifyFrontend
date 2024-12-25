@@ -11,7 +11,7 @@ import Checkout from "../pages/Checkout"; // Import the Checkout component
 import ProductDetails from "../pages/ProductDetails";
 import Login from "../pages/Login";
 import Signup from "../pages/SignUp";
-import ProtectedRoute from "./ProtectedRoute";
+import {ProtectedRoute} from "./ProtectedRoute";
 import ForgotPassword from "../pages/ForgetPaaword";
 import ResetPassword from "../pages/ResetPassword";
 import AdminDashboard from "../pages/AdminDashboard";
@@ -28,10 +28,10 @@ const AppRouter = ({ products }) => {
           <Route path="/" element={<Home />} />
           <Route path="/admin" element={<AdminDashboard/>}/>
           <Route path="/Products" element={<ProductList products={products} />} />
-          <Route path="/products/:productId" element={<ProductDetails products={products} />} />
+          <Route path="/product/:productId" element={<ProductDetails products={products} />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/ForgotPassword" element={<ForgotPassword />} />

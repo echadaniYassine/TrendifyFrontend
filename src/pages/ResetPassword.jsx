@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate  } from 'react-router-dom'; // Import useParams
-import { resetPassword } from '../api/api'; // Import the resetPassword API function
+import { resetPassword } from '../api/user'; // Import the resetPassword API function
 
 const ResetPassword = () => {
   const { token } = useParams(); // Get token from the URL
