@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { getAllProducts, deleteProduct, addProduct, getById } from '../../api/Products'; // Correct the import
+import '../../styles/admin/Products.css'; // Import the CSS file
 
 const Products = () => {
-  const [products, setProducts] = useState([]); // State to hold the products data
-  const [loading, setLoading] = useState(true); // State to track loading status
-  const [error, setError] = useState(null); // State to hold any errors during fetch
-  const [selectedProduct, setSelectedProduct] = useState(null); // State to hold the selected product details
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
-  // Load products on component mount
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -24,15 +24,11 @@ const Products = () => {
     fetchProducts();
   }, []);
 
-  // Handle deleting a product
   const handleDelete = async (productId) => {
     const confirmDelete = window.confirm('Are you sure you want to delete this product?');
     if (confirmDelete) {
       try {
-        // Call the delete function from the API
         await deleteProduct(productId);
-
-        // Remove the deleted product from the state
         setProducts((prevProducts) => prevProducts.filter((product) => product._id !== productId));
       } catch (err) {
         alert('Failed to delete the product.');
@@ -41,11 +37,10 @@ const Products = () => {
     }
   };
 
-  // Handle viewing product by id
   const handleViewProduct = async (productId) => {
     try {
-      const product = await getById(productId); // Fetch product details by ID
-      setSelectedProduct(product); // Set the selected product data to state
+      const product = await getById(productId);
+      setSelectedProduct(product);
     } catch (err) {
       alert('Failed to fetch product details.');
       console.error(err);
@@ -53,20 +48,20 @@ const Products = () => {
   };
 
   return (
-    <div>
-      <h2>Manage Products</h2>
+    <div className="products-container">
+      <h2 className="products-title">Manage Products</h2>
       {loading ? (
-        <p>Loading products...</p>
+        <p className="loading-text">Loading products...</p>
       ) : error ? (
-        <p>{error}</p>
+        <p className="error-message">{error}</p>
       ) : (
-        <div>
-          <table border="1" cellPadding="10" cellSpacing="0">
+        <div className="products-table-container">
+          <table className="products-table">
             <thead>
               <tr>
-                <th>id</th>
-                <th>Category Name</th>
-                <th>Sub Category</th>
+                <th>ID</th>
+                <th>Category</th>
+                <th>Subcategory</th>
                 <th>Name</th>
                 <th>Price</th>
                 <th>Image</th>
@@ -91,13 +86,14 @@ const Products = () => {
                     <td>{product.soldout ? 'Yes' : 'No'}</td>
                     <td>
                       <button
-                        onClick={() => handleViewProduct(product._id)} // Call handleViewProduct with productId
+                        className="view-button"
+                        onClick={() => handleViewProduct(product._id)}
                       >
                         View
                       </button>
                       <button
-                        style={{ marginLeft: '5px' }}
-                        onClick={() => handleDelete(product._id)} // Call handleDelete with productId
+                        className="delete-button"
+                        onClick={() => handleDelete(product._id)}
                       >
                         Delete
                       </button>
@@ -112,9 +108,8 @@ const Products = () => {
             </tbody>
           </table>
 
-          {/* Conditionally render the selected product details */}
           {selectedProduct && (
-            <div style={{ marginTop: '20px', padding: '10px', border: '1px solid #ccc' }}>
+            <div className="product-details">
               <h3>Product Details</h3>
               <img src={selectedProduct.img} alt={selectedProduct.name} width="150" />
               <p><strong>Name:</strong> {selectedProduct.name}</p>
@@ -124,7 +119,7 @@ const Products = () => {
               <p><strong>Subcategory:</strong> {selectedProduct.subcategory}</p>
               <p><strong>Featured:</strong> {selectedProduct.featured ? 'Yes' : 'No'}</p>
               <p><strong>Sold Out:</strong> {selectedProduct.soldOut ? 'Yes' : 'No'}</p>
-              <button onClick={() => setSelectedProduct(null)}>Close</button>
+              <button className="close-button" onClick={() => setSelectedProduct(null)}>Close</button>
             </div>
           )}
         </div>

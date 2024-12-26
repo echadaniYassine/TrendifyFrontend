@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getUserInfo } from '../api/user';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie'; // Import js-cookie
+import '../styles/pages/Profile.css'; // Import the CSS file
 
 const Profile = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -36,17 +37,19 @@ const Profile = () => {
     navigate('/login');
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) return <p className="loading-text">Loading...</p>;
+  if (error) return <p className="error-text">{error}</p>;
 
   return (
-    <div>
-      <h2>User Profile</h2>
-      <p><strong>Name:</strong> {userInfo.username}</p>
-      <p><strong>Email:</strong> {userInfo.email}</p>
-      <p><strong>Phone:</strong> {userInfo.phoneNumber }</p>
+    <div className="profile-container">
+      <h2 className="profile-title">User Profile</h2>
+      <div className="profile-details">
+        <p><strong>Name:</strong> {userInfo.username}</p>
+        <p><strong>Email:</strong> {userInfo.email}</p>
+        <p><strong>Phone:</strong> {userInfo.phoneNumber}</p>
+      </div>
 
-      <button onClick={handleLogout}>Logout</button>
+      <button className="logout-button" onClick={handleLogout}>Logout</button>
     </div>
   );
 };

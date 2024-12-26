@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { CartContext } from "../features/cart/CartContext";
 import { getCartTotal } from "../features/cart/cartUtils";
-
+import '../styles/pages/checkout.css'
 const Checkout = () => {
   const { state } = useContext(CartContext);
   const total = getCartTotal(state.cart);
@@ -47,102 +47,108 @@ const Checkout = () => {
   };
 
   return (
-    <div>
-      <h2>Checkout</h2>
+    <div className="checkout-container">
+      <h2 className="checkout-title">Checkout</h2>
       {state.cart.length === 0 ? (
-        <p>Your cart is empty. Please add some products before proceeding to checkout.</p>
+        <p className="cart-empty-message">Your cart is empty. Please add some products before proceeding to checkout.</p>
       ) : (
-        <div>
-          <h3>Order Summary</h3>
-          <ul>
+        <div className="checkout-content">
+          <h3 className="order-summary-title">Order Summary</h3>
+          <ul className="order-summary-list">
             {state.cart.map((item) => (
-              <li key={item.id}>
+              <li key={item.id} className="order-summary-item">
                 <div>
                   <strong>{item.name}</strong> - {item.quantity} x ${item.price.toFixed(2)}
                 </div>
               </li>
             ))}
           </ul>
-          <h4>Total: ${total.toFixed(2)}</h4>
+          <h4 className="total-price">Total: ${total.toFixed(2)}</h4>
 
-          <h3>Shipping Information</h3>
-          <form onSubmit={handleCheckout}>
-            <div>
-              <label>
+          <h3 className="shipping-info-title">Shipping Information</h3>
+          <form onSubmit={handleCheckout} className="checkout-form">
+            <div className="form-group">
+              <label className="form-label">
                 Full Name:
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
+                  className="form-input"
                   required
                 />
               </label>
             </div>
-            <div>
-              <label>
+            <div className="form-group">
+              <label className="form-label">
                 Address:
                 <input
                   type="text"
                   name="address"
                   value={formData.address}
                   onChange={handleInputChange}
+                  className="form-input"
                   required
                 />
               </label>
             </div>
-            <div>
-              <label>
+            <div className="form-group">
+              <label className="form-label">
                 City:
                 <input
                   type="text"
                   name="city"
                   value={formData.city}
                   onChange={handleInputChange}
+                  className="form-input"
                   required
                 />
               </label>
             </div>
-            <div>
-              <label>
+            <div className="form-group">
+              <label className="form-label">
                 Postal Code:
                 <input
                   type="text"
                   name="postalCode"
                   value={formData.postalCode}
                   onChange={handleInputChange}
+                  className="form-input"
                   required
                 />
               </label>
             </div>
-            <div>
-              <label>
+            <div className="form-group">
+              <label className="form-label">
                 Phone Number:
                 <input
                   type="text"
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
+                  className="form-input"
                   required
                 />
               </label>
             </div>
 
-            <h3>Payment Information</h3>
-            <div>
-              <label>
+            <h3 className="payment-info-title">Payment Information</h3>
+            <div className="form-group">
+              <label className="form-label">
                 Card Number:
                 <input
                   type="text"
                   name="cardNumber"
                   value={formData.cardNumber}
                   onChange={handleInputChange}
+                  className="form-input"
                   required
                 />
               </label>
             </div>
-            <div>
-              <label>
+            <div className="form-group">
+              <label className="form-label">
                 Expiry Date:
                 <input
                   type="text"
@@ -150,24 +156,26 @@ const Checkout = () => {
                   value={formData.expiry}
                   placeholder="MM/YY"
                   onChange={handleInputChange}
+                  className="form-input"
                   required
                 />
               </label>
             </div>
-            <div>
-              <label>
+            <div className="form-group">
+              <label className="form-label">
                 CVV:
                 <input
                   type="text"
                   name="cvv"
                   value={formData.cvv}
                   onChange={handleInputChange}
+                  className="form-input"
                   required
                 />
               </label>
             </div>
 
-            <button type="submit">Place Order</button>
+            <button type="submit" className="place-order-btn">Place Order</button>
           </form>
         </div>
       )}

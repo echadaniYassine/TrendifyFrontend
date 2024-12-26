@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getAdminStats } from '../../api/admin/apiAdmin'; // Adjust the import path as needed
+import '../../styles/admin/Dashboard.css'; // Import the CSS file
 
 const AdminDashboard = () => {
   const [stats, setStats] = useState({
@@ -30,11 +31,11 @@ const AdminDashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <h2>Admin Dashboard</h2>
+      <h2 className="dashboard-title">Admin Dashboard</h2>
       {loading ? (
-        <p>Loading stats...</p>
+        <p className="loading-text">Loading stats...</p>
       ) : error ? (
-        <p>{error}</p>
+        <p className="error-message">{error}</p>
       ) : (
         <div className="dashboard-stats">
           <div className="stat-item">
@@ -47,7 +48,7 @@ const AdminDashboard = () => {
             <strong>Total Orders:</strong> {stats.totalOrders}
           </div>
           <div className="stat-item">
-            <strong>Revenue:</strong> ${stats.revenue}
+            <strong>Revenue:</strong> ${stats.revenue.toFixed(2)}
           </div>
         </div>
       )}

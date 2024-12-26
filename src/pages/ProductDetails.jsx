@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { CartContext } from "../features/cart/CartContext";
 import axios from "axios";
+import "../styles/pages/productDetails.css"; // Assuming you'll create a specific CSS file for this component
 
 const ProductDetails = () => {
   const { productId } = useParams(); // Get the product ID from the URL
@@ -35,20 +36,24 @@ const ProductDetails = () => {
   };
 
   if (!product) {
-    return <p>Loading product details...</p>;
+    return <p className="loading-message">Loading product details...</p>;
   }
 
   return (
-    <div>
-      <h2>{product.name}</h2>
-      <img
-        src={product.img}
-        alt={product.name}
-        style={{ width: "200px", height: "200px" }}
-      />
-      <p>Price: ${product.price.toFixed(2)}</p>
-      <p>{product.description}</p>
-      <button onClick={addToCart}>Add to Cart</button>
+    <div className="product-details-container">
+      <h2 className="product-name">{product.name}</h2>
+      <div className="product-image-container">
+        <img
+          src={product.img}
+          alt={product.name}
+          className="product-image"
+        />
+      </div>
+      <p className="product-price">Price: ${product.price.toFixed(2)}</p>
+      <p className="product-description">{product.description}</p>
+      <button className="add-to-cart-btn" onClick={addToCart}>
+        Add to Cart
+      </button>
     </div>
   );
 };

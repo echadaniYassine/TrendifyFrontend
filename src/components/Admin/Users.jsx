@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { getUsers, deleteUser, promoteUser } from '../../api/admin/apiAdmin'; // Adjust the import path if needed
+import '../../styles/admin/Users.css'; // Import the CSS file
 
 const Users = () => {
   const [users, setUsers] = useState([]);
-  const [error, setError] = useState(null); // For error handling
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     // Fetch users from API
@@ -25,8 +26,7 @@ const Users = () => {
   };
 
   const handlePromote = (id) => {
-    // Implement the promotion logic (e.g., change the role of the user)
-    const newRole = 'admin'; // Set the new role for promotion, e.g., 'admin'
+    const newRole = 'admin'; // Set the new role for promotion
     promoteUser(id, newRole)
       .then((updatedUser) => {
         setUsers(users.map((user) =>
@@ -41,10 +41,10 @@ const Users = () => {
   };
 
   return (
-    <div>
-      <h2>Manage Users</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>} {/* Display error message */}
-      <table>
+    <div className="users-container">
+      <h2 className="users-title">Manage Users</h2>
+      {error && <p className="error-message">{error}</p>}
+      <table className="users-table">
         <thead>
           <tr>
             <th>Name</th>
@@ -60,8 +60,12 @@ const Users = () => {
               <td>{user.email}</td>
               <td>{user.role}</td>
               <td>
-                <button onClick={() => handlePromote(user._id)}>Promote</button>
-                <button onClick={() => handleDelete(user._id)}>Delete</button>
+                <button className="promote-button" onClick={() => handlePromote(user._id)}>
+                  Promote
+                </button>
+                <button className="delete-button" onClick={() => handleDelete(user._id)}>
+                  Delete
+                </button>
               </td>
             </tr>
           ))}

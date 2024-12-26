@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getOrders, getOrderById, updateOrderStatus } from '../../api/admin/apiAdmin'; // Import the API functions
+import { getOrders, updateOrderStatus } from '../../api/admin/apiAdmin'; // Import the API functions
+import '../../styles/admin/Orders.css'; // Import the CSS file
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -9,7 +10,6 @@ const Orders = () => {
   const [newStatus, setNewStatus] = useState('');
 
   useEffect(() => {
-    // Fetch all orders from the backend
     const fetchOrders = async () => {
       try {
         const ordersData = await getOrders();
@@ -25,31 +25,28 @@ const Orders = () => {
     fetchOrders();
   }, []);
 
-  // Handle order status change
   const handleStatusChange = async (orderId) => {
     try {
       const updatedOrder = await updateOrderStatus(orderId, newStatus);
-      // Update the order status in the UI
       setOrders((prevOrders) =>
         prevOrders.map((order) =>
           order._id === orderId ? { ...order, orderStatus: updatedOrder.orderStatus } : order
         )
       );
-      setSelectedOrder(null); // Close the details view after updating
-      setNewStatus(''); // Reset the status input
+      setSelectedOrder(null);
+      setNewStatus('');
     } catch (err) {
       setError('Failed to update order status');
       console.error(err);
     }
   };
 
-  // Render order details
   const renderOrderDetails = (order) => {
     return (
-      <div>
+      <div className="order-details">
         <h3>Order Details</h3>
         <p><strong>User:</strong> {order.userId.name} {order.userId.username}</p>
-        <p><strong>Email:</strong> {order.userId.name} {order.userId.email}</p>
+        <p><strong>Email:</strong> {order.userId.email}</p>
         <p><strong>Status:</strong> {order.orderStatus}</p>
         <p><strong>Total Amount:</strong> ${order.totalAmount}</p>
         <h4>Items</h4>
@@ -61,7 +58,7 @@ const Orders = () => {
           ))}
         </ul>
 
-        <div>
+        <div className="order-status-update">
           <h4>Change Order Status</h4>
           <select onChange={(e) => setNewStatus(e.target.value)} value={newStatus}>
             <option value="">Select status</option>
@@ -72,23 +69,23 @@ const Orders = () => {
           </select>
           <button onClick={() => handleStatusChange(order._id)}>Update Status</button>
         </div>
-        <button onClick={() => setSelectedOrder(null)}>Close</button>
+        <button className="close-button" onClick={() => setSelectedOrder(null)}>Close</button>
       </div>
     );
   };
 
   return (
-    <div>
-      <h1> Orders</h1>
+    <div className="orders-container">
+      <h1 className="orders-title">Orders</h1>
 
-      {loading && <p>Loading orders...</p>}
-      {error && <p>{error}</p>}
+      {loading && <p className="loading-text">Loading orders...</p>}
+      {error && <p className="error-message">{error}</p>}
 
       {!loading && orders.length === 0 && <p>No orders found</p>}
 
       {!loading && orders.length > 0 && (
-        <div>
-          <table>
+        <div className="orders-table-container">
+          <table className="orders-table">
             <thead>
               <tr>
                 <th>Order ID</th>
@@ -106,7 +103,7 @@ const Orders = () => {
                   <td>${order.totalAmount}</td>
                   <td>{order.orderStatus}</td>
                   <td>
-                    <button onClick={() => setSelectedOrder(order)}>View Details</button>
+                    <button onClick={() => setSelectedOrder(order)} className="view-details-button">View Details</button>
                   </td>
                 </tr>
               ))}
