@@ -1,0 +1,122 @@
+/* Benefits Section */
+.benefits-section {
+    max-width: 1450px;
+    margin: 0 auto;
+    padding: 40px;
+    font-family: Arial, sans-serif;
+    border-radius: 10px;
+    color: #BDC3C7;
+}
+
+.benefits-section h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.4s ease-in-out;
+}
+
+/* Hover Effect for Section Title */
+.benefits-section h2:hover {
+    color: #000;
+}
+
+.benefits-list {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.benefit-item {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    text-align: center;
+    width: 250px;
+    max-width: 100%;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.benefit-item::before {
+    content: '';
+    position: absolute;
+    bottom: -100%; 
+    left: 0;
+    width: 100%;
+    height: 200%; 
+    background: linear-gradient(to top, #6a11cb, #2575fc);
+    transition: all 0.3s ease-in-out;
+    z-index: 0;
+    animation: none;
+}
+
+.benefit-item:hover::before {
+    animation: wave-rise 0.4s ease-in-out forwards; /* Animate from bottom to top */
+}
+
+.benefit-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    color: #fff;
+}
+
+/* Change text color to black on hover */
+.benefit-item:hover h3,
+.benefit-item:hover p {
+    color: #000; /* Text color changes to black on hover */
+}
+
+/* Content Styling (Ensure it stays on top of the animation) */
+.benefit-item h3,
+.benefit-item p {
+    position: relative;
+    z-index: 1;
+    transition: color 0.5s ease-in-out;
+}
+
+.benefit-item h3 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.benefit-item p {
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+/* Keyframe Animation for the Wave Effect */
+@keyframes wave-rise {
+    0% {
+        bottom: -100%; /* Start below the card */
+    }
+    50% {
+        bottom: 0%; /* Midway, the gradient covers the entire card */
+    }
+    100% {
+        bottom: 100%; /* Finish above the card */
+    }
+}
+
+@media (max-width: 1024px) {
+    .benefits-list {
+        justify-content: center;
+    }
+
+    .benefit-item {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .benefit-item {
+        width: 90%;
+    }
+}

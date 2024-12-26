@@ -1,0 +1,79 @@
+/* Newsletter Section Styles */
+.newsletter-section {
+    background: linear-gradient(135deg, blue, rgb(0, 0, 0)); /* Gradient for a blubery effect */
+    color: #fff;
+    text-align: center;
+    padding: 50px 20px;
+    font-family: Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+    max-width: 1450px;
+    margin: 0 auto;
+    border-radius: 20px;
+}
+
+
+.newsletter-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.newsletter-description {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.newsletter-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.newsletter-input {
+    padding: 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    width: 300px;
+    max-width: 500px; /* Ensure max width of the input field */
+}
+
+.newsletter-button {
+    padding: 15px 30px;
+    font-size: 1rem;
+    background-color: #fff;
+    color: blue;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.newsletter-button:hover {
+    background-color: #e67e22; /* Slightly darker orange */
+    color: #fff;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .newsletter-title {
+        font-size: 2rem;
+    }
+
+    .newsletter-description {
+        font-size: 1rem;
+    }
+
+    .newsletter-input {
+        width: 250px; /* Smaller input width for mobile */
+    }
+
+    .newsletter-button {
+        font-size: 0.9rem;
+        padding: 12px 25px;
+    }
+}

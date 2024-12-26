@@ -1,0 +1,119 @@
+/* Categories Section */
+.categories-section {
+    max-width: 1450px;
+    margin: 0 auto;
+    padding: 40px;
+    font-family: Arial, sans-serif;
+    border-radius: 10px;
+    color: #BDC3C7;
+}
+
+.categories-section h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: Blue;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Hover Effect for Section Title */
+.categories-section h2:hover {
+    color: Black;
+}
+
+.category-cards-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.category-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 250px;
+    max-width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover Effect for Category Cards */
+.category-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.category-card img {
+    height: 200px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.category-card h3 {
+    font-size: 1.3rem;
+    color: #001F54;
+}
+
+.subcategory-menu {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.subcategory-menu h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #F1C40F;
+}
+
+.subcategory-menu select {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 200px;
+    max-width: 100%;
+    background-color: #fff;
+    color: #333;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Creates 4 equal columns */
+}
+
+.product-list p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #777;
+}
+
+@media (max-width: 1024px) {
+    .category-cards-container {
+        justify-content: center;
+    }
+
+    .category-card {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .subcategory-menu select {
+        width: 70%;
+    }
+}
+
+@media (max-width: 768px) {
+    .category-card {
+        width: 90%;
+    }
+
+    .subcategory-menu select {
+        width: 80%;
+    }
+}

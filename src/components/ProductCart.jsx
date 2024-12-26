@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { CartContext } from "../features/cart/CartContext";
 import { useNavigate } from "react-router-dom";
+import '../styles/components/productCart.css';
 
 const ProductCard = ({ product }) => {
   const { dispatch } = useContext(CartContext);
@@ -19,12 +20,12 @@ const ProductCard = ({ product }) => {
       <img
         src={product.img}
         alt={product.name}
+        className="product-card-image"
         onClick={handleNavigateToDetails}
-        style={{ cursor: "pointer" }}
       />
-      <h3>{product.name}</h3>
-      <p>${product.price.toFixed(2)}</p>
-      <button onClick={addToCart}>Add to Cart</button>
+      <h3 className="product-card-title">{product.name}</h3>
+      <p className="product-card-price">${product.price.toFixed(2)}</p>
+      <button className="product-card-button" onClick={addToCart}>Add to Cart</button>
     </div>
   );
 };

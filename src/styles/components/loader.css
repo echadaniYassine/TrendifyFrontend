@@ -1,0 +1,31 @@
+/* Loader Styles */
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: blue; /* Trendy orange color for the loader */
+    font-family: Arial, sans-serif;
+    height: 100vh; /* Full screen height */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent; /* Semi-transparent background */
+}
+
+.loader::after {
+    content: "";
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid blueviolet; /* Matching color */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+/* Spin Animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

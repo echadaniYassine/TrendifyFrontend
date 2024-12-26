@@ -1,0 +1,191 @@
+/* General Styles */
+.about-container {
+    max-width: 1450px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #BDC3C7;
+}
+
+/* About Section */
+.about-content {
+    display: flex;
+    flex-direction: column; /* Stack sections vertically */
+    align-items: center; /* Center content horizontally */
+    text-align: center; /* Align text to the center */
+    margin-bottom: 40px;
+    gap: 30px; /* Add spacing between sections */
+}
+
+.about-section {
+    max-width: 800px; /* Limit the width of each section for better readability */
+    margin-bottom: 30px; /* Space between sections */
+}
+
+/* Title with Infinite Animation */
+.about-heading {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: colorWave 5s infinite alternate, letterJump 3s infinite ease-in-out;
+}
+
+/* Infinite Color Change Animation */
+@keyframes colorWave {
+    0% {
+        color: black; /* Start with red */
+    }
+    25% {
+        color: blue; /* Change to a darker red */
+    }
+    50% {
+        color: blueviolet; /* Dark purple */
+    }
+    75% {
+        color: blue; /* Another dark color */
+    }
+    100% {
+        color: black; /* Back to red */
+    }
+}
+
+/* Title Letter Animation */
+@keyframes letterJump {
+    0% {
+        letter-spacing: 1px;
+    }
+    25% {
+        letter-spacing: 5px; /* Increase space between letters */
+    }
+    50% {
+        letter-spacing: 10px; /* Further increase space */
+    }
+    75% {
+        letter-spacing: 5px; /* Reduce space */
+    }
+    100% {
+        letter-spacing: 1px; /* Reset spacing */
+    }
+}
+
+/* Hover Effect for Section Titles */
+.about-heading:hover {
+    color: blue;
+}
+
+.about-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #585a5c;
+    transition: color 0.3s ease-in-out;
+    border-radius: 20px;
+}
+
+/* Team Section */
+.team-wrapper {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.team-heading {
+    color: black;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.team-grid {
+    display: flex;
+    justify-content: center; /* Center team members horizontally */
+    flex-wrap: wrap; /* Allow team members to wrap on smaller screens */
+    gap: 20px; /* Add spacing between team members */
+}
+
+.team-card {
+    text-align: center;
+    width: 250px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover Animation Effect */
+.team-card::before {
+    content: '';
+    position: absolute;
+    bottom: -100%; /* Initially hidden */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, blue, black);
+    z-index: 1;
+    transition: bottom 0.4s ease-in-out;
+}
+
+.team-card:hover::before {
+    bottom: 0; /* Slide in from bottom */
+}
+
+.team-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    color: #FFF;
+}
+
+/* Content Overlay for Text */
+.team-card-content {
+    position: relative;
+    z-index: 2; /* Place text above gradient */
+}
+
+.team-card img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 2; /* Ensure image is above gradient */
+}
+
+.team-card-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #001F54;
+}
+
+.team-card-description {
+    font-size: 1rem;
+    color: #777;
+}
+
+/* Hover Text Color Change */
+.team-card:hover .team-card-title,
+.team-card:hover .team-card-description {
+    color: #FFF; /* Change text color to white */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .about-content {
+        gap: 20px; /* Adjust spacing between sections on mobile */
+    }
+
+    .team-grid {
+        flex-direction: column; /* Stack team members vertically on smaller screens */
+        align-items: center;
+    }
+
+    .team-card {
+        width: 80%;
+    }
+
+    .about-section {
+        max-width: 100%; 
+    }
+}

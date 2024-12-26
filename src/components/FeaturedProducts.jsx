@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from "react";
-import ProductCard from "../components/ProductCart"; // Assuming you have a ProductCard component
+import ProductCard from "../components/ProductCart"; // Ensure the correct import
 import axios from "axios";
+import '../styles/components/featuresProducts.css'; // Updated CSS file name
 
 const FeaturedProducts = () => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true); // Add loading state
-  const [error, setError] = useState(null); // Add error state
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // Fetch products from the backend API
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get("http://127.0.0.1:4002/api/Trendify/Products/getAllProducts");
-        setProducts(response.data); // Assuming the API returns an array of products
-        setLoading(false); // Set loading to false when data is fetched
+        setProducts(response.data);
+        setLoading(false);
       } catch (error) {
         setError("Failed to fetch products.");
-        setLoading(false); // Set loading to false on error
+        setLoading(false);
       }
     };
 
@@ -27,23 +28,23 @@ const FeaturedProducts = () => {
   const featuredProducts = products.filter((product) => product.featured);
 
   if (loading) {
-    return <p>Loading...</p>; // Show loading text while fetching data
+    return <p className="loading-message">Loading...</p>;
   }
 
   if (error) {
-    return <p>{error}</p>; // Show error message if something went wrong
+    return <p className="error-message">{error}</p>;
   }
 
   return (
-    <section className="product-list">
-      <h2>Our Featured Products</h2>
-      <div className="product-grid">
+    <section className="featured-products-section">
+      <h2 className="section-heading">Our Featured Products</h2>
+      <div className="featured-products-grid">
         {featuredProducts.length > 0 ? (
           featuredProducts.map((product) => (
-            <ProductCard key={product._id} product={product} /> // Make sure to use the correct key (e.g., _id)
+            <ProductCard key={product._id} product={product} />
           ))
         ) : (
-          <p>No featured products available.</p>
+          <p className="no-products-message">No featured products available.</p>
         )}
       </div>
     </section>

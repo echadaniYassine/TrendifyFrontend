@@ -3,9 +3,9 @@ import axios from "axios";
 import Footer from "../components/Footer";
 import About from "../components/About";
 import Hero from "../components/Hero";
-import Categories from "../components/Categories ";
-import Benefits from "../components/Benefits ";
-import Newsletter from "../components/Newsletter ";
+import Categories from "../components/Categories";
+import Benefits from "../components/Benefits";
+import Newsletter from "../components/Newsletter";
 import FeaturedProducts from "../components/FeaturedProducts";
 
 const Home = () => {

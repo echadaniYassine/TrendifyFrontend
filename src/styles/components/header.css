@@ -1,0 +1,62 @@
+/* Header Styles */
+.header-container {
+    background-color: transparent;
+    padding: 20px 30px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navigation {
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+}
+
+.nav-list {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    gap: 70px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    font-size: 1.2rem;
+}
+
+.nav-link {
+    color: #000;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #f39c12;
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-item {
+        width: 100%;
+        text-align: left;
+        padding: 10px 0;
+        border-top: 1px solid #444;
+    }
+
+    .nav-item:first-child {
+        border-top: none;
+    }
+}
