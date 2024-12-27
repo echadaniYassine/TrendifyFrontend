@@ -8,7 +8,7 @@
   }
   
   .login-form-wrapper {
-    background-color: #fff;
+    background: linear-gradient(135deg, blue, rgb(0, 0, 0)); 
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -21,7 +21,7 @@
     font-weight: 600;
     text-align: center;
     margin-bottom: 30px;
-    color: #333;
+    color: aliceblue;
   }
   
   /* Form Input Styles */
@@ -31,13 +31,13 @@
   
   .input-label {
     font-size: 1rem;
-    color: #555;
+    color: aliceblue;
     margin-bottom: 5px;
     display: block;
   }
   
   .input-field {
-    width: 100%;
+    width: 90%;
     padding: 12px;
     font-size: 1rem;
     border: 1px solid #ccc;
@@ -55,7 +55,7 @@
     width: 100%;
     padding: 12px;
     font-size: 1.1rem;
-    background-color: #007bff;
+    background: linear-gradient(135deg, White, rgb(0, 0, 0)); 
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -79,6 +79,7 @@
   .auth-links {
     text-align: center;
     margin-top: 20px;
+    color: aliceblue;
   }
   
   .auth-link {

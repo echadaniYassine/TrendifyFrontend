@@ -1,8 +1,12 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
+import Cookies from 'js-cookie'; // Ensure js-cookie is imported
 
 export const ProtectedRoute = ({ children }) => {
-  const token = localStorage.getItem('token'); // Check for token in localStorage
+  const token = Cookies.get('token'); // Check for token in cookies
+
+  console.log('Token in ProtectedRoute:', token); // Debugging line to see if token is available
+
   return token ? children : <Navigate to="/login" />;
 };
 

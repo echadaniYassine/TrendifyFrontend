@@ -1,94 +1,111 @@
-/* Register Page Container */
-.register-container {
-    max-width: 500px;
-    margin: 50px auto;
-    padding: 40px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
+.registration-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 40px;
+  background: linear-gradient(135deg, blue, black); /* Professional gradient */
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  font-family: 'Arial', sans-serif;
+}
+
+.registration-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  color: #f0f8ff;
+  margin-bottom: 20px;
+}
+
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label-edit {
+  text-align: start;
+  font-size: 1rem;
+  color: #dcdcdc;
+  margin-bottom: 5px;
+}
+
+.form-input {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.form-input:focus {
+  border-color: aqua;
+  outline: none;
+  box-shadow: 0 0 5px rgba(30, 60, 114, 0.5);
+}
+
+.form-submit-btn {
+  padding: 12px;
+  font-size: 1.2rem;
+  color: #000;
+  background-color: whitesmoke;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.form-submit-btn:hover {
+  background: linear-gradient(135deg, blue, black); 
+  color: aliceblue;
+}
+
+.form-submit-btn:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(69, 160, 73, 0.5);
+}
+
+.registration-error {
+  color: #ff4d4d;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-top: -10px;
+}
+
+.form-login-link {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 15px;
+  color: #dcdcdc;
+}
+
+.form-login-link a {
+  color: #1e90ff;
+  text-decoration: none;
+}
+
+.form-login-link a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .registration-container {
+    padding: 20px;
   }
-  
-  /* Title Styling */
-  .register-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
+
+  .registration-title {
+    font-size: 2rem;
   }
-  
-  /* Form Styling */
-  .register-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Form Group Styling */
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  /* Form Label Styling */
-  .form-label {
+
+  .form-input,
+  .form-submit-btn {
     font-size: 1rem;
-    color: #333;
-    margin-bottom: 5px;
   }
-  
-  /* Form Input Styling */
-  .form-input {
-    padding: 12px;
-    font-size: 1rem;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    margin-top: 5px;
-  }
-  
-  /* Submit Button Styling */
-  .submit-btn {
-    padding: 12px;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 100%;
-  }
-  
-  .submit-btn:hover {
-    background-color: #45a049;
-  }
-  
-  .submit-btn:focus {
-    outline: none;
-  }
-  
-  /* Error Message Styling */
-  .error-message {
-    color: red;
-    font-size: 1.2rem;
-    text-align: center;
-    margin-top: 15px;
-  }
-  
-  /* Login Link Styling */
-  .login-link {
-    text-align: center;
-    font-size: 1rem;
-    margin-top: 20px;
-  }
-  
-  .login-link a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .login-link a:hover {
-    text-decoration: underline;
-  }
-  
+}

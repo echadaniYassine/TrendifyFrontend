@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { register } from '../api/user';
-import Cookies from 'js-cookie'; // Import js-cookie
 import '../styles/pages/Signup.css'; // Import the CSS file
 
 const Register = () => {
@@ -29,13 +28,13 @@ const Register = () => {
   };
 
   return (
-    <div className="register-container">
-      <form onSubmit={handleRegister} className="register-form">
-        <h2 className="register-title">Create Account</h2>
-        {error && <p className="error-message">{error}</p>}
+    <div className="registration-container">
+      <form onSubmit={handleRegister} className="registration-form">
+        <h2 className="registration-title">Create Account</h2>
+        {error && <p className="registration-error">{error}</p>}
         
         <div className="form-group">
-          <label htmlFor="username" className="form-label">Username</label>
+          <label htmlFor="username" className="form-label-edit">Username</label>
           <input
             type="text"
             name="username"
@@ -49,7 +48,7 @@ const Register = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="email" className="form-label">Email</label>
+          <label htmlFor="email" className="form-label-edit">Email</label>
           <input
             type="email"
             name="email"
@@ -63,7 +62,7 @@ const Register = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="phoneNumber" className="form-label">Phone Number</label>
+          <label htmlFor="phoneNumber" className="form-label-edit">Phone Number</label>
           <input
             type="text"
             name="phoneNumber"
@@ -77,7 +76,7 @@ const Register = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="password" className="form-label">Password</label>
+          <label htmlFor="password" className="form-label-edit">Password</label>
           <input
             type="password"
             name="password"
@@ -90,9 +89,9 @@ const Register = () => {
           />
         </div>
 
-        <button type="submit" className="submit-btn">Register</button>
+        <button type="submit" className="form-submit-btn">Register</button>
 
-        <p className="login-link">
+        <p className="form-login-link">
           Already have an account? <a href="/login">Login</a>
         </p>
       </form>

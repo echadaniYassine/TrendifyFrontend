@@ -63,39 +63,40 @@ const Cart = () => {
       ) : (
         <div className="cart-items">
           {state.cart.map((item) => (
-            <div key={item.id} className="cart-item">
-              <img
-                src={item.img}
-                alt={item.name}
-                className="cart-item-image"
-              />
-              <div className="cart-item-details">
-                <h3 className="cart-item-name">{item.name}</h3>
-                <p className="cart-item-price">Price: ${item.price.toFixed(2)}</p>
-                <p className="cart-item-quantity">Quantity: {item.quantity}</p>
-                <div className="cart-item-actions">
-                  <button
-                    className="cart-item-remove-btn"
-                    onClick={() => handleRemove(item.id)}
-                  >
-                    Remove
-                  </button>
-                  <button
-                    className="cart-item-quantity-btn"
-                    onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}
-                  >
-                    +
-                  </button>
-                  <button
-                    className="cart-item-quantity-btn"
-                    onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}
-                    disabled={item.quantity === 1}
-                  >
-                    -
-                  </button>
-                </div>
-              </div>
+            <div className="cart-item">
+            <img
+              src={item.img}
+              alt={item.name}
+              className="cart-item-image"
+            />
+            <div className="cart-item-details">
+              <h3 className="cart-item-name">{item.name}</h3>
+              <p className="cart-item-price">MAD {item.price.toFixed(2)}</p>
+              <p className="cart-item-quantity">
+                <button
+                  className="cart-item-quantity-btn"
+                  onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}
+                  disabled={item.quantity === 1}
+                >
+                  -
+                </button>
+                {item.quantity}
+                <button
+                  className="cart-item-quantity-btn"
+                  onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}
+                >
+                  +
+                </button>
+              </p>
             </div>
+            <button
+              className="cart-item-remove-btn"
+              onClick={() => handleRemove(item.id)}
+            >
+              Remove
+            </button>
+          </div>
+          
           ))}
           <div className="cart-summary">
             <p className="cart-summary-text">Total items: {itemCount}</p>

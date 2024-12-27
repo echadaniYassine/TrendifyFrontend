@@ -3,23 +3,25 @@ import ProductCard from "../components/ProductCart";
 import axios from "axios";
 import "../styles/pages/productList.css"; // Import the CSS file
 
-const ProductList = () => {
-  const [products, setProducts] = useState([]);
+const ProductList = ({ products: initialProducts = [] }) => {
+  const [products, setProducts] = useState(initialProducts);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get(
-          "http://127.0.0.1:4002/api/Trendify/Products/getAllProducts"
-        );
-        setProducts(response.data); // Assuming the API returns an array of products
-      } catch (error) {
-        console.error("Failed to fetch products:", error);
-      }
-    };
+    if (initialProducts.length === 0) {
+      const fetchProducts = async () => {
+        try {
+          const response = await axios.get(
+            "http://127.0.0.1:4002/api/Trendify/Products/getAllProducts"
+          );
+          setProducts(response.data);
+        } catch (error) {
+          console.error("Failed to fetch products:", error);
+        }
+      };
 
-    fetchProducts();
-  }, []);
+      fetchProducts();
+    }
+  }, [initialProducts]);
 
   return (
     <section className="product-list-container">

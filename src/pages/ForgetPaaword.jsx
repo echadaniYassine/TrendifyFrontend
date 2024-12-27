@@ -39,7 +39,7 @@ const ForgotPassword = () => {
             required
           />
         </div>
-        <button type="submit" className="submit-btn">Send Reset Link</button>
+        <button type="submit" className="form-submit-btn">Send Reset Link</button>
       </form>
       {message && <p className="message success">{message}</p>}
       {error && <p className="message error">{error}</p>}
