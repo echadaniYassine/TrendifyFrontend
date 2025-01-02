@@ -32,14 +32,15 @@
 }
 
 .category-card {
-    background-color: #fff;
-    border-radius: 8px;
+    background-color: transparent;
+    border-radius: 90px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
     width: 250px;
     max-width: 100%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 250px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 /* Hover Effect for Category Cards */
@@ -49,10 +50,18 @@
     cursor: pointer;
 }
 
+/* Active State for Category Cards */
+.category-card.active {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4); /* Slightly stronger shadow for active state */
+    background:linear-gradient(135deg, blue,white); /* Darker color for active state */
+    color: #fff; /* Change text color to contrast */
+    cursor: default; /* Remove pointer cursor for the active state */
+}
+
 .category-card img {
     height: 200px;
     border-radius: 8px;
-    margin-bottom: 15px;
 }
 
 .category-card h3 {
@@ -66,9 +75,10 @@
 }
 
 .subcategory-menu h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    color: #F1C40F;
+    font-size: 1.9rem;
+    padding-top: 20px;
+    color: black;
+    font-weight: bold;
 }
 
 .subcategory-menu select {

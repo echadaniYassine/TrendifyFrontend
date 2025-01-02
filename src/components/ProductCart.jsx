@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { CartContext } from "../features/cart/CartContext";
 import { useNavigate } from "react-router-dom";
 import '../styles/components/productCart.css';
+import { FaShoppingCart } from 'react-icons/fa'; 
+
 
 const ProductCard = ({ product }) => {
   const { dispatch } = useContext(CartContext);
@@ -20,8 +22,7 @@ const ProductCard = ({ product }) => {
       <img
         src={product.img}
         alt={product.name}
-        className="product-card-image"
-        onClick={handleNavigateToDetails}
+        className="product-card-image" onClick={handleNavigateToDetails}
       />
       <h3 className="product-card-title">{product.name}</h3>
       <p className="product-card-price">${product.price.toFixed(2)}</p>

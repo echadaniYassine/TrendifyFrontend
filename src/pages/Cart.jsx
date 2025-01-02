@@ -2,36 +2,30 @@ import React, { useContext } from "react";
 import { CartContext } from "../features/cart/CartContext";
 import { getCartTotal, getCartItemCount } from "../features/cart/cartUtils";
 import { useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode"; // Install this library: npm install jwt-decode
-import '../styles/pages/cart.css'
+import { jwtDecode } from "jwt-decode"; // Ensure the correct import here
+import "../styles/pages/cart.css";
+
 const Cart = () => {
   const { state, dispatch } = useContext(CartContext);
   const total = getCartTotal(state.cart);
   const itemCount = getCartItemCount(state.cart);
   const navigate = useNavigate();
 
-  // Check if the user is authenticated
   const isAuthenticated = () => {
     const token = localStorage.getItem("token");
-
     if (!token) return false;
 
     try {
-      // Decode the token to access its payload
       const decodedToken = jwtDecode(token);
-
-      // Check if the token is expired
-      const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
+      const currentTime = Math.floor(Date.now() / 1000);
       if (decodedToken.exp < currentTime) {
-        // Token is expired, remove it from localStorage
         localStorage.removeItem("token");
         return false;
       }
-
-      return true; // Token is valid and not expired
+      return true;
     } catch (error) {
       console.error("Invalid token:", error);
-      localStorage.removeItem("token"); // If the token is invalid, remove it
+      localStorage.removeItem("token");
       return false;
     }
   };
@@ -56,55 +50,67 @@ const Cart = () => {
   };
 
   return (
-    <div className="cart-container">
-      <h2 className="cart-title">Your Cart</h2>
-      {state.cart.length === 0 ? (
-        <p className="cart-empty-message">Your cart is empty.</p>
-      ) : (
-        <div className="cart-items">
-          {state.cart.map((item) => (
-            <div className="cart-item">
-            <img
-              src={item.img}
-              alt={item.name}
-              className="cart-item-image"
-            />
-            <div className="cart-item-details">
-              <h3 className="cart-item-name">{item.name}</h3>
-              <p className="cart-item-price">MAD {item.price.toFixed(2)}</p>
-              <p className="cart-item-quantity">
-                <button
-                  className="cart-item-quantity-btn"
-                  onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}
-                  disabled={item.quantity === 1}
-                >
-                  -
-                </button>
-                {item.quantity}
-                <button
-                  className="cart-item-quantity-btn"
-                  onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}
-                >
-                  +
-                </button>
-              </p>
+    <div className="cart-page-container">
+      {/* Left section: Cart Items */}
+      <div className="cart-items-container">
+        <h2 className="cart-title">Your Cart</h2>
+        {state.cart.length === 0 ? (
+          <div className="empty-cart">
+            <p>Your cart is currently empty.</p>
+            <div className="cart-img-wrapper">
+              <img src="assets/cart.png" alt="Empty Cart" />
             </div>
-            <button
-              className="cart-item-remove-btn"
-              onClick={() => handleRemove(item.id)}
-            >
-              Remove
-            </button>
+            <button className="button-route" onClick={() => window.location.href = "/Products"}>Let's Shop</button>
           </div>
-          
-          ))}
+        ) : (
+          <div className="cart-items">
+            {state.cart.map((item) => (
+              <div className="cart-item" key={item.id}>
+                <img src={item.img} alt={item.name} className="cart-item-image" />
+                <div className="cart-item-details">
+                  <h3 className="cart-item-name">{item.name}</h3>
+                  <p className="cart-item-price">MAD {item.price.toFixed(2)}</p>
+                </div>
+                <div className="quantity-controls">
+                  <button onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}>-</button>
+                  <span>{item.quantity}</span>
+                  <button onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}>+</button>
+                </div>
+                <button
+                  className="cart-item-remove-btn"
+                  onClick={() => handleRemove(item.id)}
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Right section: Checkout Summary */}
+      {state.cart.length > 0 && (
+        <div className="checkout-container">
+          <h3>Checkout Summary</h3>
           <div className="cart-summary">
             <p className="cart-summary-text">Total items: {itemCount}</p>
-            <p className="cart-summary-text">Total price: ${total.toFixed(2)}</p>
+            <p className="cart-summary-text">Total price: MAD {total.toFixed(2)}</p>
           </div>
           <button className="checkout-btn" onClick={handleCheckout}>
             Proceed to Checkout
           </button>
+
+          {/* Pay With Section */}
+          <div className="pay-with">
+            <h4>Pay With:</h4>
+            <div className="payment-icons">
+              <img src="/assets/masterCard.png" alt="MasterCard" />
+              <img src="/assets/visa.png" alt="Visa" />
+              < img src="/assets/paypal.png" alt="PayPal" />
+            </div>
+            <h3>Buyer Protection</h3>
+            <p>Get a full refund if the item is not as described or not delivered</p>
+          </div>
         </div>
       )}
     </div>

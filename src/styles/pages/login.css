@@ -1,103 +1,131 @@
 /* General Layout */
 .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f7fa;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  width: 100%; /* Ensure it takes full width */
+  max-width: 1500px; /* Set a maximum width for the container */
+  margin: 5% auto; /* Center the container horizontally */
+}
+
+.login-img-wrapper {
+  display: flex; /* Center the image vertically */
+  justify-content: center; /* Center the image horizontally */
+  align-items: center; /* Center the image vertically */
+}
+
+.login-img-wrapper img {
+  max-width: 100%; /* Ensure the image is responsive */
+  height: 500px; /* Maintain aspect ratio */
+  max-height: 500px; /* Limit the height */
+}
+
+.login-form-wrapper {
+  background: linear-gradient(135deg, blue, rgb(0, 0, 0)); 
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%; 
+  max-width: 530px; 
+}
+
+.login-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 30px;
+  color: aliceblue;
+}
+
+/* Form Input Styles */
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-label {
+  font-size: 1rem;
+  color: aliceblue;
+  margin-bottom: 10px;
+  display: block;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.input-field {
+  width: 90%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.input-field:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Submit Button */
+.submit-form-btn {
+  padding: 12px;
+  font-size: 1.2rem;
+  color: #000;
+  background-color: whitesmoke;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 10px auto 15px;
+  width: 95%;
+
+
+}
+
+.submit-form-btn:hover {
+  background: linear-gradient(135deg, blue, white);
+  color: aliceblue;
+}
+
+/* Error Message */
+.error-message {
+  color: #e74c3c;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Authentication Links */
+.auth-links {
+  text-align: center;
+  margin-top: 20px;
+  color: aliceblue;
+}
+
+.auth-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    grid-template-columns: 1fr; /* Stack on smaller screens */
   }
-  
+
+  .login-img-wrapper {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
   .login-form-wrapper {
-    background: linear-gradient(135deg, blue, rgb(0, 0, 0)); 
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
     width: 100%;
-    max-width: 400px;
+    max-width: 100%;
   }
-  
-  .login-title {
-    font-size: 1.8rem;
-    font-weight: 600;
-    text-align: center;
-    margin-bottom: 30px;
-    color: aliceblue;
-  }
-  
-  /* Form Input Styles */
-  .input-group {
-    margin-bottom: 20px;
-  }
-  
-  .input-label {
-    font-size: 1rem;
-    color: aliceblue;
-    margin-bottom: 5px;
-    display: block;
-  }
-  
-  .input-field {
-    width: 90%;
-    padding: 12px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: border-color 0.3s ease-in-out;
-  }
-  
-  .input-field:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
-  /* Submit Button */
+
   .submit-btn {
-    width: 100%;
-    padding: 12px;
-    font-size: 1.1rem;
-    background: linear-gradient(135deg, White, rgb(0, 0, 0)); 
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  .submit-btn:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Error Message */
-  .error-message {
-    color: #e74c3c;
     font-size: 1rem;
-    margin-bottom: 20px;
-    text-align: center;
   }
-  
-  /* Authentication Links */
-  .auth-links {
-    text-align: center;
-    margin-top: 20px;
-    color: aliceblue;
-  }
-  
-  .auth-link {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .auth-link:hover {
-    text-decoration: underline;
-  }
-  
-  @media (max-width: 768px) {
-    .login-form-wrapper {
-      padding: 20px;
-    }
-  
-    .submit-btn {
-      font-size: 1rem;
-    }
-  }
-  
+}

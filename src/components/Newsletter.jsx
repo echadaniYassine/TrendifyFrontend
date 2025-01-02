@@ -3,7 +3,7 @@ import '../styles/components/newsletter.css';
 
 const Newsletter = () => {
   return (
-    <div className="hero"> 
+    <div className="newsletter"> 
       <section className="newsletter-section">
       <h2 className="newsletter-title">Subscribe to Our Newsletter</h2>
       <p className="newsletter-description">Get the latest trends and offers directly in your inbox.</p>

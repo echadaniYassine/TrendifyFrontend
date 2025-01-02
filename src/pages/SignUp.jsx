@@ -27,75 +27,67 @@ const Register = () => {
     }
   };
 
-  return (
-    <div className="registration-container">
-      <form onSubmit={handleRegister} className="registration-form">
-        <h2 className="registration-title">Create Account</h2>
-        {error && <p className="registration-error">{error}</p>}
-        
-        <div className="form-group">
-          <label htmlFor="username" className="form-label-edit">Username</label>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            className="form-input"
-            placeholder="Enter your username"
-            value={formData.username}
-            onChange={handleChange}
-            required
-          />
-        </div>
+  return (<>
+    <div className='registration-container'>
+    <div className='registration-img-wrapper'>
+        <img src="assets/SignUp.png" alt="Registration" />
+      </div>
+      <div className="registration-form-wrapper">
+        <form onSubmit={handleRegister} className="registration-form">
+          <h2 className="registration-title">Create Account</h2>
+          {error && <p className="registration-error">{error}</p>}
 
-        <div className="form-group">
-          <label htmlFor="email" className="form-label-edit">Email</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            className="form-input"
-            placeholder="Enter your email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          <div className="form-group">
+            <label htmlFor="username" className="form-label-edit">Username</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              className="form-input"
+              placeholder="Enter your username"
+              value={formData.username}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="phoneNumber" className="form-label-edit">Phone Number</label>
-          <input
-            type="text"
-            name="phoneNumber"
-            id="phoneNumber"
-            className="form-input"
-            placeholder="Enter your phone number"
-            value={formData.phoneNumber}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          <div className="form-group">
+            <label htmlFor="email" className="form-label-edit">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              className="form-input"
+              placeholder="Enter your email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="password" className="form-label-edit">Password</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            className="form-input"
-            placeholder="Enter your password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          <div className="form-group">
+            <label htmlFor="password" className="form-label-edit">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              className="form-input"
+              placeholder="Enter your password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <button type="submit" className="form-submit-btn">Register</button>
+          <button type="submit" className="form-submit-btn">Register</button>
 
-        <p className="form-login-link">
-          Already have an account? <a href="/login">Login</a>
-        </p>
-      </form>
+          <p className="form-login-link">
+            Already have an account? <a href="/login">Login</a>
+          </p>
+        </form>
+      </div>
     </div>
+  </>
   );
 };
 

@@ -31,6 +31,9 @@ const Login = () => {
 
   return (
     <div className="login-container">
+     <div className="login-img-wrapper">
+        <img src='assets/SignIn.png' alt="Sign In" />
+      </div>
       <div className="login-form-wrapper">
         <form onSubmit={handleLogin} className="login-form">
           <h2 className="login-title">Login</h2>
@@ -59,7 +62,7 @@ const Login = () => {
               required
             />
           </div>
-          <button type="submit" className="submit-btn">Login</button>
+          <button type="submit" className="submit-form-btn">Login</button>
           <div className="auth-links">
             <p>
               Don't have an account? <a href="/signup" className="auth-link">Sign up</a>

@@ -26,36 +26,43 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="reset-password-container">
-      <h2 className="reset-password-title">Reset Password</h2>
-      <form onSubmit={handleResetPassword} className="reset-password-form">
-        <div className="form-group">
-          <label htmlFor="verificationCode" className="form-label">Verification Code:</label>
-          <input
-            type="text"
-            id="verificationCode"
-            value={verificationCode}
-            onChange={(e) => setVerificationCode(e.target.value)}
-            className="form-input"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="newPassword" className="form-label">New Password:</label>
-          <input
-            type="password"
-            id="newPassword"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            className="form-input"
-            required
-          />
-        </div>
-        <button type="submit" className="form-submit-btn">Reset Password</button>
-      </form>
-      {message && <p className="success-message">{message}</p>}
-      {error && <p className="error-message">{error}</p>}
+    <>
+     <div className='reset-password-container'>
+      <div className='reset-password-img-wrapper'>
+        <img src='/assets/resetPass.png' alt="Reset Password" />
+      </div>
+      <div className="reset-password-form-wrapper">
+        <h2 className="reset-password-title">Reset Password</h2>
+        <form onSubmit={handleResetPassword} className="reset-password-form">
+          <div className="form-group">
+            <label htmlFor="verificationCode" className="form-label">Verification Code:</label>
+            <input
+              type="text"
+              id="verificationCode"
+              value={verificationCode}
+              onChange={(e) => setVerificationCode(e.target.value)}
+              className="form-input"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="newPassword" className="form-label">New Password:</label>
+            <input
+              type="password"
+              id="newPassword"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              className="form-input"
+              required
+            />
+          </div>
+          <button type="submit" className="form-submit-btn">Reset Password</button>
+        </form>
+        {message && <p className="success-message">{message}</p>}
+        {error && <p className="error-message">{error}</p>}
+      </div>
     </div>
+    </>
   );
 };
 

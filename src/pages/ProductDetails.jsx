@@ -9,7 +9,7 @@ const ProductDetails = () => {
   const { productId } = useParams(); // Get the product ID from the URL
   const { dispatch } = useContext(CartContext); // Access cart context
   const [product, setProduct] = useState(null);
-  const [relatedProducts, setRelatedProducts] = useState([]); // State for related products by subcategory
+  const [relatedProducts, setRelatedProducts] = useState([]); // State for related products by category and subcategory
   const [allProducts, setAllProducts] = useState([]); // State to store all products
 
   useEffect(() => {
@@ -33,9 +33,10 @@ const ProductDetails = () => {
         );
         setAllProducts(allProductsResponse.data);
 
-        // Filter related products by subcategory
+        // Filter related products by both categoryName and subcategory
         const related = allProductsResponse.data.filter(
           (p) =>
+            p.categoryName === selectedProduct.categoryName &&
             p.subcategory === selectedProduct.subcategory &&
             p._id !== selectedProduct._id // Exclude the current product
         );
@@ -58,30 +59,45 @@ const ProductDetails = () => {
     return <p className="loading-message">Loading product details...</p>;
   }
 
+  // Determine the image to display based on category
+  const categoryImage =
+    product.categoryName === "Men"
+      ? "/assets/menDetails.png"
+      : "/assets/wemenDetails.png";
+
   return (
     <>
       <div className="product-details-container">
-        <h2 className="product-name">{product.name}</h2>
+        {/* Image on the left */}
         <div className="product-image-container">
-          <img src={product.img} alt={product.name} className="product-image" />
+          <img src={categoryImage} alt={product.name} className="product-category-image" />
         </div>
-        <p className="product-price">Price: ${product.price.toFixed(2)}</p>
-        <p className="product-description">{product.description}</p>
 
-        <button className="add-to-cart-btn" onClick={addToCart}>
-          Add to Cart
-        </button>
+        {/* Product details on the right */}
+        <div className="product-info-container">
+          <h2 className="product-name">{product.name}</h2>
+          <img src={product.img} alt={product.name} className="product-image" />
+          <p className="product-price">Price: ${product.price.toFixed(2)}</p>
+          <p className="product-description">{product.description}</p>
+
+          <button className="add-to-cart-btn" onClick={addToCart}>
+            Add to Cart
+          </button>
+        </div>
       </div>
 
-      {/* Display Related Products */}
-      <div>
-        <h3>Related Products</h3>
+      <div className="section-relatedProduct">
+        <h3 className="relatedProduct">Related Products</h3>
         {relatedProducts.length > 0 ? (
-          <ProductList products={relatedProducts} />
+          <div className="product-list-container">
+            <ProductList products={relatedProducts} showCategories={false} showTitle={false} />
+          </div>
         ) : (
           <p>No related products found.</p>
         )}
       </div>
+
+
     </>
   );
 };

@@ -1,55 +1,74 @@
 /* Container for the entire product details page */
 .product-details-container {
+  display: flex;
   max-width: 1200px;
   margin: 20px auto;
   padding: 20px;
-  background: linear-gradient(135deg, blue, rgb(0, 0, 0)); 
   border-radius: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+
+}
+
+/* Product category image (Men/Women) */
+.product-category-image {
+  max-width: 100%;
+  height: 560px;
+  /* Maintain aspect ratio */
+  max-height: 600px;
+  /* Limit the height */
+}
+
+/* Product details container */
+.product-info-container {
+  padding: 30px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 530px;
+  height: 500px;
+  /* Maintain aspect ratio */
+  max-height: 500px;
+  /* Limit the height */
+
 }
 
 /* Product name styles */
 .product-name {
   font-size: 2.5rem;
   font-weight: 700;
-  color: aliceblue;
-  margin-bottom: 15px;
-}
-
-/* Image container styles */
-.product-image-container {
-  display: flex;
-  justify-content: center;
+  color: black;
   margin-bottom: 20px;
 }
 
 /* Product image styles */
 .product-image {
-  height: auto;
+  width: 200px;
+  height: 200px;
   border-radius: 8px;
-  object-fit: cover;
+  padding: 10px;
 }
 
 /* Price styles */
 .product-price {
   font-size: 1.6rem;
-  color: aliceblue;
+  color: black;
   margin-bottom: 15px;
+  font-weight: bold;
 }
 
 /* Product description styles */
 .product-description {
   font-size: 1.2rem;
-  color: aliceblue;
+  color: black;
   line-height: 1.5;
   margin-bottom: 25px;
 }
 
 /* Button styles */
 .add-to-cart-btn {
+  width: 500px;
   padding: 12px 30px;
-  background: linear-gradient(135deg, blue, white); 
-  color: #000;
+  background: linear-gradient(135deg, blue, black);
+  color: #fff;
   font-size: 1.2rem;
   border: none;
   border-radius: 5px;
@@ -58,7 +77,7 @@
 }
 
 .add-to-cart-btn:hover {
-  background: linear-gradient(135deg, white, white); 
+  background: linear-gradient(135deg, black, blue);
 }
 
 .add-to-cart-btn:focus {
@@ -72,147 +91,16 @@
   color: #333;
 }
 
-/* Product size selection styles */
-.product-sizes {
-  margin: 20px auto;
-  text-align: center;
-}
-
-.product-sizes p {
-  color: #fff;
-  margin-bottom: 10px;
-}
-
-.size-options {
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-
-.size-option {
-  padding: 10px 20px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  text-align: center;
-  font-size: 16px;
-  color: aliceblue;
-  border-radius: 5px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.size-option:hover {
-  background-color: #f0f0f0;
-  color: #000;
-}
-
-.size-option.selected {
-  background-color: aqua;
-  color: black;
-}
-
-/* Table for size measurements */
-.size-details {
-  margin-top: 30px;
-  text-align: center;
-}
-
-.size-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-.size-table th, .size-table td {
-  padding: 12px;
-  text-align: center;
-  border: 1px solid #ddd;
-  font-size: 1rem;
-}
-
-.size-table th {
-  background-color: #f4f4f4;
-  color: #333;
-}
-
-.size-table tr:hover {
-  background-color: #f9f9f9;
-}
-
-.size-table .selected {
-  background-color: #f0f8ff;
+.relatedProduct {
+  font-size: 2.5rem;
+  margin-top: 70px;
+  color: blue;
   font-weight: bold;
+  margin-bottom: 20px;
+  text-align: left;
+}
+.section-relatedProduct{
+  max-width: 1225px;
+  margin: 0 auto;
 }
 
-/* Dynamic size measurements styles */
-/* Style for the dynamic size measurements section */
-.size-measurements {
-  margin: 50px auto;
-  max-width: 900px;
-  padding: 15px;
-  background-color: transparent;
-  border: 1px solid;
-  border-radius: 8px;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  gap: 20px; /* Space between the measurements */
-  flex-wrap: wrap; /* Ensures the content wraps if there's not enough space */
-}
-
-.size-measurements h3 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  width: 100%; /* Ensure the header takes full width */
-  text-align: center; /* Center the header */
-}
-
-.size-measurements p {
-  font-size: 1.2rem;
-  margin: 0;
-  flex: 1; /* Allows each paragraph to grow and take equal space */
-  text-align: center; /* Center-align the text inside each <p> */
-}
-.size-measurements i {
-  color: rgb(196, 196, 196);
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-  .product-details-container {
-      padding: 15px;
-  }
-
-  .product-name {
-      font-size: 2rem;
-  }
-
-  .product-image {
-      max-width: 100%;
-  }
-
-  .product-price,
-  .product-description {
-      font-size: 1.1rem;
-  }
-
-  .add-to-cart-btn {
-      padding: 10px 25px;
-      font-size: 1rem;
-  }
-
-  .size-options {
-      flex-direction: column;
-      align-items: center;
-  }
-
-  .size-option {
-      margin-bottom: 10px;
-  }
-
-  .size-measurements {
-      padding: 10px;
-      font-size: 1rem;
-  }
-}

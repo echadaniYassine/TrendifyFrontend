@@ -1,25 +1,43 @@
 .registration-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  max-width: 1500px;
+  margin: 3% auto;
+}
+
+.registration-img-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.registration-img-wrapper img {
+  max-width: 100%;
+  height: 550px;
+  max-height: 550px;
+}
+
+.registration-form-wrapper {
+  background: linear-gradient(135deg, blue, rgb(0, 0, 0));
+  padding: 0 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 500px;
-  margin: 50px auto;
-  padding: 40px;
-  background: linear-gradient(135deg, blue, black); /* Professional gradient */
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  font-family: 'Arial', sans-serif;
+  height: 580px;
+  max-height: 600px;
 }
 
 .registration-title {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 2rem;
+  font-weight: bold;
   text-align: center;
   color: #f0f8ff;
-  margin-bottom: 20px;
 }
 
 .registration-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
 .form-group {
@@ -31,17 +49,22 @@
   text-align: start;
   font-size: 1rem;
   color: #dcdcdc;
-  margin-bottom: 5px;
+  margin-left: 50px;
 }
 
 .form-input {
   padding: 12px;
-  font-size: 1rem;
   border: 1px solid #dcdcdc;
   border-radius: 5px;
   box-sizing: border-box;
   background-color: #f9f9f9;
   color: #333;
+  width: 100%;
+  /* Ensures the input takes full width of the container */
+  max-width: 400px;
+  /* Optional: Limits the width if necessary */
+  margin: 0 auto;
+  /* Center the input */
 }
 
 .form-input:focus {
@@ -60,10 +83,14 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 100%;
+  /* Ensures the input takes full width of the container */
+  max-width: 400px;
+  /* Optional: Limits the width if necessary */
+  margin: 0 auto 15px;
 }
 
 .form-submit-btn:hover {
-  background: linear-gradient(135deg, blue, black); 
+  background: linear-gradient(135deg, blue, white);
   color: aliceblue;
 }
 
@@ -97,15 +124,19 @@
 
 @media (max-width: 768px) {
   .registration-container {
+    grid-template-columns: 1fr;
+    /* Stack on smaller screens */
     padding: 20px;
   }
 
   .registration-title {
     font-size: 2rem;
+    /* Adjust title size for smaller screens */
   }
 
   .form-input,
   .form-submit-btn {
     font-size: 1rem;
+    /* Adjust font size for inputs and buttons */
   }
 }
