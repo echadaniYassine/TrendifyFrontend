@@ -3,10 +3,7 @@ import { Navigate } from 'react-router-dom';
 import Cookies from 'js-cookie'; // Ensure js-cookie is imported
 
 export const ProtectedRoute = ({ children }) => {
-  const token = Cookies.get('token'); // Check for token in cookies
-
-  console.log('Token in ProtectedRoute:', token); // Debugging line to see if token is available
-
+  const token = Cookies.get('token'); 
   return token ? children : <Navigate to="/login" />;
 };
 

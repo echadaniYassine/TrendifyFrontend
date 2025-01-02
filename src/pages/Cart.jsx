@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { CartContext } from "../features/cart/CartContext";
 import { getCartTotal, getCartItemCount } from "../features/cart/cartUtils";
 import { useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode"; // Ensure the correct import here
+import { jwtDecode } from "jwt-decode"; 
+import Cookies from 'js-cookie'; 
 import "../styles/pages/cart.css";
 
 const Cart = () => {
@@ -12,20 +13,21 @@ const Cart = () => {
   const navigate = useNavigate();
 
   const isAuthenticated = () => {
-    const token = localStorage.getItem("token");
+    const token = Cookies.get('token'); 
+    console.log("Token:", token); 
     if (!token) return false;
-
+  
     try {
       const decodedToken = jwtDecode(token);
       const currentTime = Math.floor(Date.now() / 1000);
       if (decodedToken.exp < currentTime) {
-        localStorage.removeItem("token");
+        Cookies.remove('token'); 
         return false;
       }
       return true;
     } catch (error) {
       console.error("Invalid token:", error);
-      localStorage.removeItem("token");
+      Cookies.remove('token'); 
       return false;
     }
   };
@@ -41,10 +43,12 @@ const Cart = () => {
   };
 
   const handleCheckout = () => {
+    console.log("Checking authentication...");
     if (!isAuthenticated()) {
       alert("Your session has expired or you are not logged in. Please log in.");
       navigate("/login");
     } else {
+      console.log("User  is authenticated, navigating to checkout...");
       navigate("/checkout");
     }
   };

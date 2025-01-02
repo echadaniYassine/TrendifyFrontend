@@ -5,34 +5,39 @@ const About = () => {
     return (
         <div id="About" className="about-container">
             {/* About Section */}
-            <section className="about-content">
-                <div className="about-section">
-                    <h2 className="about-heading">Our Mission</h2>
-                    <p className="about-description">
-                        At Trendify, we aim to revolutionize the way people shop online by providing a seamless
-                        and personalized shopping experience. Our platform connects fashion-forward individuals
-                        with the latest trends and products that match their unique style.
-                    </p>
-                </div>
+            <div class="about-txt-img">
+                <div class="about-content">
+                    <section class="about-section">
+                        <h2 class="about-heading">Our Mission</h2>
+                        <p class="about-description">
+                            At Trendify, we aim to revolutionize the way people shop online by providing a seamless
+                            and personalized shopping experience. Our platform connects fashion-forward individuals
+                            with the latest trends and products that match their unique style.
+                        </p>
+                    </section>
 
-                <div className="about-section">
-                    <h2 className="about-heading">What We Do</h2>
-                    <p className="about-description">
-                        Trendify offers a curated selection of trending fashion, accessories, and lifestyle products.
-                        We use advanced algorithms to bring you the latest trends and make personalized recommendations
-                        based on your preferences.
-                    </p>
-                </div>
+                    <section class="about-section">
+                        <h2 class="about-heading">What We Do</h2>
+                        <p class="about-description">
+                            Trendify offers a curated selection of trending fashion, accessories, and lifestyle products.
+                            We use advanced algorithms to bring you the latest trends and make personalized recommendations
+                            based on your preferences.
+                        </p>
+                    </section>
 
-                <div className="about-section">
-                    <h2 className="about-heading">Our Vision</h2>
-                    <p className="about-description">
-                        Our vision is to become the go-to platform for anyone looking for the latest in fashion and
-                        lifestyle. We believe in empowering our users to express themselves through their clothing choices
-                        and offering them a convenient, online shopping experience.
-                    </p>
+                    <section class="about-section">
+                        <h2 class="about-heading">Our Vision</h2>
+                        <p class="about-description">
+                            Our vision is to become the go-to platform for anyone looking for the latest in fashion and
+                            lifestyle. We believe in empowering our users to express themselves through their clothing choices
+                            and offering them a convenient, online shopping experience.
+                        </p>
+                    </section>
                 </div>
-            </section>
+                <div class="about-image">
+                    <img src="/assets/about.png" alt="About Trendify" />
+                </div>
+            </div>
 
             {/* Team Section */}
             <section className="team-wrapper">
@@ -40,21 +45,21 @@ const About = () => {
                 <div className="team-grid">
                     <div className="team-card">
                         <div className="team-card-content">
-                            <img src="/assets/team-member1.jpg" alt="Team Member 1" />
+                            <img src="/assets/team_1.png" alt="Team Member 1" />
                             <h3 className="team-card-title">Jane Doe</h3>
                             <p className="team-card-description">Founder & CEO</p>
                         </div>
                     </div>
                     <div className="team-card">
                         <div className="team-card-content">
-                            <img src="/assets/team-member2.jpg" alt="Team Member 2" />
+                            <img src="/assets/team_2.png" alt="Team Member 2" />
                             <h3 className="team-card-title">John Smith</h3>
                             <p className="team-card-description">Lead Developer</p>
                         </div>
                     </div>
                     <div className="team-card">
                         <div className="team-card-content">
-                            <img src="/assets/team-member3.jpg" alt="Team Member 3" />
+                            <img src="/assets/team_1.png" alt="Team Member 3" />
                             <h3 className="team-card-title">Emily Clark</h3>
                             <p className="team-card-description">Marketing Manager</p>
                         </div>

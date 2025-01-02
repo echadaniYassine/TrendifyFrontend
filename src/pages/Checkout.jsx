@@ -5,6 +5,7 @@ import '../styles/pages/checkout.css'
 const Checkout = () => {
   const { state } = useContext(CartContext);
   const total = getCartTotal(state.cart);
+  
 
   // Form state
   const [formData, setFormData] = useState({

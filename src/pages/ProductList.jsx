@@ -94,17 +94,6 @@ const ProductList = ({ products: initialProducts = [], showCategories = true, sh
           </div>
         </>
       )}
-
-      {/* Show related products without categories */}
-      <div className="product-grid">
-        {products.length > 0 ? (
-          products.map((product) => (
-            <ProductCard key={product._id} product={product} />
-          ))
-        ) : (
-          <p>No products available.</p>
-        )}
-      </div>
     </section>
   );
 };

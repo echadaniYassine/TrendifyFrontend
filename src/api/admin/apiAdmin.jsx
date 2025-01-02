@@ -1,3 +1,4 @@
+//api/admin/apiAdmin.jsx
 import axios from 'axios';
 
 const API_URL = 'http://127.0.0.1:4002/api/Trendify/Admin'; // Adjust API endpoint as per your backend
@@ -94,6 +95,24 @@ export const updateOrderStatus = async (orderId, newStatus) => {
     return response.data; // Return updated order
   } catch (error) {
     console.error("Failed to update order status:", error);
+    throw error;
+  }
+};
+
+export const getUserOrders = async (token) => {
+  console.log('Making request to:', `${BASE_URL}/getUserOrders`);
+  console.log('Authorization Header:', `Bearer ${token}`);
+  try {
+  
+    const response = await axios.get(`${BASE_URL}/getUserOrders`, {
+      headers: {
+        Authorization: `Bearer ${token}`, // Token must be provided
+      },
+    });
+    
+    return response.data; 
+  } catch (error) {
+    console.error("Failed to fetch user orders:", error);
     throw error;
   }
 };
