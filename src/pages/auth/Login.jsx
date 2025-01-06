@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../api/user';
+import { login } from '../../api/auth/user';
 import Cookies from 'js-cookie'; // Import js-cookie
-import '../styles/pages/login.css';
+import '../../styles/pages/login.css';
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });

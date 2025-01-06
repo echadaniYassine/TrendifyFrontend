@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getOrders, updateOrderStatus } from '../../api/admin/apiAdmin'; // Import the API functions
+import { getOrders, updateOrderStatus } from '../../api/admin/OrdersManage'; // Import the API functions
 import '../../styles/admin/Orders.css'; // Import the CSS file
 
 const Orders = () => {
@@ -99,7 +99,7 @@ const Orders = () => {
               {orders.map((order) => (
                 <tr key={order._id}>
                   <td>{order._id}</td>
-                  <td>{order.userId.username}</td>
+                  <td>{order.userId}</td>
                   <td>${order.totalAmount}</td>
                   <td>{order.orderStatus}</td>
                   <td>

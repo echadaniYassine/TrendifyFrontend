@@ -1,0 +1,90 @@
+.section-content {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .feedback-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .feedback-description {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .feedback-form {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .feedback-form h4 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .feedback-textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    height: 100px;
+    resize: none;
+  }
+  
+  .rating {
+    margin-bottom: 10px;
+  }
+  
+  .rating-input {
+    width: 50px;
+    padding: 5px;
+    margin-left: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  .submit-feedback-btn {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .submit-feedback-btn:hover {
+    background-color: #218838;
+  }
+  
+  .status-message {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #888;
+  }
+  
+  .feedback-history {
+    margin-top: 40px;
+  }
+  
+  .feedback-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .feedback-item {
+    background-color: #f1f1f1;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  
+  .feedback-item p {
+    margin: 5px 0;
+  }
+  

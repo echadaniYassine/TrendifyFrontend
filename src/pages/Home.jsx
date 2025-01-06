@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Footer from "../components/Footer";
-import About from "../components/About";
-import Hero from "../components/Hero";
-import Categories from "../components/Categories";
-import Benefits from "../components/Benefits";
-import Newsletter from "../components/Newsletter";
-import FeaturedProducts from "../components/FeaturedProducts";
+import Footer from "../components/Home/Footer";
+import About from "../components/Home/About";
+import Hero from "../components/Home/Hero";
+import Categories from "../components/Home/Categories";
+import Benefits from "../components/Home/Benefits";
+import Newsletter from "../components/Home/Newsletter";
+import FeaturedProducts from "../components/Home/FeaturedProducts";
 
 const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");

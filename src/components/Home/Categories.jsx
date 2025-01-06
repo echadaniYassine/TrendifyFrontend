@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ProductCard from "./ProductCart"; // Assuming you have a ProductCard component
-import "../styles/components/categories.css";
+import ProductCard from "../Home/ProductCart"; // Assuming you have a ProductCard component
+import "../../styles/components/categories.css";
 
 const Categories = ({
   categories,
@@ -93,7 +93,7 @@ const Categories = ({
       <div className="product-list">
         {defaultProducts.length > 0 ? (
           defaultProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product._id} product={product} /> 
           ))
         ) : (
           <p>No products available for the selected category and subcategory.</p>

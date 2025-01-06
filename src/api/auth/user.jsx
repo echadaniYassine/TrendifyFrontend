@@ -21,16 +21,21 @@ export const resetPassword = (token, data) => api.post(`/Trendify_reset-password
 
 // Fetch user info
 export const getUserInfo = () => {
-  const token = Cookies.get('token'); // Get token from cookies
+  const token = Cookies.get('token'); 
   return api.get('/Trendify_user-info', {
     headers: { Authorization: `Bearer ${token}` },
   });
 };
 
-// Modify user using cookies for token
-export const modifyUser = (data) => {
-  const token = Cookies.get('token'); // Get token from cookies
-  return api.put('/Trendify_modifyUser', data, {
-    headers: { Authorization: `Bearer ${token}` },
+export const modifyUser = async (data) => {
+  const token = Cookies.get('token'); // Retrieve the token from cookies
+  if (!token) {
+    throw new Error('Unauthorized: No token provided');
+  }
+
+  return axios.put('http://localhost:4002/api/Trendify/Trendify_modifyUser', data, {
+    headers: {
+      Authorization: `Bearer ${token}`, // Pass the token in the headers
+    },
   });
 };

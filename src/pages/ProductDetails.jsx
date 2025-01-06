@@ -22,7 +22,7 @@ const ProductDetails = () => {
       try {
         // Fetch the selected product
         const productResponse = await axios.get(
-          `http://127.0.0.1:4002/api/Trendify/Products/product/${productId}`
+          `http://127.0.0.1:4002/api/Trendify/Products/product/${productId}` // Use _id
         );
         const selectedProduct = productResponse.data;
         setProduct(selectedProduct);
@@ -96,8 +96,6 @@ const ProductDetails = () => {
           <p>No related products found.</p>
         )}
       </div>
-
-
     </>
   );
 };

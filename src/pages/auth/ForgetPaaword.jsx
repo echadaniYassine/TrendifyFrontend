@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { forgotPassword } from '../api/user'; // Import the forgotPassword API function
+import { forgotPassword } from '../../api/auth/user'; // Import the forgotPassword API function
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import '../styles/pages/forgotPassword.css';
+import '../../styles/pages/forgotPassword.css';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');

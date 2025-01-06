@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAllProducts, deleteProduct, addProduct, getById } from '../../api/Products'; // Correct the import
+import { getAllProducts, deleteProduct, addProduct, getById } from '../../api/Products/Products'; // Correct the import
 import '../../styles/admin/Products.css'; // Import the CSS file
 
 const Products = () => {

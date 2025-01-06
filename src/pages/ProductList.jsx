@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ProductCard from "../components/ProductCart"; // Corrected import name
+import ProductCard from "../components/Home/ProductCart"; // Corrected import name
 import axios from "axios";
 import "../styles/pages/productList.css"; // Import the CSS file
 
@@ -15,7 +15,6 @@ const ProductList = ({ products: initialProducts = [], showCategories = true, sh
         const response = await axios.get(
           "http://127.0.0.1:4002/api/Trendify/Products/getAllProducts"
         );
-        console.log("Fetched Products:", response.data); // Check API response
         setProducts(response.data); // Set products from API response
       } catch (error) {
         console.error("Failed to fetch products:", error);
@@ -62,7 +61,7 @@ const ProductList = ({ products: initialProducts = [], showCategories = true, sh
             <div className="product-grid">
               {menProducts.length > 0 ? (
                 menProducts.map((product) => (
-                  <ProductCard key={product._id} product={product} />
+                  <ProductCard key={product._id} product={product} /> // Using _id for key
                 ))
               ) : (
                 <p>No men's products available.</p>
@@ -85,7 +84,7 @@ const ProductList = ({ products: initialProducts = [], showCategories = true, sh
             <div className="product-grid">
               {womenProducts.length > 0 ? (
                 womenProducts.map((product) => (
-                  <ProductCard key={product._id} product={product} />
+                  <ProductCard key={product._id} product={product} /> // Using _id for key
                 ))
               ) : (
                 <p>No women's products available.</p>
@@ -97,6 +96,5 @@ const ProductList = ({ products: initialProducts = [], showCategories = true, sh
     </section>
   );
 };
-
 
 export default ProductList;

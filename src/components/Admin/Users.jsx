@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getUsers, deleteUser, promoteUser } from '../../api/admin/apiAdmin'; // Adjust the import path if needed
+import { getUsers, deleteUser, promoteUser } from '../../api/admin/UsersManage'; // Adjust the import path if needed
 import '../../styles/admin/Users.css'; // Import the CSS file
 
 const Users = () => {

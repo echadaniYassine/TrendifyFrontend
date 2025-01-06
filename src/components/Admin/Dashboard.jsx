@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAdminStats } from '../../api/admin/apiAdmin'; // Adjust the import path as needed
+import { getAdminStats } from '../../api/admin/UsersManage'; // Adjust the import path as needed
 import '../../styles/admin/Dashboard.css'; // Import the CSS file
 
 const AdminDashboard = () => {

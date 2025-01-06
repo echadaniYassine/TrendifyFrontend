@@ -3,18 +3,18 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import ProductList from "../pages/ProductList";
 import Cart from "../pages/Cart";
-import Profile from "../pages/Profile";
+import Profile from "../pages/auth/Profile";
 import NotFound from "../pages/NotFound";
-import Header from '../components/Header';
+import Header from '../components/Home/Header';
 import { CartProvider } from "../features/cart/CartContext"; // Ensure correct import path
 import Checkout from "../pages/Checkout"; // Import the Checkout component
 import ProductDetails from "../pages/ProductDetails";
-import Login from "../pages/Login";
-import Signup from "../pages/SignUp";
+import Login from "../pages/auth/Login";
+import Signup from "../pages/auth/SignUp";
 import {ProtectedRoute} from "./ProtectedRoute";
-import ForgotPassword from "../pages/ForgetPaaword";
-import ResetPassword from "../pages/ResetPassword";
-import AdminDashboard from "../pages/AdminDashboard";
+import ForgotPassword from "../pages/auth/ForgetPaaword";
+import ResetPassword from "../pages/auth/ResetPassword";
+import AdminDashboard from "../pages/admin/AdminDashboard";
 
 
 

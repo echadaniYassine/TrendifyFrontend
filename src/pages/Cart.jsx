@@ -32,13 +32,14 @@ const Cart = () => {
     }
   };
 
-  const handleRemove = (id) => {
-    dispatch({ type: "REMOVE_ITEM", payload: { id } });
+  // Update handleRemove and handleUpdateQuantity to use _id instead of id_
+  const handleRemove = (_id) => {
+    dispatch({ type: "REMOVE_ITEM", payload: { _id } });
   };
 
-  const handleUpdateQuantity = (id, quantity) => {
+  const handleUpdateQuantity = (_id, quantity) => {
     if (quantity > 0) {
-      dispatch({ type: "UPDATE_ITEM_QUANTITY", payload: { id, quantity } });
+      dispatch({ type: "UPDATE_ITEM_QUANTITY", payload: { _id, quantity } });
     }
   };
 
@@ -48,7 +49,7 @@ const Cart = () => {
       alert("Your session has expired or you are not logged in. Please log in.");
       navigate("/login");
     } else {
-      console.log("User  is authenticated, navigating to checkout...");
+      console.log("User is authenticated, navigating to checkout...");
       navigate("/checkout");
     }
   };
@@ -69,20 +70,20 @@ const Cart = () => {
         ) : (
           <div className="cart-items">
             {state.cart.map((item) => (
-              <div className="cart-item" key={item.id}>
+              <div className="cart-item" key={item._id}> {/* Use _id for key */}
                 <img src={item.img} alt={item.name} className="cart-item-image" />
                 <div className="cart-item-details">
                   <h3 className="cart-item-name">{item.name}</h3>
                   <p className="cart-item-price">MAD {item.price.toFixed(2)}</p>
                 </div>
                 <div className="quantity-controls">
-                  <button onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}>-</button>
+                  <button onClick={() => handleUpdateQuantity(item._id, item.quantity - 1)}>-</button>
                   <span>{item.quantity}</span>
-                  <button onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}>+</button>
+                  <button onClick={() => handleUpdateQuantity(item._id, item.quantity + 1)}>+</button>
                 </div>
                 <button
                   className="cart-item-remove-btn"
-                  onClick={() => handleRemove(item.id)}
+                  onClick={() => handleRemove(item._id)} // Use _id here as well
                 >
                   Remove
                 </button>
@@ -110,7 +111,7 @@ const Cart = () => {
             <div className="payment-icons">
               <img src="/assets/masterCard.png" alt="MasterCard" />
               <img src="/assets/visa.png" alt="Visa" />
-              < img src="/assets/paypal.png" alt="PayPal" />
+              <img src="/assets/paypal.png" alt="PayPal" />
             </div>
             <h3>Buyer Protection</h3>
             <p>Get a full refund if the item is not as described or not delivered</p>
