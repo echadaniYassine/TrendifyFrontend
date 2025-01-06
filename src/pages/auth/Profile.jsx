@@ -7,6 +7,8 @@ import PaymentComponent from '../../services/paymentMethods';
 import Orders from '../../components/Profile/Orders';
 import Settings from '../../components/Profile/Settings ';
 import ShippingInfo from '../../components/Profile/ShippingInfo';
+import RefundReturn from '../../components/Profile/RefundReturn';
+import Feedback from '../../components/Profile/Feedback';
 
 const Profile = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -75,17 +77,11 @@ const Profile = () => {
 
       case 'refund':
         return (
-          <div className="section-content">
-            <h3>Refund/Return</h3>
-            <p>Track your refunds or return requests here.</p>
-          </div>
+         <RefundReturn/>
         );
       case 'feedback':
         return (
-          <div className="section-content">
-            <h3>Feedback</h3>
-            <p>Leave your feedback to help us improve.</p>
-          </div>
+         <Feedback />
         );
       case 'settings':
         return (

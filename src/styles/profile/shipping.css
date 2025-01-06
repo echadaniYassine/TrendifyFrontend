@@ -1,0 +1,176 @@
+.shipping-info-section {
+  background-color: #f8f9fa;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.shipping-info-heading {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.shipping-info-section p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.shipping-address-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.shipping-address-item {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.shipping-address-item p {
+  font-size: 16px;
+  color: #333;
+  margin: 10px 0;
+}
+
+.shipping-address-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.shipping-action-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.edit-address-button,
+.delete-address-button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.edit-address-button:hover,
+.delete-address-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.cancel-edit-button {
+  background-color: #dc3545;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cancel-edit-button:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
+}
+
+.add-new-address-section {
+  margin-top: 40px;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.new-address-input-field {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.new-address-input-field:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.add-new-address-button {
+  background-color: #28a745;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.add-new-address-button:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+.shipping-item-not-found {
+  text-align: center;
+  font-size: 18px;
+  color: #777;
+}
+
+.shipping-info-section .save-address-button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.shipping-info-section .save-address-button:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+.shipping-info-section .edit-address-input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.shipping-info-section .edit-address-input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.shipping-info-section {
+  animation: fadeIn 0.8s ease-out;
+}

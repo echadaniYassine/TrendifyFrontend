@@ -1,0 +1,141 @@
+.settings-section {
+  background-color: #f4f7fa;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.settings-heading {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.settings-section_p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.account-details-section,
+.change-password-section,
+.notification-preferences-section {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.account-details-section h4,
+.change-password-section h4,
+.notification-preferences-section h4 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.settings-input-field {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  background: linear-gradient(145deg, #ffffff, #f1f1f1);
+  transition: all 0.3s ease;
+}
+
+.settings-input-field:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+}
+
+.settings-save-button {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+}
+
+.settings-save-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.settings-save-button:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+}
+
+.notification-preferences-section label {
+  font-size: 16px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.notification-preferences-section input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.status-message {
+  font-size: 14px;
+  color: #28a745;
+  margin-top: 20px;
+}
+
+.settings-section button {
+  margin-top: 20px;
+}
+
+.settings-section .settings-input-field,
+.settings-section .settings-save-button {
+  transition: all 0.3s ease;
+}
+
+/* Hover Effects */
+.settings-section .settings-input-field:hover {
+  background: linear-gradient(145deg, #e7f1ff, #f1f8fc);
+}
+
+.settings-section .settings-save-button {
+  background: linear-gradient(145deg, #007bff, #0056b3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.settings-section .settings-save-button:hover {
+  background: linear-gradient(145deg, #0056b3, #003f7f);
+}
+
+.settings-section .settings-save-button:active {
+  transform: scale(0.98);
+  background: linear-gradient(145deg, #003f7f, #0056b3);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.settings-section {
+  animation: fadeIn 0.8s ease-out;
+}

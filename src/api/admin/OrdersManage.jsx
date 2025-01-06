@@ -47,7 +47,6 @@ export const getUserOrders = async (token) => {
         Authorization: `Bearer ${token}`, // Send token in the Authorization header
       },
     });
-    console.log("API Response:", response.data);  // Log the response data for debugging
     return response.data;  // Return the orders data
   } catch (error) {
     console.error("Failed to fetch user orders:", error);

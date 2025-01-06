@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "../styles/components/refundReturn.css";
-import { fetchRefundRequests, submitRefundRequest } from "../api/refundApi"; // Assume you have these API calls
+import "../../styles/profile/refundReturn.css";
+import { fetchRefundRequests, submitRefundRequest } from "../../api/RefundReturn/RefundReturn"; // Assume you have these API calls
 
 const RefundReturn = () => {
   const [refunds, setRefunds] = useState([]);
@@ -45,15 +45,15 @@ const RefundReturn = () => {
   };
 
   return (
-    <div className="section-content">
-      <h3 className="refund-return-title">Refund/Return</h3>
+    <div className="refund-return-section">
+      <h3 className="refund-return-heading">Refund/Return</h3>
       <p className="refund-return-description">Track your refunds or return requests here.</p>
-
+  
       {/* Refund Request Form */}
-      <div className="refund-return-form">
+      <div className="refund-return-form-section">
         <h4>Submit a Refund/Return Request</h4>
         <select
-          className="order-select"
+          className="order-select-dropdown"
           value={selectedOrder}
           onChange={(e) => setSelectedOrder(e.target.value)}
         >
@@ -65,22 +65,22 @@ const RefundReturn = () => {
             </option>
           ))}
         </select>
-
+  
         <textarea
-          className="refund-reason-input"
+          className="refund-reason-input-textarea"
           placeholder="Reason for refund/return"
           value={refundReason}
           onChange={(e) => setRefundReason(e.target.value)}
         />
-
-        <button className="submit-refund-btn" onClick={handleSubmitRequest}>
+  
+        <button className="refund-submit-button" onClick={handleSubmitRequest}>
           Submit Request
         </button>
-        <p className="status-message">{statusMessage}</p>
+        <p className="refund-status-message">{statusMessage}</p>
       </div>
-
+  
       {/* Refund/Return Requests History */}
-      <div className="refund-return-history">
+      <div className="refund-return-history-section">
         <h4>Your Past Refund/Return Requests</h4>
         {loading ? (
           <p>Loading your refund history...</p>
@@ -89,7 +89,7 @@ const RefundReturn = () => {
         ) : refunds.length === 0 ? (
           <p>You have no past refund/return requests.</p>
         ) : (
-          <ul className="refund-list">
+          <ul className="refund-history-list">
             {refunds.map((refund) => (
               <li key={refund.orderId} className="refund-item">
                 <p>
@@ -105,6 +105,7 @@ const RefundReturn = () => {
       </div>
     </div>
   );
+  
 };
 
 export default RefundReturn;

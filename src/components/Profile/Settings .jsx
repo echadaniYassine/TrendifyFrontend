@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import "../../styles/components/settings.css";
+import "../../styles/profile/settings.css";
 import { getUserInfo, modifyUser } from "../../api/auth/user";
 import Cookies from 'js-cookie';
 
@@ -90,63 +90,63 @@ const Settings = () => {
   }, [notifications]);
 
   return (
-    <div className="section-content">
-      <h3>Settings</h3>
-      <p>Update your account preferences.</p>
-
+    <div className="settings-section">
+      <h3 className="settings-heading">Settings</h3>
+      <p className="settings-section_p" >Update your account preferences.</p>
+  
       {/* Account Details Section */}
-      <div className="settings-section">
+      <div className="account-details-section">
         <h4>Account Details</h4>
         <label>Username:</label>
         <input
           type="text"
-          value={username || ""} // Ensure value is always a string
+          value={username}
           onChange={(e) => setUsername(e.target.value)}
-          className="settings-input"
+          className="settings-input-field"
         />
         <label>Email:</label>
         <input
           type="email"
-          value={email || ""} // Ensure value is always a string
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="settings-input"
+          className="settings-input-field"
         />
         <label>Phone:</label>
         <input
           type="text"
-          value={phoneNumber || ""} // Ensure value is always a string
+          value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
-          className="settings-input"
+          className="settings-input-field"
         />
-        <button onClick={handleSaveAccountDetails} className="settings-btn">
+        <button onClick={handleSaveAccountDetails} className="settings-save-button">
           Save Account Details
         </button>
       </div>
-
+  
       {/* Change Password Section */}
-      <div className="settings-section">
+      <div className="change-password-section">
         <h4>Change Password</h4>
         <label>Current Password:</label>
         <input
           type="password"
           value={currentPassword}
           onChange={(e) => setCurrentPassword(e.target.value)}
-          className="settings-input"
+          className="settings-input-field"
         />
         <label>New Password:</label>
         <input
           type="password"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
-          className="settings-input"
+          className="settings-input-field"
         />
-        <button onClick={handleChangePassword} className="settings-btn">
+        <button onClick={handleChangePassword} className="settings-save-button">
           Change Password
         </button>
       </div>
-
+  
       {/* Notification Preferences */}
-      <div className="settings-section">
+      <div className="notification-preferences-section">
         <h4>Notification Preferences</h4>
         <label>
           <input
@@ -157,11 +157,12 @@ const Settings = () => {
           Enable Notifications
         </label>
       </div>
-
+  
       {/* Status Message */}
-      <p className="status-message">{statusMessage}</p>
+      <p className="settings-status-message">{statusMessage}</p>
     </div>
   );
+  
 };
 
 export default Settings;

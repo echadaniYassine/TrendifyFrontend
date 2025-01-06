@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getUserOrders } from "../../api/admin/OrdersManage"; // Adjust import according to your file structure
 import Cookies from 'js-cookie'; // Import js-cookie
-import "../../styles/components/orders.css";
+import "../../styles/profile/orders.css";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -11,7 +11,6 @@ const Orders = () => {
   useEffect(() => {
     const loadOrders = async () => {
       const token = Cookies.get('token'); // Retrieve token from cookies
-      console.log("Token:", token); // Log the token for debugging
 
       if (!token) {
         setError("No token provided.");
@@ -46,14 +45,14 @@ const Orders = () => {
   }, []);
 
   return (
-    <div className="section-content">
-      <h3 className="orders-title">Your Orders</h3>
+    <div className="orders-section">
+      <h3 className="orders-heading">Your Orders</h3>
       {orderLoading ? (
-        <p className="orders-loading">Loading orders...</p>
+        <p className="orders-loading-text">Loading orders...</p>
       ) : error ? (
-        <p className="orders-error">{error}</p>
+        <p className="orders-error-message">{error}</p>
       ) : orders.length === 0 ? (
-        <p className="orders-empty">No orders available at the moment.</p>
+        <p className="orders-empty-message">No orders available at the moment.</p>
       ) : (
         <ul className="orders-list">
           {orders.map((order) => (
@@ -74,8 +73,8 @@ const Orders = () => {
                 <strong>Total Amount:</strong> $
                 {order.totalAmount?.toFixed(2) || "0.00"}
               </p>
-              <p className="order-detail">
-                <strong>Items:</strong>
+              <p style={{ textAlign: "center", fontSize: "25px" }}>
+                <strong>Items</strong>
               </p>
               <ul className="order-items">
                 {order.items.map((item, idx) => (
@@ -98,6 +97,7 @@ const Orders = () => {
       )}
     </div>
   );
+  
 };
 
 export default Orders;

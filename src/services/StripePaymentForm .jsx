@@ -12,37 +12,31 @@ const StripePaymentForm = ({ clientSecret }) => {
     setIsProcessing(true);
 
     if (!stripe || !elements) {
-      return; // Stripe.js has not loaded yet.
+      setErrorMessage("Stripe is not loaded. Please try again later.");
+      setIsProcessing(false);
+      return;
     }
 
     const cardElement = elements.getElement(CardElement);
 
-    // Confirm the payment intent with the client secret
-    const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: cardElement,
-      },
-    });
+    try {
+      const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: cardElement,
+        },
+      });
 
-    if (error) {
-      setErrorMessage(error.message);
+      if (error) {
+        setErrorMessage(error.message);
+      } else if (paymentIntent && paymentIntent.status === "succeeded") {
+        alert("Payment successful!");
+      } else {
+        setErrorMessage("Payment failed. Please try again.");
+      }
+    } catch (error) {
+      setErrorMessage("An unexpected error occurred. Please try again.");
+    } finally {
       setIsProcessing(false);
-    } else {
-      // Send the payment intent ID to your server for processing if necessary
-      fetch("/api/payments/stripe/capture-payment", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ paymentMethodId: paymentIntent.payment_method }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.success) {
-            alert("Payment successful!");
-          } else {
-            setErrorMessage("Payment failed. Please try again.");
-          }
-          setIsProcessing(false);
-        });
     }
   };
 

@@ -4,13 +4,18 @@ import { CartContext } from "../features/cart/CartContext";
 import axios from "axios";
 import "../styles/pages/productDetails.css";
 import ProductList from "./ProductList";
+import Cookies from "js-cookie"; // Make sure js-cookie is imported
 
 const ProductDetails = () => {
   const { productId } = useParams(); // Get the product ID from the URL
   const { dispatch } = useContext(CartContext); // Access cart context
   const [product, setProduct] = useState(null);
-  const [relatedProducts, setRelatedProducts] = useState([]); // State for related products by category and subcategory
+  const [relatedProducts, setRelatedProducts] = useState([]); // State for related products
   const [allProducts, setAllProducts] = useState([]); // State to store all products
+  const [feedbacks, setFeedbacks] = useState([]); // State to store feedbacks
+  const [feedbackText, setFeedbackText] = useState(""); // Text of feedback
+  const [rating, setRating] = useState(0); // Rating for feedback
+  const [statusMessage, setStatusMessage] = useState(""); // Status message
 
   useEffect(() => {
     if (!productId) {
@@ -41,6 +46,17 @@ const ProductDetails = () => {
             p._id !== selectedProduct._id // Exclude the current product
         );
         setRelatedProducts(related);
+
+        // Fetch feedbacks related to the current product
+        const feedbackResponse = await axios.get(
+          `http://127.0.0.1:4002/api/Trendify/feedback/get-all-feedbackes/${productId}`, // Get feedbacks for the current product
+          {
+            headers: {
+              Authorization: `Bearer ${Cookies.get("token")}`, // Add the token to the Authorization header
+            },
+          }
+        );
+        setFeedbacks(feedbackResponse.data);
       } catch (error) {
         console.error("Failed to fetch product details or products:", error);
       }
@@ -52,6 +68,52 @@ const ProductDetails = () => {
   const addToCart = () => {
     if (product) {
       dispatch({ type: "ADD_ITEM", payload: product });
+    }
+  };
+
+  const handleSubmitFeedback = async () => {
+    if (!feedbackText || !rating) {
+      setStatusMessage("Please provide feedback and rating.");
+      return;
+    }
+
+    const token = Cookies.get("token"); // Get the token from the cookies
+    if (!token) {
+      setStatusMessage("You must be logged in to submit feedback.");
+      return;
+    }
+
+    try {
+      setStatusMessage("Submitting your feedback...");
+
+      // Send the POST request with the Authorization header
+      await axios.post(
+        "http://127.0.0.1:4002/api/Trendify/feedback/submit-feedback",
+        { productId, text: feedbackText, rating },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Add the token to the Authorization header
+          },
+        }
+      );
+
+      setFeedbackText(""); // Clear the text input
+      setRating(0); // Clear the rating
+      setStatusMessage("Feedback submitted successfully.");
+
+      // Fetch updated feedbacks with authorization
+      const feedbackResponse = await axios.get(
+        `http://127.0.0.1:4002/api/Trendify/feedback/get-all-feedbackes/${productId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Add the token to the Authorization header
+          },
+        }
+      );
+      setFeedbacks(feedbackResponse.data); // Update feedback list
+    } catch (error) {
+      console.error("Failed to submit feedback:", error);
+      setStatusMessage("Failed to submit feedback. Please try again.");
     }
   };
 
@@ -95,6 +157,47 @@ const ProductDetails = () => {
         ) : (
           <p>No related products found.</p>
         )}
+      </div>
+
+      {/* Feedback Section */}
+      <div className="section-feedback">
+        <h3 className="feedback-heading">Feedback</h3>
+        <textarea
+          className="feedback-textarea"
+          placeholder="Leave your feedback..."
+          value={feedbackText}
+          onChange={(e) => setFeedbackText(e.target.value)}
+        />
+        <div className="rating-section">
+          <label>Rating (1-5):</label>
+          <input
+            type="number"
+            min="1"
+            max="5"
+            value={rating}
+            onChange={(e) => setRating(Number(e.target.value))}
+          />
+        </div>
+        <button onClick={handleSubmitFeedback} className="submit-feedback-btn">
+          Submit Feedback
+        </button>
+        <p className="feedback-status-message">{statusMessage}</p>
+
+        <div className="feedback-history">
+          {feedbacks.length > 0 ? (
+            <ul>
+              {feedbacks.map((feedback, index) => (
+                <li key={index}>
+                  <p><strong>Rating:</strong> {feedback.rating}</p>
+                  <p>{feedback.text}</p>
+                  <p><em>Submitted on: {new Date(feedback.createdAt).toLocaleDateString()}</em></p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No feedbacks yet for this product.</p>
+          )}
+        </div>
       </div>
     </>
   );

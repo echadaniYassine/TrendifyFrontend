@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../../styles/components/shipping.css";
+import "../../styles/profile/shipping.css";
 import axios from "axios";
 import Cookies from "js-cookie";
 
@@ -131,14 +131,14 @@ const ShippingInfo = ({ userInfo, updateShippingAddresses }) => {
   
 
   return (
-    <div className="section-content">
-      <h3>Shipping Information</h3>
+    <div className="shipping-info-section">
+      <h3 className="shipping-info-heading">Shipping Information</h3>
       <p>View and update your shipping addresses here.</p>
-
-      <ul className="shipping-list">
+  
+      <ul className="shipping-address-list">
         {shippingAddresses.length > 0 ? (
           shippingAddresses.map((address, index) => (
-            <li key={index} className="shipping-item">
+            <li key={index} className="shipping-address-item">
               {editingIndex === index ? (
                 <>
                   <input
@@ -147,7 +147,7 @@ const ShippingInfo = ({ userInfo, updateShippingAddresses }) => {
                     onChange={(e) =>
                       setEditedAddress({ ...editedAddress, addressLine1: e.target.value })
                     }
-                    className="edit-input"
+                    className="edit-address-input"
                   />
                   <input
                     type="text"
@@ -155,7 +155,7 @@ const ShippingInfo = ({ userInfo, updateShippingAddresses }) => {
                     onChange={(e) =>
                       setEditedAddress({ ...editedAddress, city: e.target.value })
                     }
-                    className="edit-input"
+                    className="edit-address-input"
                   />
                   <input
                     type="text"
@@ -163,7 +163,7 @@ const ShippingInfo = ({ userInfo, updateShippingAddresses }) => {
                     onChange={(e) =>
                       setEditedAddress({ ...editedAddress, country: e.target.value })
                     }
-                    className="edit-input"
+                    className="edit-address-input"
                   />
                   <input
                     type="text"
@@ -171,29 +171,29 @@ const ShippingInfo = ({ userInfo, updateShippingAddresses }) => {
                     onChange={(e) =>
                       setEditedAddress({ ...editedAddress, postalCode: e.target.value })
                     }
-                    className="edit-input"
+                    className="edit-address-input"
                   />
-                  <button onClick={() => handleEditAddress(index)} className="save-btn">
+                  <button onClick={() => handleEditAddress(index)} className="save-address-button">
                     Save
                   </button>
-                  <button onClick={() => setEditingIndex(null)} className="cancel-btn">
+                  <button onClick={() => setEditingIndex(null)} className="cancel-edit-button">
                     Cancel
                   </button>
                 </>
               ) : (
                 <>
                   <p>{`${address.addressLine1}, ${address.city}, ${address.country}, ${address.postalCode}`}</p>
-                  <div className="action-buttons">
+                  <div className="shipping-action-buttons">
                     <button
                       onClick={() => {
                         setEditingIndex(index);
                         setEditedAddress(address);
                       }}
-                      className="edit-btn"
+                      className="edit-address-button"
                     >
                       Edit
                     </button>
-                    <button onClick={() => handleDeleteAddress(address.addressLine1)} className="delete-btn">
+                    <button onClick={() => handleDeleteAddress(address.addressLine1)} className="delete-address-button">
                       Delete
                     </button>
                   </div>
@@ -205,42 +205,43 @@ const ShippingInfo = ({ userInfo, updateShippingAddresses }) => {
           <p>No shipping addresses available. Add one now!</p>
         )}
       </ul>
-
-      <div className="add-address">
+  
+      <div className="add-new-address-section">
         <input
           type="text"
           placeholder="Enter new shipping address Line 1"
           value={newAddress.addressLine1}
           onChange={(e) => setNewAddress({ ...newAddress, addressLine1: e.target.value })}
-          className="new-address-input"
+          className="new-address-input-field"
         />
         <input
           type="text"
           placeholder="Enter city"
           value={newAddress.city}
           onChange={(e) => setNewAddress({ ...newAddress, city: e.target.value })}
-          className="new-address-input"
+          className="new-address-input-field"
         />
         <input
           type="text"
           placeholder="Enter country"
           value={newAddress.country}
           onChange={(e) => setNewAddress({ ...newAddress, country: e.target.value })}
-          className="new-address-input"
+          className="new-address-input-field"
         />
         <input
           type="text"
           placeholder="Enter postal code"
           value={newAddress.postalCode}
           onChange={(e) => setNewAddress({ ...newAddress, postalCode: e.target.value })}
-          className="new-address-input"
+          className="new-address-input-field"
         />
-        <button onClick={handleAddAddress} className="add-btn">
+        <button onClick={handleAddAddress} className="add-new-address-button">
           Add Address
         </button>
       </div>
     </div>
   );
+  
 };
 
 export default ShippingInfo;

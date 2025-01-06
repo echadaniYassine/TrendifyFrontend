@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "../styles/components/feedback.css";
-import { fetchFeedbacks, submitFeedback } from "../api/feedbackApi"; // Assume you have these API calls
+import "../../styles/profile/feedBack.css";
+import { fetchFeedbacks, submitFeedback } from "../../api/feedback/feedbackApi";
 
 const Feedback = () => {
   const [feedbacks, setFeedbacks] = useState([]);
@@ -15,7 +15,7 @@ const Feedback = () => {
       try {
         setLoading(true);
         setError(false);
-        const fetchedFeedbacks = await fetchFeedbacks(); // Fetch feedbacks
+        const fetchedFeedbacks = await fetchFeedbacks(); // Fetch feedbacks from backend
         setFeedbacks(fetchedFeedbacks);
       } catch (err) {
         console.error("Error fetching feedbacks:", err);
@@ -36,10 +36,11 @@ const Feedback = () => {
 
     try {
       setStatusMessage("Submitting your feedback...");
-      await submitFeedback(feedbackText, rating); // Submit the feedback
+      await submitFeedback(feedbackText, rating); // Submit the feedback to backend
       setStatusMessage("Feedback submitted successfully.");
       setFeedbackText("");
       setRating(0);
+      setFeedbacks(await fetchFeedbacks()); // Refresh feedback list after submission
     } catch (err) {
       console.error("Error submitting feedback:", err);
       setStatusMessage("Failed to submit feedback. Please try again.");
@@ -47,21 +48,21 @@ const Feedback = () => {
   };
 
   return (
-    <div className="section-content">
-      <h3 className="feedback-title">Feedback</h3>
+    <div className="feedback-section">
+      <h3 className="feedback-heading">Feedback</h3>
       <p className="feedback-description">Leave your feedback to help us improve.</p>
 
       {/* Feedback Submission Form */}
-      <div className="feedback-form">
+      <div className="feedback-form-section">
         <h4>Submit Your Feedback</h4>
         <textarea
-          className="feedback-textarea"
+          className="feedback-textarea-input"
           placeholder="Your feedback..."
           value={feedbackText}
           onChange={(e) => setFeedbackText(e.target.value)}
         />
 
-        <div className="rating">
+        <div className="rating-section">
           <label>Rating (1-5):</label>
           <input
             type="number"
@@ -69,18 +70,18 @@ const Feedback = () => {
             max="5"
             value={rating}
             onChange={(e) => setRating(Number(e.target.value))}
-            className="rating-input"
+            className="rating-input-field"
           />
         </div>
 
-        <button className="submit-feedback-btn" onClick={handleSubmitFeedback}>
+        <button className="feedback-submit-button" onClick={handleSubmitFeedback}>
           Submit Feedback
         </button>
-        <p className="status-message">{statusMessage}</p>
+        <p className="feedback-status-message">{statusMessage}</p>
       </div>
 
       {/* Feedback History */}
-      <div className="feedback-history">
+      <div className="feedback-history-section">
         <h4>Your Past Feedback</h4>
         {loading ? (
           <p>Loading your feedback history...</p>
