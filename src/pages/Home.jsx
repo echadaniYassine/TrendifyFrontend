@@ -16,7 +16,7 @@ const Home = () => {
 
   useEffect(() => {
     // Fetch categories from the API
-    axios.get("http://127.0.0.1:4002/api/Trendify/Category/getCategories")
+    axios.get("https://trendify-frontend-nine.vercel.app/Category/getCategories")
       .then(response => {
         setCategories(response.data);
       })
@@ -25,7 +25,7 @@ const Home = () => {
       });
 
     // Fetch products from the API
-    axios.get("http://127.0.0.1:4002/api/Trendify/Products/getAllProducts")
+    axios.get("https://trendify-frontend-nine.vercel.app/Products/getAllProducts")
       .then(response => {
         setProducts(response.data);
       })
