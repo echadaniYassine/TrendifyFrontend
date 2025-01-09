@@ -42,7 +42,7 @@ const Home = () => {
   return (
     <div>
       <Hero />
-      <FeaturedProducts />
+      <FeaturedProducts products={Array.isArray(filteredProducts) ? filteredProducts : []} />
       <Categories
         categories={categories}
         setSelectedCategory={setSelectedCategory}

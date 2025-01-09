@@ -3,26 +3,24 @@ import ProductCard from "../Home/ProductCart"; // Ensure the correct import
 import axios from "axios";
 import '../../styles/components/featuresProducts.css'; // Updated CSS file name
 
-const FeaturedProducts = () => {
+const FeaturedProducts = ({ products }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const filteredProducts = Array.isArray(products) ? products.filter(product => product.someCondition) : [];
 
   // Fetch products from the backend API
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get("https://trendify-frontend-nine.vercel.app/getAllProducts");
-        setProducts(response.data);
-        setLoading(false);
-      } catch (error) {
-        setError("Failed to fetch products.");
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
+    axios.get("https://trendify-frontend-nine.vercel.app/Products/getAllProducts")
+      .then(response => {
+        console.log(response.data);  // Inspect the structure of the response
+        setProducts(Array.isArray(response.data) ? response.data : []);
+      })
+      .catch(error => {
+        console.error("Error fetching products", error);
+      });
   }, []);
+
 
   // Filter products to get only featured ones
   const featuredProducts = products.filter((product) => product.featured);
