@@ -12,7 +12,7 @@ const FeaturedProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:4002/api/Trendify/Products/getAllProducts");
+        const response = await axios.get("https://trendify-frontend-nine.vercel.app/getAllProducts");
         setProducts(response.data);
         setLoading(false);
       } catch (error) {
