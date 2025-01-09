@@ -4,26 +4,27 @@ import axios from "axios";
 import '../../styles/components/featuresProducts.css'; // Updated CSS file name
 
 const FeaturedProducts = ({ products }) => {
-  const [products, setProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]); // Renamed state variable
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const filteredProducts = Array.isArray(products) ? products.filter(product => product.someCondition) : [];
 
   // Fetch products from the backend API
   useEffect(() => {
     axios.get("https://trendify-frontend-nine.vercel.app/Products/getAllProducts")
       .then(response => {
         console.log(response.data);  // Inspect the structure of the response
-        setProducts(Array.isArray(response.data) ? response.data : []);
+        setAllProducts(Array.isArray(response.data) ? response.data : []); // Update state
+        setLoading(false); // Set loading to false once data is fetched
       })
       .catch(error => {
         console.error("Error fetching products", error);
+        setError("Failed to fetch products"); // Set error message
+        setLoading(false); // Stop loading on error
       });
   }, []);
 
-
   // Filter products to get only featured ones
-  const featuredProducts = products.filter((product) => product.featured);
+  const featuredProducts = allProducts.filter((product) => product.featured);
 
   if (loading) {
     return <p className="loading-message">Loading...</p>;
