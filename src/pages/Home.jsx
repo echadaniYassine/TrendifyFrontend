@@ -15,31 +15,29 @@ const Home = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    // Fetch categories from the API
-    axios.get("https://trendify-frontend-nine.vercel.app/Category/getCategories")
-      .then(response => {
-        setCategories(response.data);
-      })
-      .catch(error => {
-        console.error("Error fetching categories", error);
-      });
-
     // Fetch products from the API
-    axios.get("https://trendify-frontend-nine.vercel.app/Products/getAllProducts")
-      .then(response => {
-        setProducts(response.data);
+    axios
+      .get("https://trendify-frontend-nine.vercel.app/Products/getAllProducts")
+      .then((response) => {
+        console.log("Products Response:", response.data); // Log the response to inspect its structure
+        setProducts(Array.isArray(response.data) ? response.data : []); // Ensure it's an array
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error fetching products", error);
+        setProducts([]); // Set to an empty array if the fetch fails
       });
   }, []);
 
+
   // Filter products based on the selected category and subcategory
-  const filteredProducts = products.filter((product) => {
-    const categoryMatch = selectedCategory === "All" || product.categoryName === selectedCategory;
-    const subCategoryMatch = selectedSubCategory === "All" || product.subcategory === selectedSubCategory;
-    return categoryMatch && subCategoryMatch;
-  });
+  const filteredProducts = Array.isArray(products)
+    ? products.filter((product) => {
+      const categoryMatch = selectedCategory === "All" || product.categoryName === selectedCategory;
+      const subCategoryMatch = selectedSubCategory === "All" || product.subcategory === selectedSubCategory;
+      return categoryMatch && subCategoryMatch;
+    })
+    : [];
+
 
   return (
     <div>
