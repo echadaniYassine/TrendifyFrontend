@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/profile/feedBack.css";
-import { fetchFeedbacks, submitFeedback } from "../../api/feedback/feedbackApi";
+import { fetchUserFeedback, submitFeedback } from "../../api/feedback/feedbackApi";
 
-const Feedback = () => {
+const Feedback = ({ productId }) => {
   const [feedbacks, setFeedbacks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -10,12 +10,13 @@ const Feedback = () => {
   const [rating, setRating] = useState(0);
   const [statusMessage, setStatusMessage] = useState("");
 
+  // Fetch user feedbacks on component mount
   useEffect(() => {
     const loadFeedbacks = async () => {
       try {
         setLoading(true);
         setError(false);
-        const fetchedFeedbacks = await fetchFeedbacks(); // Fetch feedbacks from backend
+        const fetchedFeedbacks = await fetchUserFeedback(); // Fetch feedbacks for the user
         setFeedbacks(fetchedFeedbacks);
       } catch (err) {
         console.error("Error fetching feedbacks:", err);
@@ -28,19 +29,28 @@ const Feedback = () => {
     loadFeedbacks();
   }, []);
 
+  // Handle feedback submission
   const handleSubmitFeedback = async () => {
     if (!feedbackText) {
       setStatusMessage("Please provide your feedback before submitting.");
       return;
     }
 
+    if (rating < 1 || rating > 5) {
+      setStatusMessage("Please provide a valid rating between 1 and 5.");
+      return;
+    }
+
     try {
       setStatusMessage("Submitting your feedback...");
-      await submitFeedback(feedbackText, rating); // Submit the feedback to backend
+      await submitFeedback(productId, feedbackText, rating); // Submit feedback for the product
       setStatusMessage("Feedback submitted successfully.");
       setFeedbackText("");
       setRating(0);
-      setFeedbacks(await fetchFeedbacks()); // Refresh feedback list after submission
+
+      // Refresh feedback list after successful submission
+      const updatedFeedbacks = await fetchUserFeedback();
+      setFeedbacks(updatedFeedbacks);
     } catch (err) {
       console.error("Error submitting feedback:", err);
       setStatusMessage("Failed to submit feedback. Please try again.");
@@ -49,40 +59,9 @@ const Feedback = () => {
 
   return (
     <div className="feedback-section">
-      <h3 className="feedback-heading">Feedback</h3>
-      <p className="feedback-description">Leave your feedback to help us improve.</p>
-
-      {/* Feedback Submission Form */}
-      <div className="feedback-form-section">
-        <h4>Submit Your Feedback</h4>
-        <textarea
-          className="feedback-textarea-input"
-          placeholder="Your feedback..."
-          value={feedbackText}
-          onChange={(e) => setFeedbackText(e.target.value)}
-        />
-
-        <div className="rating-section">
-          <label>Rating (1-5):</label>
-          <input
-            type="number"
-            min="1"
-            max="5"
-            value={rating}
-            onChange={(e) => setRating(Number(e.target.value))}
-            className="rating-input-field"
-          />
-        </div>
-
-        <button className="feedback-submit-button" onClick={handleSubmitFeedback}>
-          Submit Feedback
-        </button>
-        <p className="feedback-status-message">{statusMessage}</p>
-      </div>
-
       {/* Feedback History */}
       <div className="feedback-history-section">
-        <h4>Your Past Feedback</h4>
+        <h4 className="PastFeedback">Feedback<br/><br/>Your Past Feedback</h4>
         {loading ? (
           <p>Loading your feedback history...</p>
         ) : error ? (
@@ -92,13 +71,16 @@ const Feedback = () => {
         ) : (
           <ul className="feedback-list">
             {feedbacks.map((feedback, index) => (
-              <li key={index} className="feedback-item">
-                <p>
-                  <strong>Feedback #{index + 1}</strong>
+              <li key={feedback._id || index} className="feedback-item">
+                <p className="feedback-item-paragraphe-strong">
+                  Feedback #{index + 1}
                 </p>
-                <p>{feedback.text}</p>
-                <p>Rating: {feedback.rating}</p>
-                <p>Date Submitted: {new Date(feedback.dateSubmitted).toLocaleDateString()}</p>
+                <p className="feedback-item-paragraphe">
+                {feedback.text}</p>
+                <p className="feedback-item-paragraphe">
+                Rating: {feedback.rating}</p>
+                <p className="feedback-item-paragraphe">
+                Date Submitted: {new Date(feedback.createdAt).toLocaleDateString()}</p>
               </li>
             ))}
           </ul>

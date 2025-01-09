@@ -7,42 +7,57 @@ const getAuthToken = () => {
   return token;
 };
 
-// Fetch all feedbacks from the backend with authorization
-export const fetchFeedbacks = async () => {
+// Fetch feedback for the current user from the backend with authorization
+export const fetchUserFeedback = async () => {
   try {
     const token = getAuthToken(); // Retrieve the token using getAuthToken
     if (!token) {
       throw new Error('No token found');
     }
-    const response = await axios.get('http://localhost:4002/api/Trendify/feedback/get-feedback', {
+
+    // Call the API endpoint to get feedbacks by the authenticated user
+    const response = await axios.get('http://localhost:4002/api/Trendify/feedback/get-feedbacks-user', {
       headers: {
         Authorization: `Bearer ${token}`, // Add token to Authorization header
       },
     });
-    return response.data; // Return feedbacks array
+
+    return response.data; // Return feedback array
   } catch (err) {
-    console.error('Error fetching feedbacks:', err);
+    console.error('Error fetching user feedback:', err);
     throw err; // Rethrow error to handle it in the component
   }
 };
 
-// Submit feedback to the backend with authorization
-export const submitFeedback = async (text, rating) => {
+// Fetch all feedbacks for a specific product with authorization
+export const fetchProductFeedbacks = async (productId) => {
+  try {
+    const response = await axios.get(`http://localhost:4002/api/Trendify/feedback/get-all-feedbackes/${productId}`);
+    return response.data; // Return feedbacks array
+  } catch (err) {
+    console.error('Error fetching product feedbacks:', err);
+    throw err; // Rethrow error to handle it in the component
+  }
+};
+
+// Submit feedback for a specific product to the backend with authorization
+export const submitFeedback = async (productId, text, rating) => {
   try {
     const token = getAuthToken(); // Retrieve the token using getAuthToken
     if (!token) {
       throw new Error('No token found');
     }
-    const userId = 'user-id'; // Replace with actual user ID (e.g., from cookies or session)
+
     const response = await axios.post(
       'http://localhost:4002/api/Trendify/feedback/submit-feedback',
-      { text, rating, userId },
+      { productId, text, rating }, // Include the productId, text, and rating in the body
       {
         headers: {
           Authorization: `Bearer ${token}`, // Add token to Authorization header
         },
       }
     );
+
     return response.data; // Return the new feedback
   } catch (err) {
     console.error('Error submitting feedback:', err);

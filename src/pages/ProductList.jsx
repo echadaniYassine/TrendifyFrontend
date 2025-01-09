@@ -3,7 +3,7 @@ import ProductCard from "../components/Home/ProductCart"; // Corrected import na
 import axios from "axios";
 import "../styles/pages/productList.css"; // Import the CSS file
 
-const ProductList = ({ products: initialProducts = [], showCategories = true, showTitle = true  }) => {
+const ProductList = ({ products: initialProducts = [], showCategories = true, showTitle = true }) => {
   const [products, setProducts] = useState(initialProducts);
   const [menProducts, setMenProducts] = useState([]);
   const [womenProducts, setWomenProducts] = useState([]);
@@ -45,7 +45,6 @@ const ProductList = ({ products: initialProducts = [], showCategories = true, sh
 
       {showCategories && (
         <>
-        
           {/* Men Products Section */}
           <div className="product-section">
             <div className="product-display">
@@ -92,6 +91,19 @@ const ProductList = ({ products: initialProducts = [], showCategories = true, sh
             </div>
           </div>
         </>
+      )}
+
+      {/* Display all products if showCategories is false */}
+      {!showCategories && (
+        <div className="product-grid">
+          {products.length > 0 ? (
+            products.map((product) => (
+              <ProductCard key={product._id} product={product} /> // Using _id for key
+            ))
+          ) : (
+            <p>No products available.</p>
+          )}
+        </div>
       )}
     </section>
   );

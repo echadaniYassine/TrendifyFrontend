@@ -53,8 +53,7 @@
 /* Active State for Category Cards */
 .category-card.active {
     transform: translateY(-10px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4); /* Slightly stronger shadow for active state */
-    background:linear-gradient(135deg, blue,white); /* Darker color for active state */
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.4); /* Slightly stronger shadow for active state */
     color: #fff; /* Change text color to contrast */
     cursor: default; /* Remove pointer cursor for the active state */
 }

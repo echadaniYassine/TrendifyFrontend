@@ -99,8 +99,106 @@
   margin-bottom: 20px;
   text-align: left;
 }
-.section-relatedProduct{
+
+.section-relatedProduct {
   max-width: 1225px;
   margin: 0 auto;
 }
+/* Reviews Section */
+.reviews-section-details {
+  max-width: 1200px;
+  background:linear-gradient(45deg, blue, black); /* White background for reviews */
+  padding: 20px;
+  color: aliceblue;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 40px auto;
+}
 
+.reviews-heading-details {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: aliceblue; /* Dark text color */
+}
+
+.reviews-textarea-details {
+  width: 70%;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  resize: none; /* Prevent resizing */
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.star-rating {
+  cursor: pointer;
+  max-width: 170px;
+  margin: 10px auto;
+  margin-bottom: 25px;
+
+}
+
+.star {
+  font-size: 27px; /* Size of the stars */
+  color: aliceblue; /* Default star color */
+  margin-right: 10px; /* Space between stars */
+  transition: color 0.2s;
+}
+
+.star.filled {
+  color: aqua; /* Color for filled stars */
+}
+
+.submit-review-btn-details {
+  background-color: aqua; /* Green background */
+  color: black;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.submit-review-btn-details:hover {
+  background-color: blue; /* Darker green on hover */
+  color: white;
+}
+
+.reviews-status-message-details {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #d9534f; /* Red color for error messages */
+}
+
+.reviews-history-details {
+  margin-top: 20px;
+}
+
+.reviews-history-list {
+  list-style-type: none; /* Remove default list styling */
+  padding: 0;
+}
+
+.reviews-history-list-child {
+  background-color: #f1f1f1; /* Light gray background for each review */
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.reviews-history-list-child p {
+  margin: 5px 0; /* Add some spacing between paragraphs */
+}
+
+.reviews-history-list-child strong {
+  color: #333; /* Dark text for rating */
+}
+
+.reviews-history-list-child em {
+  color: #777; /* Lighter color for the date */
+}

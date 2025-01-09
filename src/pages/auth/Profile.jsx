@@ -55,15 +55,16 @@ const Profile = () => {
     switch (activeSection) {
       case 'overview':
         return (
-          <div className="section-content">
-            <h3>Overview</h3>
-            <p>Welcome back, {userInfo?.username}!</p>
-            <h4>Edit Profile</h4>
-            <div>
-              <p>Username: {userInfo?.username}</p>
-              <p>Email: {userInfo?.email}</p>
+          <div className="profile-section-content">
+            <h3 className="profile-section-title">Overview</h3>
+            <p className="profile-welcome-message">Welcome back, {userInfo?.username}!</p>
+            <h4 className="profile-edit-title">Edit Profile</h4>
+            <div className="profile-info">
+              <p className="profile-info-username">Username: {userInfo?.username}</p>
+              <p className="profile-info-email">Email: {userInfo?.email}</p>
             </div>
           </div>
+
         );
       case 'orders':
         return (
@@ -77,20 +78,20 @@ const Profile = () => {
 
       case 'refund':
         return (
-         <RefundReturn/>
+          <RefundReturn />
         );
       case 'feedback':
         return (
-         <Feedback />
+          <Feedback />
         );
       case 'settings':
         return (
-         <Settings/>
+          <Settings />
         );
       case 'shipping':
         return (
           <ShippingInfo userInfo={{ shippingAddresses }}
-          updateShippingAddresses={updateShippingAddresses} />
+            updateShippingAddresses={updateShippingAddresses} />
         );
 
       default:
@@ -114,7 +115,7 @@ const Profile = () => {
           <button onClick={() => setActiveSection('feedback')}>Feedback</button>
           <button onClick={() => setActiveSection('settings')}>Settings</button>
           <button onClick={() => setActiveSection('shipping')}>Shipping Address</button>
-          <button className="logout-button" onClick={handleLogout}>Logout</button>
+          <button id="logout-button" onClick={handleLogout}>Logout</button>
         </div>
 
         <div className="profile-section">

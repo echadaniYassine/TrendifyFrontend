@@ -6,17 +6,34 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;  /* Make sure the header is part of the normal document flow */
+    transition: background-color 0.3s ease, padding 0.3s ease;
+}
+/* Add this to your existing CSS */
+.header-container.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-radius: 50px;
+    max-width: 1000px;
+    margin: 15px auto;
+    background-color: white; /* Change this to your desired background color */
+    z-index: 1000; /* Ensure it stays above other content */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
 }
 
 .navigation {
     width: 100%;
     display: flex;
-    justify-content: center; 
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .nav-list {
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
     gap: 70px;
     list-style: none;
@@ -38,6 +55,47 @@
     color: #f39c12;
 }
 
+/* Cart Icon Styles */
+.nav-item {
+    position: relative;
+}
+
+.cart-icon {
+    font-size: 24px;
+    color: #333;
+}
+
+.cart-notification {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background-color: #FF3B30; /* Red background */
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart-notification::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 12px;
+    height: 12px;
+    background-color: #FF3B30;
+    border-radius: 50%;
+    z-index: -1;
+    transform: scale(1);
+}
+
+
+/* Mobile Styles */
 @media (max-width: 768px) {
     .header-container {
         flex-direction: column;
@@ -58,5 +116,12 @@
 
     .nav-item:first-child {
         border-top: none;
+    }
+}
+
+/* Add transition effects when scrolling */
+@media (max-width: 768px) {
+    .header-container {
+        transition: all 0.3s ease;
     }
 }

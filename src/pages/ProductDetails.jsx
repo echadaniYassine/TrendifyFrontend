@@ -4,18 +4,19 @@ import { CartContext } from "../features/cart/CartContext";
 import axios from "axios";
 import "../styles/pages/productDetails.css";
 import ProductList from "./ProductList";
-import Cookies from "js-cookie"; // Make sure js-cookie is imported
+import Cookies from "js-cookie";
 
 const ProductDetails = () => {
-  const { productId } = useParams(); // Get the product ID from the URL
-  const { dispatch } = useContext(CartContext); // Access cart context
+  const { productId } = useParams();
+  const { dispatch } = useContext(CartContext);
   const [product, setProduct] = useState(null);
-  const [relatedProducts, setRelatedProducts] = useState([]); // State for related products
-  const [allProducts, setAllProducts] = useState([]); // State to store all products
-  const [feedbacks, setFeedbacks] = useState([]); // State to store feedbacks
-  const [feedbackText, setFeedbackText] = useState(""); // Text of feedback
-  const [rating, setRating] = useState(0); // Rating for feedback
-  const [statusMessage, setStatusMessage] = useState(""); // Status message
+  const [relatedProducts, setRelatedProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
+  const [reviews, setReviews] = useState([]); // Changed from feedbacks to reviews
+  const [reviewText, setReviewText] = useState(""); // Changed from feedbackText to reviewText
+  const [rating, setRating] = useState(0);
+  const [statusMessage, setStatusMessage] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!productId) {
@@ -25,9 +26,11 @@ const ProductDetails = () => {
 
     const fetchProductDetailsAndProducts = async () => {
       try {
-        // Fetch the selected product
+        setLoading(true);
+
+        // Fetch product details
         const productResponse = await axios.get(
-          `http://127.0.0.1:4002/api/Trendify/Products/product/${productId}` // Use _id
+          `http://127.0.0.1:4002/api/Trendify/Products/product/${productId}`
         );
         const selectedProduct = productResponse.data;
         setProduct(selectedProduct);
@@ -36,29 +39,27 @@ const ProductDetails = () => {
         const allProductsResponse = await axios.get(
           "http://127.0.0.1:4002/api/Trendify/Products/getAllProducts"
         );
-        setAllProducts(allProductsResponse.data);
+        const allProducts = allProductsResponse.data;
+        setAllProducts(allProducts);
 
-        // Filter related products by both categoryName and subcategory
-        const related = allProductsResponse.data.filter(
+        const related = allProducts.filter(
           (p) =>
-            p.categoryName === selectedProduct.categoryName &&
-            p.subcategory === selectedProduct.subcategory &&
-            p._id !== selectedProduct._id // Exclude the current product
+            p.categoryName?.toLowerCase() === selectedProduct.categoryName?.toLowerCase() &&
+            p.subcategory?.toLowerCase() === selectedProduct.subcategory?.toLowerCase() &&
+            p._id !== selectedProduct._id
         );
+
         setRelatedProducts(related);
 
-        // Fetch feedbacks related to the current product
-        const feedbackResponse = await axios.get(
-          `http://127.0.0.1:4002/api/Trendify/feedback/get-all-feedbackes/${productId}`, // Get feedbacks for the current product
-          {
-            headers: {
-              Authorization: `Bearer ${Cookies.get("token")}`, // Add the token to the Authorization header
-            },
-          }
+        // Fetch reviews for the product (no login required)
+        const reviewsResponse = await axios.get(
+          `http://127.0.0.1:4002/api/Trendify/feedback/get-all-feedbackes/${productId}`
         );
-        setFeedbacks(feedbackResponse.data);
+        setReviews(reviewsResponse.data); // Changed from setFeedbacks to setReviews
       } catch (error) {
         console.error("Failed to fetch product details or products:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -71,71 +72,70 @@ const ProductDetails = () => {
     }
   };
 
-  const handleSubmitFeedback = async () => {
-    if (!feedbackText || !rating) {
-      setStatusMessage("Please provide feedback and rating.");
+  const handleSubmitReview = async () => { // Changed from handleSubmitFeedback to handleSubmitReview
+    if (!reviewText || !rating) { // Changed from feedbackText to reviewText
+      setStatusMessage("Please provide a review and a rating."); // Updated message
       return;
     }
 
-    const token = Cookies.get("token"); // Get the token from the cookies
+    const token = Cookies.get("token");
     if (!token) {
-      setStatusMessage("You must be logged in to submit feedback.");
+      setStatusMessage("You must be logged in to submit a review."); // Updated message
       return;
     }
 
     try {
-      setStatusMessage("Submitting your feedback...");
+      setStatusMessage("Submitting your review..."); // Updated message
 
-      // Send the POST request with the Authorization header
       await axios.post(
         "http://127.0.0.1:4002/api/Trendify/feedback/submit-feedback",
-        { productId, text: feedbackText, rating },
+        { productId, text: reviewText, rating }, // Changed from feedbackText to reviewText
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Add the token to the Authorization header
+            Authorization: `Bearer ${token}`,
           },
         }
       );
 
-      setFeedbackText(""); // Clear the text input
-      setRating(0); // Clear the rating
-      setStatusMessage("Feedback submitted successfully.");
+      setReviewText(""); // Changed from feedbackText to reviewText
+      setRating(0);
+      setStatusMessage("Review submitted successfully."); // Updated message
 
-      // Fetch updated feedbacks with authorization
-      const feedbackResponse = await axios.get(
-        `http://127.0.0.1:4002/api/Trendify/feedback/get-all-feedbackes/${productId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // Add the token to the Authorization header
-          },
-        }
+      // Fetch updated reviews
+      const reviewsResponse = await axios.get(
+        `http://127.0.0.1:4002/api/Trendify/feedback/get-all-feedbackes/${productId}`
       );
-      setFeedbacks(feedbackResponse.data); // Update feedback list
+      setReviews(reviewsResponse.data); // Changed from setFeedbacks to setReviews
     } catch (error) {
-      console.error("Failed to submit feedback:", error);
-      setStatusMessage("Failed to submit feedback. Please try again.");
+      console.error("Failed to submit review:", error);
+      setStatusMessage("Failed to submit review. Please try again."); // Updated message
     }
   };
 
-  if (!product) {
+  if (loading) {
     return <p className="loading-message">Loading product details...</p>;
   }
 
-  // Determine the image to display based on category
+  if (!product) {
+    return <p className="error-message">Product not found.</p>;
+  }
+
   const categoryImage =
     product.categoryName === "Men"
       ? "/assets/menDetails.png"
       : "/assets/wemenDetails.png";
+      
+  const handleStarClick = (value) => {
+    setRating(value); // Set the rating based on the star clicked
+  };
 
   return (
     <>
       <div className="product-details-container">
-        {/* Image on the left */}
         <div className="product-image-container">
           <img src={categoryImage} alt={product.name} className="product-category-image" />
         </div>
 
-        {/* Product details on the right */}
         <div className="product-info-container">
           <h2 className="product-name">{product.name}</h2>
           <img src={product.img} alt={product.name} className="product-image" />
@@ -155,47 +155,54 @@ const ProductDetails = () => {
             <ProductList products={relatedProducts} showCategories={false} showTitle={false} />
           </div>
         ) : (
-          <p>No related products found.</p>
+          <p style={{ textAlign: "center", color: "aliceblue", fontSize: "30px" }}>No related products found.</p>
         )}
       </div>
 
-      {/* Feedback Section */}
-      <div className="section-feedback">
-        <h3 className="feedback-heading">Feedback</h3>
+      <div className="reviews-section-details">
+        <h3 className="reviews-heading-details">Reviews</h3>
         <textarea
-          className="feedback-textarea"
-          placeholder="Leave your feedback..."
-          value={feedbackText}
-          onChange={(e) => setFeedbackText(e.target.value)}
+          className="reviews-textarea-details"
+          placeholder="Leave your review..."
+          value={reviewText} // Changed from feedbackText to reviewText
+          onChange={(e) => setReviewText(e.target.value)} // Changed from setFeedbackText to setReviewText
         />
-        <div className="rating-section">
-          <label>Rating (1-5):</label>
-          <input
-            type="number"
-            min="1"
-            max="5"
-            value={rating}
-            onChange={(e) => setRating(Number(e.target.value))}
-          />
+        <div className="rating-section-details">
+          <label>
+            <span className="rating-label">Rating:</span>
+          </label>
+          <div className="star-rating">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <span
+                key={star}
+                className={`star ${rating >= star ? 'filled' : ''}`}
+                onClick={() => handleStarClick(star)}
+              >
+                ★
+              </span>
+            ))}
+          </div>
         </div>
-        <button onClick={handleSubmitFeedback} className="submit-feedback-btn">
-          Submit Feedback
+        <button onClick={handleSubmitReview} className="submit-review-btn-details"> {/* Changed from handleSubmitFeedback to handleSubmitReview */}
+          Submit Review
         </button>
-        <p className="feedback-status-message">{statusMessage}</p>
+        <p className="reviews-status-message-details">{statusMessage}</p> {/* Changed from feedback-status-message-details to reviews-status-message-details */}
 
-        <div className="feedback-history">
-          {feedbacks.length > 0 ? (
-            <ul>
-              {feedbacks.map((feedback, index) => (
-                <li key={index}>
-                  <p><strong>Rating:</strong> {feedback.rating}</p>
-                  <p>{feedback.text}</p>
-                  <p><em>Submitted on: {new Date(feedback.createdAt).toLocaleDateString()}</em></p>
+        <div className="reviews-history-details">
+          {reviews.length > 0 ? ( // Changed from feedbacks to reviews
+            <ul className="reviews-history-list"> {/* Changed from feedback-history-list to reviews-history-list */}
+              {reviews.map((review, index) => ( // Changed from feedback to review
+                <li className="reviews-history-list-child" key={index}> {/* Changed from feedback-history-list-child to reviews-history-list-child */}
+                  <p><strong>Rating:</strong> {review.rating} Stars</p> {/* Changed from feedback to review */}
+                  <p>{review.text}</p> {/* Changed from feedback to review */}
+                  <p><em>Submitted on: {new Date(review.createdAt).toLocaleDateString()}</em></p> {/* Changed from feedback to review */}
                 </li>
               ))}
             </ul>
           ) : (
-            <p>No feedbacks yet for this product.</p>
+            <p style={{ textAlign: "center", color: "aliceblue", fontSize: "30px" }}>
+              No reviews yet for this product. {/* Changed from feedbacks to reviews */}
+            </p>
           )}
         </div>
       </div>

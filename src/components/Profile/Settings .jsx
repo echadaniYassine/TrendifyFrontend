@@ -96,22 +96,22 @@ const Settings = () => {
   
       {/* Account Details Section */}
       <div className="account-details-section">
-        <h4>Account Details</h4>
-        <label>Username:</label>
+        <h4 className="account-details-section-h4">Account Details</h4>
+        <label className="label">Username:</label>
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           className="settings-input-field"
         />
-        <label>Email:</label>
+        <label className="label">Email:</label>
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="settings-input-field"
         />
-        <label>Phone:</label>
+        <label className="label">Phone:</label>
         <input
           type="text"
           value={phoneNumber}
@@ -125,15 +125,15 @@ const Settings = () => {
   
       {/* Change Password Section */}
       <div className="change-password-section">
-        <h4>Change Password</h4>
-        <label>Current Password:</label>
+        <h4 className="change-password-section-h4">Change Password</h4>
+        <label className="label">Current Password:</label>
         <input
           type="password"
           value={currentPassword}
           onChange={(e) => setCurrentPassword(e.target.value)}
           className="settings-input-field"
         />
-        <label>New Password:</label>
+        <label className="label">New Password:</label>
         <input
           type="password"
           value={newPassword}
@@ -147,7 +147,7 @@ const Settings = () => {
   
       {/* Notification Preferences */}
       <div className="notification-preferences-section">
-        <h4>Notification Preferences</h4>
+        <h4 className="notification-preferences-section-h4">Notification Preferences</h4>
         <label>
           <input
             type="checkbox"

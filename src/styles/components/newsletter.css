@@ -54,7 +54,7 @@
 }
 
 .newsletter-button:hover {
-    background-color: #e67e22; /* Slightly darker orange */
+    background-color: blue; /* Slightly darker orange */
     color: #fff;
 }
 .newsletter{

@@ -52,14 +52,14 @@ const About = () => {
                     </div>
                     <div className="team-card">
                         <div className="team-card-content">
-                            <img src="/assets/team_2.png" alt="Team Member 2" />
+                            <img src="/assets/developer.png" alt="Team Member 2" />
                             <h3 className="team-card-title">John Smith</h3>
                             <p className="team-card-description">Lead Developer</p>
                         </div>
                     </div>
                     <div className="team-card">
                         <div className="team-card-content">
-                            <img src="/assets/team_1.png" alt="Team Member 3" />
+                            <img src="/assets/team_2.png" alt="Team Member 3" />
                             <h3 className="team-card-title">Emily Clark</h3>
                             <p className="team-card-description">Marketing Manager</p>
                         </div>

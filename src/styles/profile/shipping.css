@@ -108,7 +108,7 @@
 }
 
 .add-new-address-button {
-  background-color: #28a745;
+  background-color: blue;
   color: white;
   padding: 12px 24px;
   border-radius: 8px;
@@ -129,34 +129,13 @@
 }
 
 .shipping-info-section .save-address-button {
-  background-color: #28a745;
+  background-color: blue;
   color: white;
   padding: 10px 20px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.shipping-info-section .save-address-button:hover {
-  background-color: #218838;
-  transform: scale(1.05);
-}
-
-.shipping-info-section .edit-address-input {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  font-size: 16px;
-  transition: all 0.3s ease;
-}
-
-.shipping-info-section .edit-address-input:focus {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 /* Animations */

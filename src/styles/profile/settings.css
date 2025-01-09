@@ -1,5 +1,4 @@
 .settings-section {
-  background-color: #f4f7fa;
   padding: 40px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -9,13 +8,13 @@
 .settings-heading {
   font-size: 28px;
   font-weight: bold;
-  color: #333;
+  color: black;
   margin-bottom: 20px;
 }
 
 .settings-section_p {
   font-size: 16px;
-  color: #666;
+  color: black;
   margin-bottom: 30px;
 }
 
@@ -30,13 +29,18 @@
   transition: box-shadow 0.3s ease-in-out;
 }
 
-.account-details-section h4,
-.change-password-section h4,
-.notification-preferences-section h4 {
+.account-details-section-h4,
+.change-password-section-h4,
+.notification-preferences-section-h4 {
   font-size: 22px;
   font-weight: 600;
   color: #333;
   margin-bottom: 15px;
+}
+.label{
+  text-align: end;
+  margin-right: 600px;
+  color: grey;
 }
 
 .settings-input-field {
@@ -50,14 +54,8 @@
   transition: all 0.3s ease;
 }
 
-.settings-input-field:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
-}
-
 .settings-save-button {
-  background-color: #007bff;
+  background-color: blue;
   color: white;
   padding: 12px 24px;
   border-radius: 8px;
@@ -76,14 +74,6 @@
 .settings-save-button:focus {
   outline: none;
   box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
-}
-
-.notification-preferences-section label {
-  font-size: 16px;
-  color: #333;
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
 }
 
 .notification-preferences-section input[type="checkbox"] {
@@ -108,11 +98,6 @@
 /* Hover Effects */
 .settings-section .settings-input-field:hover {
   background: linear-gradient(145deg, #e7f1ff, #f1f8fc);
-}
-
-.settings-section .settings-save-button {
-  background: linear-gradient(145deg, #007bff, #0056b3);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .settings-section .settings-save-button:hover {

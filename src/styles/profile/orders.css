@@ -1,15 +1,14 @@
 .orders-section {
-  background-color: #fff;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease-in-out;
+  width: 80%; 
+  border-radius: 10px;
+  font-family: Arial, sans-serif;
+  margin: 0 auto;
 }
 
 .orders-heading {
   font-size: 28px;
   font-weight: bold;
-  color: #333;
+  color: black;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -34,20 +33,16 @@
 .order-item {
   padding: 25px;
   margin-bottom: 20px;
-  background-color: #f9f9f9;
   border-radius: 12px;
+  color: black;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.order-item:hover {
-  background-color: #eef2f7;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .order-detail {
   font-size: 16px;
   margin: 10px 0;
+  text-align: start;
 }
 
 .order-items {
@@ -65,36 +60,22 @@
 }
 
 .order-item-detail:hover {
-  background: linear-gradient(145deg, #f1f1f1, #eef2f7);
+  background: linear-gradient(145deg, blue, aqua);
+  color: aliceblue;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .order-product {
   font-size: 14px;
   margin: 5px 0;
+  color: rgb(51, 50, 50);
 }
-
-.order-product strong {
-  font-weight: bold;
-  color: #333;
-}
-
-.orders-list li:hover {
-  background-color: #f0f0f5;
-}
-
-.order-items p {
+.order-product:hover {
   font-size: 14px;
-  color: #666;
-}
-
-.order-item-detail p {
   margin: 5px 0;
+  color: aliceblue;
 }
 
-.order-detail strong {
-  font-weight: bold;
-}
 
 @keyframes fadeIn {
   0% {
