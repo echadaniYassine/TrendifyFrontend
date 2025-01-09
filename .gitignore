@@ -8,6 +8,7 @@ yarn.lock
 # Build Output
 /build/
 .dist/
+public/assets/
 
 # Logs
 logs/
