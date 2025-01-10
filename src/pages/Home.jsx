@@ -29,11 +29,26 @@ const Home = () => {
   }, []);
 
 
+  useEffect(() => {
+    axios
+      .get("https://trendify-backend.vercel.app/api/Trendify/Category/getCategories")
+      .then((response) => {
+        console.log("Categories Response:", response.data);
+        setCategories(Array.isArray(response.data) ? response.data : []);
+      })
+      .catch((error) => {
+        console.error("Error fetching categories", error);
+        setCategories([]);
+      });
+  }, []);
+
   // Filter products based on the selected category and subcategory
   const filteredProducts = Array.isArray(products)
     ? products.filter((product) => {
-      const categoryMatch = selectedCategory === "All" || product.categoryName === selectedCategory;
-      const subCategoryMatch = selectedSubCategory === "All" || product.subcategory === selectedSubCategory;
+      const categoryMatch =
+        selectedCategory === "All" || product.categoryName === selectedCategory;
+      const subCategoryMatch =
+        selectedSubCategory === "All" || product.subcategory === selectedSubCategory;
       return categoryMatch && subCategoryMatch;
     })
     : [];
