@@ -16,7 +16,7 @@ const PaymentComponent = () => {
     if (paymentMethod === "stripe") {
       const fetchClientSecret = async () => {
         try {
-          const response = await fetch("http://localhost:4002/api/payments/stripe/create-payment-intent", {
+          const response = await fetch("https://trendify-backend.vercel.app/api/payments/stripe/create-payment-intent", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ amount: 5000 }), // amount in cents (e.g., $50)
@@ -34,7 +34,7 @@ const PaymentComponent = () => {
 
   const handleApprove = async (orderID) => {
     try {
-      const response = await fetch("http://localhost:4002/api/payments/paypal/capture-order", {
+      const response = await fetch("https://trendify-backend.vercel.app/api/payments/paypal/capture-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ orderID }),

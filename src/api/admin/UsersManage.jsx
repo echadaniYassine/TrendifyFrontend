@@ -1,7 +1,7 @@
 //api/admin/apiAdmin.jsx
 import axios from 'axios';
 
-const API_URL = 'http://127.0.0.1:4002/api/Trendify/Admin'; // Adjust API endpoint as per your backend
+const API_URL = 'https://trendify-backend.vercel.app/api/Trendify/Admin'; // Adjust API endpoint as per your backend
 
 // Function to fetch admin stats
 export const getAdminStats = async () => {

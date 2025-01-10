@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie'; // Import js-cookie
 
-const BASE_URL = process.env.REACT_APP_API_BASE_URL || 'https://trendify-backend.vercel.app';
+const BASE_URL = process.env.REACT_APP_API_BASE_URL || 'https://trendify-backend.vercel.app/api/Trendify';
 
 const api = axios.create({
   baseURL: BASE_URL,
@@ -33,7 +33,7 @@ export const modifyUser = async (data) => {
     throw new Error('Unauthorized: No token provided');
   }
 
-  return axios.put('http://localhost:4002/api/Trendify/Trendify_modifyUser', data, {
+  return axios.put('https://trendify-backend.vercel.app/api/Trendify/Trendify_modifyUser', data, {
     headers: {
       Authorization: `Bearer ${token}`, // Pass the token in the headers
     },

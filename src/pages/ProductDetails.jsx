@@ -53,7 +53,7 @@ const ProductDetails = () => {
 
         // Fetch reviews for the product (no login required)
         const reviewsResponse = await axios.get(
-          `http://127.0.0.1:4002/api/Trendify/feedback/get-all-feedbackes/${productId}`
+          `https://trendify-backend.vercel.app/api/Trendify/feedback/get-all-feedbackes/${productId}`
         );
         setReviews(reviewsResponse.data); // Changed from setFeedbacks to setReviews
       } catch (error) {
@@ -88,7 +88,7 @@ const ProductDetails = () => {
       setStatusMessage("Submitting your review..."); // Updated message
 
       await axios.post(
-        "http://127.0.0.1:4002/api/Trendify/feedback/submit-feedback",
+        "https://trendify-backend.vercel.app/api/Trendify/feedback/submit-feedback",
         { productId, text: reviewText, rating }, // Changed from feedbackText to reviewText
         {
           headers: {
@@ -103,7 +103,7 @@ const ProductDetails = () => {
 
       // Fetch updated reviews
       const reviewsResponse = await axios.get(
-        `http://127.0.0.1:4002/api/Trendify/feedback/get-all-feedbackes/${productId}`
+        `https://trendify-backend.vercel.app/api/Trendify/feedback/get-all-feedbackes/${productId}`
       );
       setReviews(reviewsResponse.data); // Changed from setFeedbacks to setReviews
     } catch (error) {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://127.0.0.1:4002/api/Trendify/orders'; // Adjust API endpoint as per your backend
+const BASE_URL = 'https://trendify-backend.vercel.app/api/Trendify/orders'; // Adjust API endpoint as per your backend
 
 // Fetch all orders
 export const getOrders = async () => {
@@ -40,7 +40,7 @@ export const updateOrderStatus = async (orderId, newStatus) => {
 
 // Fetch user's orders by token
 export const getUserOrders = async (token) => {
-  const BASE_URL = 'http://127.0.0.1:4002/api/Trendify/orders'; // Adjust API endpoint as per your backend
+  const BASE_URL = 'https://trendify-backend.vercel.app/api/Trendify/orders'; // Adjust API endpoint as per your backend
   try {
     const response = await axios.get(`${BASE_URL}/getUserOrders`, {
       headers: {

@@ -25,7 +25,7 @@ const ShippingInfo = ({ userInfo, updateShippingAddresses }) => {
     const fetchShippingAddresses = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:4002/api/Trendify/Trendify_shipping-addresses",
+          "https://trendify-backend.vercel.app/api/Trendify/Trendify_shipping-addresses",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -54,7 +54,7 @@ const ShippingInfo = ({ userInfo, updateShippingAddresses }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:4002/api/Trendify/Trendify_add-shipping-address",
+        "https://trendify-backend.vercel.app/api/Trendify/Trendify_add-shipping-address",
         newAddress,
         {
           headers: {
@@ -84,7 +84,7 @@ const ShippingInfo = ({ userInfo, updateShippingAddresses }) => {
 
     try {
       const response = await axios.put(
-        "http://localhost:4002/api/Trendify/Trendify_update-shipping-addresses",
+        "https://trendify-backend.vercel.app/api/Trendify/Trendify_update-shipping-addresses",
         { index, updatedAddress: editedAddress },
         {
           headers: {
@@ -107,7 +107,7 @@ const ShippingInfo = ({ userInfo, updateShippingAddresses }) => {
   
     try {
       const response = await axios.delete(
-        `http://localhost:4002/api/Trendify/Trendify_delete-shipping-address/${encodeURIComponent(address)}`,
+        `https://trendify-backend.vercel.app/api/Trendify/Trendify_delete-shipping-address/${encodeURIComponent(address)}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

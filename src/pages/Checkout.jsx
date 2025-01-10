@@ -34,7 +34,7 @@ const Checkout = () => {
       }
 
       try {
-        const response = await axios.get('http://localhost:4002/api/Trendify/Trendify_user-info', {
+        const response = await axios.get('https://trendify-backend.vercel.app/api/Trendify/Trendify_user-info', {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -90,7 +90,7 @@ const Checkout = () => {
 
     try {
       const token = Cookies.get('token');
-      const userResponse = await axios.get('http://localhost:4002/api/Trendify/Trendify_user-info', {
+      const userResponse = await axios.get('https://trendify-backend.vercel.app/api/Trendify/Trendify_user-info', {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -104,7 +104,7 @@ const Checkout = () => {
 
       if (addressNeedsUpdate) {
         await axios.put(
-          "http://localhost:4002/api/Trendify/Trendify_modifyUser",
+          "https://trendify-backend.vercel.app/api/Trendify/Trendify_modifyUser",
           {
             shippingAddresses: [
               {
@@ -143,7 +143,7 @@ const Checkout = () => {
 
 
       try {
-        const response = await axios.post("http://localhost:4002/api/Trendify/orders/createOrder", orderData, {
+        const response = await axios.post("https://trendify-backend.vercel.app/api/Trendify/orders/createOrder", orderData, {
           headers: { Authorization: `Bearer ${token}` },
         });
         console.log("Status:", response.status); // Log status to check if the request was successful

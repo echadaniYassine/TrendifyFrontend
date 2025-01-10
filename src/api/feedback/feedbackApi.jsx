@@ -16,7 +16,7 @@ export const fetchUserFeedback = async () => {
     }
 
     // Call the API endpoint to get feedbacks by the authenticated user
-    const response = await axios.get('http://localhost:4002/api/Trendify/feedback/get-feedbacks-user', {
+    const response = await axios.get('https://trendify-backend.vercel.app/api/Trendify/feedback/get-feedbacks-user', {
       headers: {
         Authorization: `Bearer ${token}`, // Add token to Authorization header
       },
@@ -32,7 +32,7 @@ export const fetchUserFeedback = async () => {
 // Fetch all feedbacks for a specific product with authorization
 export const fetchProductFeedbacks = async (productId) => {
   try {
-    const response = await axios.get(`http://localhost:4002/api/Trendify/feedback/get-all-feedbackes/${productId}`);
+    const response = await axios.get(`https://trendify-backend.vercel.app/api/Trendify/feedback/get-all-feedbackes/${productId}`);
     return response.data; // Return feedbacks array
   } catch (err) {
     console.error('Error fetching product feedbacks:', err);
@@ -49,7 +49,7 @@ export const submitFeedback = async (productId, text, rating) => {
     }
 
     const response = await axios.post(
-      'http://localhost:4002/api/Trendify/feedback/submit-feedback',
+      'https://trendify-backend.vercel.app/api/Trendify/feedback/submit-feedback',
       { productId, text, rating }, // Include the productId, text, and rating in the body
       {
         headers: {
