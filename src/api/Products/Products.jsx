@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://trendify-backend.vercel.app/Products"; // Adjust as per your back-end server
+const API_URL = "https://trendify-backend.vercel.app/api/Trendify/Products"; // Adjust as per your back-end server
 
 // Function to fetch all products
 export const getAllProducts = async () => {

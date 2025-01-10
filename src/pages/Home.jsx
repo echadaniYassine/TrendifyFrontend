@@ -17,7 +17,7 @@ const Home = () => {
   useEffect(() => {
     // Fetch products from the API
     axios
-      .get("https://trendify-backend.vercel.app/Products/getAllProducts")
+      .get("https://trendify-backend.vercel.app/api/Trendify/Products/getAllProducts")
       .then((response) => {
         console.log("Products Response:", response.data); // Log the response to inspect its structure
         setProducts(Array.isArray(response.data) ? response.data : []); // Ensure it's an array

@@ -13,7 +13,7 @@ const ProductList = ({ products: initialProducts = [], showCategories = true, sh
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "https://trendify-backend.vercel.app/Products/getAllProducts"
+          "https://trendify-backend.vercel.app/api/Trendify/Products/getAllProducts"
         );
         setProducts(response.data); // Set products from API response
       } catch (error) {
