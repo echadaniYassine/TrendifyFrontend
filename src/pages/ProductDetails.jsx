@@ -30,14 +30,14 @@ const ProductDetails = () => {
 
         // Fetch product details
         const productResponse = await axios.get(
-          `http://127.0.0.1:4002/api/Trendify/Products/product/${productId}`
+          `https://trendify-backend.vercel.app/api/Trendify/Products/product/${productId}`
         );
         const selectedProduct = productResponse.data;
         setProduct(selectedProduct);
 
         // Fetch all products
         const allProductsResponse = await axios.get(
-          "http://127.0.0.1:4002/api/Trendify/Products/getAllProducts"
+          "https://trendify-backend.vercel.app/api/Trendify/Products/getAllProducts"
         );
         const allProducts = allProductsResponse.data;
         setAllProducts(allProducts);
