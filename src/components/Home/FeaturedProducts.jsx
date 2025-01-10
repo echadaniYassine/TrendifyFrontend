@@ -10,7 +10,7 @@ const FeaturedProducts = ({ products }) => {
 
   // Fetch products from the backend API
   useEffect(() => {
-    axios.get("https://trendify-frontend-nine.vercel.app/Products/getAllProducts")
+    axios.get("https://trendify-backend.vercel.app/Products/getAllProducts")
       .then(response => {
         console.log(response.data);  // Inspect the structure of the response
         setAllProducts(Array.isArray(response.data) ? response.data : []); // Update state
