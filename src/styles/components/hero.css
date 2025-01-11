@@ -1,73 +1,154 @@
 /* General Hero Container */
-.hero{
-    margin-left: 40px;
-    margin-right: 40px;
-    display: flex;
-    justify-content: center; /* Centers the video container horizontally */
-    align-items: center; /* Centers the video container vertically */
-    position: relative;
-    height: 400px; /* Ensures height consistency */
-    overflow: hidden;
-  }
-  
-  .hero-video-container {
-    position: relative; /* This allows the overlay content to be positioned on top */
-    width: 100%;
-    max-width: 1500px; /* Ensures video doesn't exceed this size */
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /* Video Styling */
-  .hero-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures the video fills the container without distortion */
-    border-radius: 10px; /* Optional: adds rounded corners to the video */
-    opacity: 0.8; /* Optional: adjust opacity of the video */
-  }
-  
-  /* Overlay Content (Text and other elements) */
-  .hero-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Centers the content */
-    text-align: center;
-    color: white;
-    z-index: 2; /* Makes sure the text appears above the video */
-    background: rgba(0, 0, 0, 0.5); /* Optional: adds a semi-transparent background to improve text visibility */
-    padding: 20px;
-    border-radius: 10px; /* Optional: adds rounded corners to the overlay */
-  }
-  .hero-description {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    max-width: 700px;
-}
-  .hero-title {
-    font-size: 3rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-.shop-now-btn {
-    background-color: aliceblue; /* Vibrant gradient background */
-    color: #000; /* Contrasting text color */
-    font-size: 1.2rem;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
-}
-.shop-now-btn:hover {
-    background: linear-gradient(135deg, blue, black); /* Reverse the gradient for vibrancy */
-    color: #fff; /* Slightly darker text color for contrast */
-    transform: scale(1.05); /* Subtle zoom effect */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+.hero {
+  margin-left: 40px;
+  margin-right: 40px;
+  display: flex;
+  justify-content: center; /* Centers the video container horizontally */
+  align-items: center; /* Centers the video container vertically */
+  position: relative;
+  height: 400px; /* Ensures height consistency */
+  overflow: hidden;
+  animation: fadeIn 2s ease-out; /* Adds a fade-in animation on page load */
 }
 
-  
+/* Hero Video Container */
+.hero-video-container {
+  position: relative; /* Allows the overlay content to be positioned on top */
+  width: 100%;
+  max-width: 1500px; /* Ensures video doesn't exceed this size */
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Video Styling */
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the video fills the container without distortion */
+  border-radius: 10px; /* Optional: adds rounded corners to the video */
+  opacity: 0.8; /* Optional: adjust opacity of the video */
+  animation: zoomIn 10s infinite alternate; /* Subtle zoom effect on video */
+}
+
+/* Overlay Content (Text and other elements) */
+.hero-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centers the content */
+  text-align: center;
+  color: white;
+  z-index: 2; /* Makes sure the text appears above the video */
+  background: rgba(0, 0, 0, 0.5); /* Adds a semi-transparent background to improve text visibility */
+  padding: 20px;
+  border-radius: 10px; /* Adds rounded corners to the overlay */
+  animation: slideUp 1s ease-out; /* Animation for overlay content */
+}
+
+/* Hero Title Styling */
+.hero-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  animation: bounceInLeft 1.5s ease-out, glowingText 1.5s infinite alternate; /* Title animation with infinite glowing effect */
+}
+
+/* Hero Description Styling */
+.hero-description {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  max-width: 700px;
+  opacity: 0;
+  animation: fadeInText 2s ease-in-out forwards 0.5s; /* Delayed fade-in for description */
+}
+
+/* Shop Now Button Styling */
+.shop-now-btn {
+  background-color: blue; /* Blue color for the button */
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  transition: all 0.3s ease, transform 0.3s ease;
+  animation: fadeInButton 1.5s ease-in-out forwards 1s; /* Button fade-in animation */
+}
+
+.shop-now-btn:hover {
+  background: linear-gradient(135deg, #2c6dd9, #1e3c8d); /* Gradient blue color on hover */
+  color: #fff; /* Slightly darker text color for contrast */
+  transform: scale(1.1); /* Subtle zoom effect */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Increased shadow on hover */
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+
+@keyframes slideUp {
+  0% { transform: translate(-50%, -60%); }
+  100% { transform: translate(-50%, -50%); }
+}
+
+@keyframes bounceInLeft {
+  0% { transform: translateX(-1000px); }
+  60% { transform: translateX(30px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes fadeInText {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeInButton {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Glowing Text Effect for Hero Title (Blue) */
+@keyframes glowingText {
+  0% {
+    text-shadow: 0 0 10px #4e73df, 0 0 20px #4e73df, 0 0 30px #4e73df;
+    color: #fff;
+  }
+  50% {
+    text-shadow: 0 0 20px #4e73df, 0 0 30px #4e73df, 0 0 40px #4e73df;
+    color: #4e73df;
+  }
+  100% {
+    text-shadow: 0 0 10px #4e73df, 0 0 20px #4e73df, 0 0 30px #4e73df;
+    color: #fff;
+  }
+}
+
+/* Responsive Layout */
+@media (max-width: 600px) {
+  .hero {
+    height: 300px; /* Adjust the height for smaller screens */
+  }
+
+  .hero-title {
+    font-size: 2rem; /* Make title smaller on mobile */
+  }
+
+  .hero-description {
+    font-size: 1rem; /* Smaller text size on mobile */
+  }
+
+  .shop-now-btn {
+    font-size: 1rem;
+    padding: 12px 25px;
+  }
+}

@@ -171,7 +171,7 @@
 .reviews-status-message-details {
   margin-top: 10px;
   font-size: 14px;
-  color: #d9534f; /* Red color for error messages */
+  color: aqua; /* Red color for error messages */
 }
 
 .reviews-history-details {
@@ -185,18 +185,17 @@
 
 .reviews-history-list-child {
   background-color: #f1f1f1; /* Light gray background for each review */
-  padding: 15px;
   border: 1px solid #ddd;
   border-radius: 4px;
   margin-bottom: 10px;
 }
 
-.reviews-history-list-child p {
-  margin: 5px 0; /* Add some spacing between paragraphs */
-}
-
-.reviews-history-list-child strong {
-  color: #333; /* Dark text for rating */
+.para-review{
+  margin: 0 auto; /* Add some spacing between paragraphs */
+  color: black; /* Dark text for rating */
+  font-weight: bold;
+  font-size: x-large;
+  max-width: 500px;
 }
 
 .reviews-history-list-child em {

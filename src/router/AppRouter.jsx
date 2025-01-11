@@ -15,6 +15,7 @@ import {ProtectedRoute} from "./ProtectedRoute";
 import ForgotPassword from "../pages/auth/ForgetPaaword";
 import ResetPassword from "../pages/auth/ResetPassword";
 import AdminDashboard from "../pages/admin/AdminDashboard";
+import PaymentComponent from "../services/paymentMethods";
 
 
 
@@ -36,6 +37,7 @@ const AppRouter = ({ products }) => {
           <Route path="/signup" element={<Signup />} />
           <Route path="/ForgotPassword" element={<ForgotPassword />} />
           <Route path="/ResetPassword/:token" element={<ResetPassword />} />
+          <Route path="/payment" element={<PaymentComponent />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
-import ProductCard from "../components/Home/ProductCart"; // Corrected import name
+import { FaExclamationCircle } from "react-icons/fa"; // Import a relevant icon
+import ProductCard from "../components/Home/ProductCart";
 import axios from "axios";
-import "../styles/pages/productList.css"; // Import the CSS file
+import "../styles/pages/productList.css";
 
 const ProductList = ({ products: initialProducts = [], showCategories = true, showTitle = true }) => {
   const [products, setProducts] = useState(initialProducts);
   const [menProducts, setMenProducts] = useState([]);
   const [womenProducts, setWomenProducts] = useState([]);
+  const [showMenMore, setShowMenMore] = useState(false); // State for Men category "See More"
+  const [showWomenMore, setShowWomenMore] = useState(false); // State for Women category "See More"
 
   // Fetch products only when the component mounts or when initialProducts changes
   useEffect(() => {
@@ -52,7 +55,7 @@ const ProductList = ({ products: initialProducts = [], showCategories = true, sh
               <div className="product-text">
                 <h3>Men's Products</h3>
                 <p className="productList-description">
-                  Explore our exclusive collection of men's products designed to elevate your style. From casual wear to formal attire, find the perfect pieces for every occasion.
+                  Explore our exclusive collection of men's products designed to elevate your style.
                 </p>
               </div>
             </div>
@@ -66,6 +69,21 @@ const ProductList = ({ products: initialProducts = [], showCategories = true, sh
                 <p>No men's products available.</p>
               )}
             </div>
+
+            {/* See More Button */}
+            <button className="see-more-btn" onClick={() => setShowMenMore(!showMenMore)}>
+              {showMenMore ? "Hide" : "See More"}
+            </button>
+
+            {/* Show "New Modern Products Are Coming Soon" sub-tab for Men */}
+            {showMenMore && (
+              <div className="sub-tab">
+                <div className="sub-tab-message">
+                  <FaExclamationCircle size={30} color="blue" />
+                  <p className="sub-tab-message-p">New modern products are coming soon!</p>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Women Products Section */}
@@ -75,7 +93,7 @@ const ProductList = ({ products: initialProducts = [], showCategories = true, sh
               <div className="product-text">
                 <h3>Women's Products</h3>
                 <p className="productList-description">
-                  Discover our handpicked collection of women's products, perfect for every season. Whether you're looking for trendy outfits or elegant accessories, we've got you covered.
+                  Discover our handpicked collection of women's products, perfect for every season.
                 </p>
               </div>
             </div>
@@ -89,6 +107,21 @@ const ProductList = ({ products: initialProducts = [], showCategories = true, sh
                 <p>No women's products available.</p>
               )}
             </div>
+
+            {/* See More Button */}
+            <button className="see-more-btn" onClick={() => setShowWomenMore(!showWomenMore)}>
+              {showWomenMore ? "Hide" : "See More"}
+            </button>
+
+            {/* Show "New Modern Products Are Coming Soon" sub-tab for Women */}
+            {showWomenMore && (
+              <div className="sub-tab">
+                <div className="sub-tab-message">
+                  <FaExclamationCircle size={30} color="blue" />
+                  <p className="sub-tab-message-p">New modern products are coming soon!</p>
+                </div>
+              </div>
+            )}
           </div>
         </>
       )}

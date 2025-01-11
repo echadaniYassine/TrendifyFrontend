@@ -3,95 +3,89 @@
     max-width: 1450px;
     margin: 0 auto;
     padding: 20px;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     color: #BDC3C7;
 }
 
 /* About Section */
 .about-txt-img {
-    display: flex; /* Aligns text and image side by side */
-    align-items: flex-start; /* Aligns items at the start */
-    padding: 50px
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding: 50px;
+    gap: 20px;
 }
 
 .about-content {
-    flex: 1; /* Allows the content to take available space */
+    flex: 1;
     display: flex;
-    flex-direction: column; /* Stack sections vertically */
-    text-align: left; /* Align text to the left */
+    flex-direction: column;
+    gap: 30px;
 }
 
 .about-section {
-    max-width: 600px; /* Limit the width of each section for better readability */   
+    max-width: 600px;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Image styling */
-.about-image {
-    flex: 1; /* Allows the image to take available space */
-    
-}
-
-.about-image img {
-    max-width: 100%; /* Responsive image */
-    height: 520px;
-}
-
-/* Title with Infinite Animation */
 .about-heading {
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin-bottom: 10px;
     color: black;
     text-transform: uppercase;
-    animation: colorWave 5s infinite alternate, letterJump 3s infinite ease-in-out;
+    animation: floatText 3s infinite ease-in-out;
 }
 
-/* Infinite Color Change Animation */
-@keyframes colorWave {
-    0% {
-        color: black; /* Start with black */
-    }
-    25% {
-        color: blue; /* Change to blue */
+@keyframes floatText {
+    0%, 100% {
+        transform: translateY(0);
     }
     50% {
-        color: blueviolet; /* Dark purple */
+        transform: translateY(-12px);
     }
-    75% {
-        color: blue; /* Another dark color */
-    }
-    100% {
-        color: black; /* Back to black */
-    }
-}
-
-/* Title Letter Animation */
-@keyframes letterJump {
-    0% {
-        letter-spacing: 1px;
-    }
-    25% {
-        letter-spacing: 5px; /* Increase space between letters */
-    }
-    50% {
-        letter-spacing: 10px; /* Further increase space */
-    }
-    75% {
-        letter-spacing: 5px; /* Reduce space */
-    }
-    100% {
-        letter-spacing: 1px; /* Reset spacing */
-    }
-}
-
-.about-heading:hover {
-    color: blue;
 }
 
 .about-description {
-    line-height: 1.4;
-    color: #585a5c;
-    transition: color 0.3s ease-in-out;
+    line-height: 1.5;
+    color: aliceblue;
+    background: linear-gradient(135deg, blue,black, blue);
+    padding: 15px;
+    border-radius: 15px;
+    font-style: inherit;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Image Styling */
+.about-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.about-image img {
+    max-width: 100%;
     border-radius: 20px;
+    box-shadow: 0 20px 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1);
+    transition: transform 0.5s ease-in-out;
+    height: 550px;
+    margin-top: 140px;
+}
+
+.about-image img:hover {
+    transform: scale(1.05) rotate(-2deg);
 }
 
 /* Team Section */
@@ -122,7 +116,8 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    animation: cardEntry 1s ease-in-out;
 }
 
 /* Hover Animation Effect */
@@ -135,7 +130,7 @@
     height: 100%;
     background: linear-gradient(to top, blue, black);
     z-index: 1;
-    transition: bottom 0.4s ease-in-out;
+    transition: bottom 0.5s ease-in-out;
 }
 
 .team-card:hover::before {
@@ -143,17 +138,28 @@
 }
 
 .team-card:hover {
-    transform: scale(1.05);
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
     color: #FFF;
+}
+
+/* Add Bounce Effect on Hover */
+.team-card:hover .team-card-content {
+    animation: bounce 0.8s ease-out;
 }
 
 /* Content Overlay for Text */
 .team-card-content {
     position: relative;
     z-index: 2; /* Place text above gradient */
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
 }
 
+.team-card:hover .team-card-content {
+    opacity: 0.9;
+}
+
+/* Image Styling */
 .team-card img {
     width: 100%;
     max-width: 150px;
@@ -162,23 +168,52 @@
     margin-bottom: 15px;
     position: relative;
     z-index: 2; /* Ensure image is above gradient */
+    transition: transform 0.5s ease-in-out;
 }
 
+.team-card:hover img {
+    transform: scale(1.2) rotate(-5deg);
+}
+
+/* Text Styling */
 .team-card-title {
     font-size: 1.2rem;
     margin-bottom: 10px;
     color: #001F54;
+    transition: color 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
 .team-card-description {
     font-size: 1rem;
     color: #777;
+    transition: color 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
-/* Hover Text Color Change */
 .team-card:hover .team-card-title,
 .team-card:hover .team-card-description {
     color: #FFF; /* Change text color to white */
+    transform: translateY(-10px);
+}
+
+/* Advanced Animations */
+@keyframes cardEntry {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 /* Mobile Responsiveness */

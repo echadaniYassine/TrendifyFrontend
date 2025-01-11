@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ProductCard from "../Home/ProductCart"; // Assuming you have a ProductCard component
 import "../../styles/components/categories.css";
 
@@ -11,23 +11,42 @@ const Categories = ({
   products = [],
 }) => {
   const [activeCategory, setActiveCategory] = useState(""); // Tracks the active category
+  const sectionRef = useRef(null); // Reference for observing the section
+  const [isVisible, setIsVisible] = useState(false); // State for tracking visibility
 
-  // Subcategory options (Jackets, Pants, Hoodies, Shirts)
-  const subCategories = ["Jackets", "Pants", "Hoodies", "Shirts"];
+  // Subcategory options
+  const subCategories = ["Hoodies", "Pants", "Jackets", "Shirts"];
 
-  // Function to handle category selection
+  // Intersection Observer for triggering animations on scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   const handleCategorySelect = (categoryName) => {
-    setSelectedCategory(categoryName); // Passing to parent component
-    setSelectedSubCategory("All"); // Reset subcategory selection
-    setActiveCategory(categoryName); // Set active category
+    setSelectedCategory(categoryName);
+    setSelectedSubCategory("All");
+    setActiveCategory(categoryName);
   };
 
-  // Function to handle subcategory selection
   const handleSubCategorySelect = (subCategoryName) => {
-    setSelectedSubCategory(subCategoryName); // Passing to parent component
+    setSelectedSubCategory(subCategoryName);
   };
 
-  // Filter products based on category
   const filteredProducts = products.filter((product) => {
     const categoryMatch =
       selectedCategory === "All" || product.categoryName === selectedCategory;
@@ -36,7 +55,6 @@ const Categories = ({
     return categoryMatch && subCategoryMatch;
   });
 
-  // Get 1 product from each subcategory (Jackets, Pants, Hoodies, Shirts) for Men and Women
   const getCategoryProducts = (category) => {
     const categoryProducts = filteredProducts.filter(
       (product) => product.categoryName === category
@@ -51,17 +69,19 @@ const Categories = ({
     }, []);
   };
 
-  // Show only 8 products by default (4 for Men, 4 for Women)
   const defaultProducts =
     selectedCategory === "All"
       ? [
-          ...getCategoryProducts("Men").slice(0, 4), // Get 4 products for Men
-          ...getCategoryProducts("Women").slice(0, 4), // Get 4 products for Women
+          ...getCategoryProducts("Men").slice(0, 4),
+          ...getCategoryProducts("Women").slice(0, 4),
         ]
       : filteredProducts;
 
   return (
-    <section className="categories-section">
+    <section
+      className={`categories-section ${isVisible ? "animate" : ""}`}
+      ref={sectionRef}
+    >
       <h2>Shop by Category</h2>
       <div className="category-cards-container">
         {categories.map((category, index) => (
@@ -80,7 +100,10 @@ const Categories = ({
       {(selectedCategory === "Men" || selectedCategory === "Women") && (
         <div className="subcategory-menu">
           <h3>Select a Subcategory</h3>
-          <select onChange={(e) => handleSubCategorySelect(e.target.value)} value={selectedSubCategory}>
+          <select
+            onChange={(e) => handleSubCategorySelect(e.target.value)}
+            value={selectedSubCategory}
+          >
             {subCategories.map((subCategory, index) => (
               <option key={index} value={subCategory}>
                 {subCategory}
@@ -93,7 +116,7 @@ const Categories = ({
       <div className="product-list">
         {defaultProducts.length > 0 ? (
           defaultProducts.map((product) => (
-            <ProductCard key={product._id} product={product} /> 
+            <ProductCard key={product._id} product={product} />
           ))
         ) : (
           <p>No products available for the selected category and subcategory.</p>

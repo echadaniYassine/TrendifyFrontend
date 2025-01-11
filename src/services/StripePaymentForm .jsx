@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
-
+import '../styles/service/stripePayment.css'
 const StripePaymentForm = ({ clientSecret }) => {
   const stripe = useStripe();
   const elements = useElements();
@@ -41,22 +41,23 @@ const StripePaymentForm = ({ clientSecret }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label htmlFor="cardElement" className="form-label">
-          Card Details
-        </label>
-        <CardElement id="cardElement" className="form-input" />
-      </div>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-      <button
-        type="submit"
-        className="submit-button"
-        disabled={!stripe || isProcessing}
-      >
-        {isProcessing ? "Processing..." : "Pay Now"}
-      </button>
-    </form>
+    <form className="form-stripe-pay" onSubmit={handleSubmit}>
+    <div className="payment-form-group">
+      <label htmlFor="cardElement" className="payment-form-label">
+        Card Details
+      </label>
+      <CardElement id="cardElement" className="payment-form-input" />
+    </div>
+    {errorMessage && <p className="payment-error-message">{errorMessage}</p>}
+    <button
+      type="submit"
+      className="payment-submit-button"
+      disabled={!stripe || isProcessing}
+    >
+      {isProcessing ? "Processing..." : "Pay Now"}
+    </button>
+  </form>
+  
   );
 };
 

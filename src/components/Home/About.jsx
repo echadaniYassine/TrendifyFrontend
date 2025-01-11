@@ -5,36 +5,36 @@ const About = () => {
     return (
         <div id="About" className="about-container">
             {/* About Section */}
-            <div class="about-txt-img">
-                <div class="about-content">
-                    <section class="about-section">
-                        <h2 class="about-heading">Our Mission</h2>
-                        <p class="about-description">
+            <div className="about-txt-img">
+                <div className="about-content">
+                    <section className="about-section">
+                        <h2 className="about-heading">Our Mission</h2>
+                        <p className="about-description">
                             At Trendify, we aim to revolutionize the way people shop online by providing a seamless
                             and personalized shopping experience. Our platform connects fashion-forward individuals
                             with the latest trends and products that match their unique style.
                         </p>
                     </section>
 
-                    <section class="about-section">
-                        <h2 class="about-heading">What We Do</h2>
-                        <p class="about-description">
+                    <section className="about-section">
+                        <h2 className="about-heading">What We Do</h2>
+                        <p className="about-description">
                             Trendify offers a curated selection of trending fashion, accessories, and lifestyle products.
                             We use advanced algorithms to bring you the latest trends and make personalized recommendations
                             based on your preferences.
                         </p>
                     </section>
 
-                    <section class="about-section">
-                        <h2 class="about-heading">Our Vision</h2>
-                        <p class="about-description">
+                    <section className="about-section">
+                        <h2 className="about-heading">Our Vision</h2>
+                        <p className="about-description">
                             Our vision is to become the go-to platform for anyone looking for the latest in fashion and
                             lifestyle. We believe in empowering our users to express themselves through their clothing choices
                             and offering them a convenient, online shopping experience.
                         </p>
                     </section>
                 </div>
-                <div class="about-image">
+                <div className="about-image">
                     <img src="/assets/about.png" alt="About Trendify" />
                 </div>
             </div>

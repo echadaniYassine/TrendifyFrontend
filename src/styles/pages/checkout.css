@@ -1,77 +1,64 @@
+/* Checkout Page Styles */
 .checkout-container {
+  width: 100%;
   max-width: 900px;
   margin: 0 auto;
   padding: 20px;
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #e0f7fa, #ffffff);
-  border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s;
-}
-
-.checkout-container:hover {
-  transform: scale(1.02);
+  background-color:white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .checkout-title {
+  font-size: 2rem;
   text-align: center;
-  font-size: 2.5rem;
-  color: #0d47a1;
-  margin-bottom: 30px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  margin-bottom: 20px;
+  color: #333;
+  font-style: oblique;
 }
 
 .cart-empty-message {
   text-align: center;
   font-size: 1.2rem;
-  color: #555;
+  color: #666;
 }
 
 .checkout-content {
-  background-color: #ffffff;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s;
-}
-
-.checkout-content:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background:linear-gradient(123deg, blue,black);
+  color: aliceblue;
+  border-radius: 50px;
+  margin-bottom: 90px;
 }
 
 .order-summary-title {
-  font-size: 1.8rem;
-  color: #0d47a1;
+  font-size: 1.5rem;
   margin-bottom: 15px;
+  color: aliceblue;
 }
 
 .order-summary-list {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .order-summary-item {
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-  transition: color 0.3s;
-}
-
-.order-summary-item:hover {
-  color: #0d47a1;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #ccc;
 }
 
 .total-price {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
-  color: #0d47a1;
+  color: #ccc;
+  margin-top: 10px;
 }
 
-.shipping-info-title,
-.payment-info-title {
-  font-size: 1.5rem;
-  color: #0d47a1;
-  margin-top: 30px;
+.error-message {
+  color: red;
+  font-size: 1rem;
   margin-bottom: 10px;
 }
 
@@ -80,61 +67,101 @@
   flex-direction: column;
 }
 
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-label {
-  font-size: 1rem;
-  color: black;
-  display: block;
-  margin-bottom: 5px;
-}
-
-.form-input {
-  width: 100%;
-  padding: 10px;
-  font-size: 1rem;
+/* Fieldset and Legend */
+.form-fieldset {
   border: 1px solid #ccc;
-  border-radius: 5px;
-  transition: border-color 0.3s;
-}
-
-.form-input:focus {
-  border-color: #0d47a1;
-  outline: none;
-  box-shadow: 0 0 5px rgba(13, 71, 161, 0.5);
-}
-
-.place-order-btn {
-  padding: 12px;
-  font-size: 1.2rem;
-  background: linear-gradient(135deg, #0d47a1, #1976d2);
-  color: white;
-  border: none;
+  padding: 20px;
   border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.3s;
-  margin-top: 20px;
-}
+  margin-bottom: 20px;
 
-.place-order-btn:hover {
-  background: linear-gradient(135deg, #1976d2, #0d47a1);
-  transform: translateY(-2px);
 }
-
-.error-message {
-  color: red;
+#form-label{
+  color: aliceblue;
   font-weight: bold;
-  margin-top: 10px;
+  text-align: start;
+  margin-left: 210px;
+}
+.form-legend {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: aliceblue;
+  margin-bottom: 10px;
+}
+
+/* Button Container */
+.button-container {
+  display: flex;
+  justify-content: center; /* Centers the button horizontally */
+  align-items: center; /* Centers the button vertically */
+  margin-top: 30px; /* Adds space above the button */
+  padding: 10px; /* Padding around the container */
+  transition: transform 0.3s ease-in-out; /* Smooth transition for hover effect */
+}
+
+.button-container:hover {
+  transform: scale(1.05); /* Scales up the container when hovered */
+}
+
+/* Proceed to Payment Button */
+.proceed-payment-btn {
+  background: linear-gradient(45deg, grey, aqua); /* Gradient green background */
+  color: white; /* White text color */
+  font-size: 1.3rem; /* Slightly larger font size */
+  padding: 15px 25px; /* Increased padding for a larger button */
+  border: none; /* Removes the default button border */
+  border-radius: 50px; /* Makes the button fully rounded */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+  cursor: pointer; /* Pointer cursor on hover */
+  text-transform: uppercase; /* Makes the button text uppercase */
+  letter-spacing: 2px; /* Adds space between letters for better readability */
+  transition: all 0.4s ease-out; /* Smooth transition for color and shadow */
+  font-weight: bold; /* Makes the font bold */
+  outline: none; /* Removes default outline */
+}
+
+.proceed-payment-btn:hover {
+  background: linear-gradient(45deg, white, aqua); /* Darker gradient on hover */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+  transform: translateY(-4px); /* Lifts the button on hover */
+  color: #333;
+}
+
+.proceed-payment-btn:active {
+  transform: translateY(2px); /* Slightly pushes the button down when clicked */
+}
+
+.proceed-payment-btn:focus {
+  outline: none; /* Removes the outline on focus */
+  box-shadow: 0 0 10px rgba(0, 128, 0, 0.8); /* Adds a green focus ring */
 }
 
 @media (max-width: 768px) {
   .checkout-container {
-      padding: 10px;
+    margin: 10px;
+    padding: 15px;
   }
 
-  .place-order-btn {
-      font-size: 1rem;
+  .checkout-title {
+    font-size: 1.5rem;
+  }
+
+  .order-summary-title {
+    font-size: 1.3rem;
+  }
+
+  .total-price {
+    font-size: 1.1rem;
+  }
+
+  .form-label {
+    font-size: 0.9rem;
+  }
+
+  .form-input {
+    font-size: 0.9rem;
+  }
+
+  .proceed-payment-btn {
+    font-size: 1rem;
   }
 }

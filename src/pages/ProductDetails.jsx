@@ -160,52 +160,62 @@ const ProductDetails = () => {
       </div>
 
       <div className="reviews-section-details">
-        <h3 className="reviews-heading-details">Reviews</h3>
-        <textarea
-          className="reviews-textarea-details"
-          placeholder="Leave your review..."
-          value={reviewText} // Changed from feedbackText to reviewText
-          onChange={(e) => setReviewText(e.target.value)} // Changed from setFeedbackText to setReviewText
-        />
-        <div className="rating-section-details">
-          <label>
-            <span className="rating-label">Rating:</span>
-          </label>
-          <div className="star-rating">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <span
-                key={star}
-                className={`star ${rating >= star ? 'filled' : ''}`}
-                onClick={() => handleStarClick(star)}
-              >
-                ★
-              </span>
-            ))}
-          </div>
-        </div>
-        <button onClick={handleSubmitReview} className="submit-review-btn-details"> {/* Changed from handleSubmitFeedback to handleSubmitReview */}
-          Submit Review
-        </button>
-        <p className="reviews-status-message-details">{statusMessage}</p> {/* Changed from feedback-status-message-details to reviews-status-message-details */}
+  <h3 className="reviews-heading-details">Reviews</h3>
+  <textarea
+    className="reviews-textarea-details"
+    placeholder="Leave your review..."
+    value={reviewText} // Changed from feedbackText to reviewText
+    onChange={(e) => setReviewText(e.target.value)} // Changed from setFeedbackText to setReviewText
+  />
+  <div className="rating-section-details">
+    <label>
+      <span className="rating-label">Rating:</span>
+    </label>
+    <div className="star-rating">
+      {[1, 2, 3, 4, 5].map((star) => (
+        <span
+          key={star}
+          className={`star ${rating >= star ? 'filled' : ''}`}
+          onClick={() => handleStarClick(star)}
+        >
+          ★
+        </span>
+      ))}
+    </div>
+  </div>
+  <button onClick={handleSubmitReview} className="submit-review-btn-details"> {/* Changed from handleSubmitFeedback to handleSubmitReview */}
+    Submit Review
+  </button>
+  <p className="reviews-status-message-details">{statusMessage}</p> {/* Changed from feedback-status-message-details to reviews-status-message-details */}
 
-        <div className="reviews-history-details">
-          {reviews.length > 0 ? ( // Changed from feedbacks to reviews
-            <ul className="reviews-history-list"> {/* Changed from feedback-history-list to reviews-history-list */}
-              {reviews.map((review, index) => ( // Changed from feedback to review
-                <li className="reviews-history-list-child" key={index}> {/* Changed from feedback-history-list-child to reviews-history-list-child */}
-                  <p><strong>Rating:</strong> {review.rating} Stars</p> {/* Changed from feedback to review */}
-                  <p>{review.text}</p> {/* Changed from feedback to review */}
-                  <p><em>Submitted on: {new Date(review.createdAt).toLocaleDateString()}</em></p> {/* Changed from feedback to review */}
-                </li>
+  <div className="reviews-history-details">
+    {reviews.length > 0 ? ( // Changed from feedbacks to reviews
+      <ul className="reviews-history-list"> {/* Changed from feedback-history-list to reviews-history-list */}
+        {reviews.map((review, index) => ( // Changed from feedback to review
+          <li className="reviews-history-list-child" key={index}> {/* Changed from feedback-history-list-child to reviews-history-list-child */}
+            <div className="star-rating">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <span
+                  key={star}
+                  className={`star ${review.rating >= star ? 'filled' : ''}`}
+                >
+                  ★
+                </span>
               ))}
-            </ul>
-          ) : (
-            <p style={{ textAlign: "center", color: "aliceblue", fontSize: "30px" }}>
-              No reviews yet for this product. {/* Changed from feedbacks to reviews */}
-            </p>
-          )}
-        </div>
-      </div>
+            </div>
+            <p className="para-review">{review.text}</p> {/* Changed from feedback to review */}
+            <p><em>Submitted on: {new Date(review.createdAt).toLocaleDateString()}</em></p> {/* Changed from feedback to review */}
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p style={{ textAlign: "center", color: "aliceblue", fontSize: "30px" }}>
+        No reviews yet for this product. {/* Changed from feedbacks to reviews */}
+      </p>
+    )}
+  </div>
+</div>
+
     </>
   );
 };

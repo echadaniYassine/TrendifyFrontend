@@ -5,7 +5,6 @@ import axios from "axios";
 import '../styles/pages/checkout.css';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
-import mongoose from 'mongoose';
 
 const Checkout = () => {
   const { state, dispatch } = useContext(CartContext);
@@ -17,9 +16,6 @@ const Checkout = () => {
     city: "",
     postalCode: "",
     phone: "",
-    cardNumber: "",
-    expiry: "",
-    cvv: "",
   });
 
   const [error, setError] = useState(null);
@@ -64,27 +60,12 @@ const Checkout = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleCheckout = async (e) => {
+  const handleProceedToPayment = async (e) => {
     e.preventDefault();
 
-    // Validation (card number, CVV, etc.)
+    // Validation (check if required fields are filled)
     if (Object.values(formData).some((field) => !field.trim())) {
       alert("Please fill out all required fields.");
-      return;
-    }
-
-    if (!/^\d{16}$/.test(formData.cardNumber)) {
-      alert("Invalid card number. Must be 16 digits.");
-      return;
-    }
-
-    if (!/^(0[1-9]|1[0-2])\/?([0-9]{2})$/.test(formData.expiry)) {
-      alert("Invalid expiry date. Format: MM/YY.");
-      return;
-    }
-
-    if (!/^\d{3}$/.test(formData.cvv)) {
-      alert("Invalid CVV. Must be 3 digits.");
       return;
     }
 
@@ -121,64 +102,24 @@ const Checkout = () => {
 
       const orderData = {
         userId: user._id, // Include userId in the payload
-        items: state.cart.map((item) => {
-          const productId = mongoose.Types.ObjectId.isValid(item._id) // Assuming _id is the correct field
-            ? new mongoose.Types.ObjectId(item._id).toString() // Convert ObjectId to string
-            : null;
-          console.log('ProductId:', productId); // Log the generated productId
-
-          if (!productId) {
-            throw new Error(`Invalid productId: ${item._id}`); // Updated error to reflect _id
-          }
-
-          return {
-            productId,
-            quantity: item.quantity,
-            price: item.price,
-          };
-        }),
+        items: state.cart.map((item) => ({
+          productId: item._id,
+          quantity: item.quantity,
+          price: item.price,
+        })),
       };
 
-      console.log(state.cart); // Add this line to check the productId
+      // Save order data to proceed to payment
+      sessionStorage.setItem('orderData', JSON.stringify(orderData));
 
+      // Navigate to the Payment page
+      navigate('/payment');
 
-      try {
-        const response = await axios.post("https://trendify-backend.vercel.app/api/Trendify/orders/createOrder", orderData, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        console.log("Status:", response.status); // Log status to check if the request was successful
-        if (response.status === 200) {
-          alert("Order placed successfully!");
-          dispatch({ type: "CLEAR_CART" });
-          navigate('/'); // Change this to your home route
-
-
-        } else {
-          setError("Failed to place order. Please try again.");
-        }
-      } catch (error) {
-        console.error("Error placing order:", error.response?.data || error.message);
-        setError("There was an error placing your order. Please try again.");
-      }
-      
-
-
-      setFormData({
-        name: "",
-        addressLine1: "",
-        city: "",
-        postalCode: "",
-        phone: "",
-        cardNumber: "",
-        expiry: "",
-        cvv: "",
-      });
     } catch (error) {
-      console.error("Error placing order:", error.response?.data || error.message);
-      setError("There was an error placing your order. Please try again.");
+      console.error("Error proceeding to payment:", error.response?.data || error.message);
+      setError("There was an error processing your order. Please try again.");
     }
   };
-
 
   return (
     <div className="checkout-container">
@@ -190,7 +131,7 @@ const Checkout = () => {
           <h3 className="order-summary-title">Order Summary</h3>
           <ul className="order-summary-list">
             {state.cart.map((item) => (
-              <li key={item._id} className="order-summary-item"> {/* Use _id for key */}
+              <li key={item._id} className="order-summary-item">
                 <div>
                   <strong>{item.name}</strong> - {item.quantity} x ${item.price.toFixed(2)}
                 </div>
@@ -198,48 +139,74 @@ const Checkout = () => {
             ))}
           </ul>
           <h4 className="total-price">Total: ${total.toFixed(2)}</h4>
-
-          <h3 className="shipping-info-title">Shipping Information</h3>
           {error && <p className="error-message">{error}</p>}
-          <form onSubmit={handleCheckout} className="checkout-form">
-            <div className="form-group">
-              <label className="form-label">Full Name:</label>
-              <input type="text" name="name" value={formData.name} onChange={handleInputChange} className="form-input" required />
-            </div>
-            <div className="form-group">
-              <label className="form-label">Address:</label>
-              <input type="text" name="addressLine1" value={formData.addressLine1} onChange={handleInputChange} className="form-input" required />
-            </div>
-            <div className="form-group">
-              <label className="form-label">City:</label>
-              <input type="text" name="city" value={formData.city} onChange={handleInputChange} className="form-input" required />
-            </div>
-            <div className="form-group">
-              <label className="form-label">Postal Code:</label>
-              <input type="text" name="postalCode" value={formData.postalCode} onChange={handleInputChange} className="form-input" required />
-            </div>
-            <div className="form-group">
-              <label className="form-label">Phone Number:</label>
-              <input type="text" name="phone" value={formData.phone} onChange={handleInputChange} className="form-input" required />
-            </div>
+          <form onSubmit={handleProceedToPayment} className="checkout-form">
+            <fieldset className="form-fieldset">
+              <legend className="form-legend">Shipping Information</legend>
+              <div className="form-group">
+                <label id="form-label">Full Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  className="form-input"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label id="form-label">Address</label>
+                <input
+                  type="text"
+                  name="addressLine1"
+                  value={formData.addressLine1}
+                  onChange={handleInputChange}
+                  className="form-input"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label id="form-label">City</label>
+                <input
+                  type="text"
+                  name="city"
+                  value={formData.city}
+                  onChange={handleInputChange}
+                  className="form-input"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label id="form-label">Postal Code</label>
+                <input
+                  type="text"
+                  name="postalCode"
+                  value={formData.postalCode}
+                  onChange={handleInputChange}
+                  className="form-input"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label id="form-label">Phone Number</label>
+                <input
+                  type="text"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className="form-input"
+                  required
+                />
+              </div>
+            </fieldset>
 
-            <h3 className="payment-info-title">Payment Information</h3>
-            <div className="form-group">
-              <label className="form-label">Card Number:</label>
-              <input type="text" name="cardNumber" value={formData.cardNumber} onChange={handleInputChange} className="form-input" required />
+            <div className="button-container">
+              <button type="submit" className="proceed-payment-btn">Proceed to Payment</button>
             </div>
-            <div className="form-group">
-              <label className="form-label">Expiry Date:</label>
-              <input type="text" name="expiry" value={formData.expiry} placeholder="MM/YY" onChange={handleInputChange} className="form-input" required />
-            </div>
-            <div className="form-group">
-              <label className="form-label">CVV:</label>
-              <input type="text" name="cvv" value={formData.cvv} onChange={handleInputChange} className="form-input" required />
-            </div>
-
-            <button type="submit" className="place-order-btn">Place Order</button>
           </form>
+
         </div>
+
       )}
     </div>
   );

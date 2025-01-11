@@ -1,0 +1,98 @@
+/* Payment Form Container */
+.form-stripe-pay {
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #f4f4f4;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.payment-form-group {
+  margin-bottom: 20px;
+}
+
+.payment-form-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.payment-form-input {
+  width: 100%;
+  padding: 15px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.payment-form-input:focus {
+  outline: none;
+  border-color: #6772e5;
+  box-shadow: 0 0 5px rgba(103, 114, 229, 0.3);
+}
+
+/* Error Message */
+.payment-error-message {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+/* Submit Button */
+.payment-submit-button {
+  background-color: #6772e5;
+  color: #fff;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.payment-submit-button:hover {
+  background-color: #5468e4;
+}
+
+.payment-submit-button:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+.payment-submit-button:active {
+  transform: scale(0.98);
+}
+
+/* Disabled State */
+.payment-submit-button[disabled] {
+  background-color: #ddd;
+  color: #bbb;
+}
+
+/* Loading State */
+.payment-submit-button[disabled]::after {
+  content: ' ...';
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+/* Responsive Layout */
+@media (max-width: 600px) {
+  form {
+      padding: 20px;
+  }
+
+  .payment-submit-button {
+      font-size: 1rem;
+      padding: 10px 20px;
+  }
+}
